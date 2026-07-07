@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como instalar — Gênesis Conhecimento</title>
+<style>
+  :root{ --bg:#FDFBF7; --text:#3E2723; --accent:#8D4E2A; --btn:#A67C52; --btn-soft:#D9B99B; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+  .wrap{ max-width:560px; margin:0 auto; padding:32px 20px 60px; }
+  .brand{ display:flex; align-items:center; gap:10px; margin-bottom:28px; }
+  .brand .name{ font-family:Georgia,serif; font-weight:bold; font-size:20px; }
+  .brand .sep{ width:1px; height:16px; background:var(--btn); }
+  .brand .sub{ font-size:11px; letter-spacing:.06em; color:var(--accent); font-weight:700; }
+  h1{ font-family:Georgia,serif; font-size:26px; margin:0 0 6px; }
+  .lead{ opacity:.75; margin-bottom:28px; }
+  .step{ background:#fff; border:1px solid var(--btn-soft); border-radius:16px; padding:18px 20px; margin-bottom:16px; }
+  .step .n{ display:inline-flex; width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; align-items:center; justify-content:center; font-weight:700; font-size:13px; margin-right:10px; }
+  .step h3{ display:inline; font-size:16px; }
+  .step p{ margin:10px 0 0; font-size:14px; line-height:1.5; opacity:.85; }
+  .tabs{ display:flex; gap:8px; margin-bottom:20px; }
+  .tab{ flex:1; text-align:center; padding:10px; border-radius:12px; background:var(--btn-soft); font-weight:700; font-size:14px; cursor:pointer; }
+  .tab.active{ background:var(--accent); color:#fff; }
+  .os{ display:none; }
+  .os.active{ display:block; }
+  .note{ background:var(--btn-soft); border-radius:12px; padding:14px 16px; font-size:13px; margin-top:20px; }
+  a.cta{ display:block; text-align:center; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; padding:14px; border-radius:12px; margin:24px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 75C32 63 48 68 50 73C52 68 68 63 85 75V25C68 13 52 18 50 23C48 18 32 13 15 25V75Z" stroke="#8D4E2A" stroke-width="3" stroke-linecap="round"/>
+      <path d="M50 68V35" stroke="#3E2723" stroke-width="4.5"/>
+    </svg>
+    <span class="name">Gênesis</span><span class="sep"></span><span class="sub">CONHECIMENTO</span>
+  </div>
+
+  <h1>Como instalar o app</h1>
+  <p class="lead">Siga o passo a passo abaixo para instalar o <strong>Manhã com Deus</strong> na tela inicial do seu celular. Leva menos de 1 minuto.</p>
+
+  <a class="cta" href="./index.html">Abrir o app agora →</a>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showOS('ios')">📱 iPhone</div>
+    <div class="tab" onclick="showOS('android')">🤖 Android</div>
+  </div>
+
+  <div id="ios" class="os active">
+    <div class="step"><span class="n">1</span><h3>Abra o link no Safari</h3><p>Use sempre o navegador Safari (não funciona pelo Instagram ou WhatsApp direto — se abrir por lá, toque em "Abrir no Safari").</p></div>
+    <div class="step"><span class="n">2</span><h3>Toque no botão de compartilhar</h3><p>É o ícone do quadrado com uma seta para cima, na barra inferior do Safari.</p></div>
+    <div class="step"><span class="n">3</span><h3>Escolha "Adicionar à Tela de Início"</h3><p>Role as opções até encontrar essa opção e toque nela.</p></div>
+    <div class="step"><span class="n">4</span><h3>Toque em "Adicionar"</h3><p>Pronto! O ícone do Gênesis Conhecimento vai aparecer na sua tela inicial, como um app normal.</p></div>
+  </div>
+
+  <div id="android" class="os">
+    <div class="step"><span class="n">1</span><h3>Abra o link no Chrome</h3><p>Use o navegador Chrome para melhor compatibilidade.</p></div>
+    <div class="step"><span class="n">2</span><h3>Toque nos três pontinhos</h3><p>No canto superior direito do navegador.</p></div>
+    <div class="step"><span class="n">3</span><h3>Escolha "Instalar app" ou "Adicionar à tela inicial"</h3><p>O Chrome pode até sugerir isso automaticamente com um banner.</p></div>
+    <div class="step"><span class="n">4</span><h3>Confirme a instalação</h3><p>Pronto! O app vai aparecer na sua tela inicial e no menu de apps.</p></div>
+  </div>
+
+  <div class="note">
+    💡 <strong>Dica:</strong> na primeira vez que abrir, mantenha a internet ligada por alguns segundos para o app baixar todo o conteúdo. Depois disso, ele funciona <strong>100% offline</strong> — sem internet, sem anúncios e sem coleta de dados.
+  </div>
+</div>
+<script>
+function showOS(os){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.os').forEach(t=>t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById(os).classList.add('active');
+}
+</script>
+</body>
+</html>

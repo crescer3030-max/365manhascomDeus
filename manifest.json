@@ -1,0 +1,13 @@
+{
+  "name": "Gênesis Conhecimento - Manhã com Deus",
+  "short_name": "Gên. Conhecimento",
+  "description": "Leitura bíblica diária, temas, orações e devocional 100% offline.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FDFBF7",
+  "theme_color": "#8D4E2A",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "192x192 512x512", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

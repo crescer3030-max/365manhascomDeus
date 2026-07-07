@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Gênesis Conhecimento</title>
+<meta name="description" content="Leitura bíblica diária, temas, orações e devocional 100% offline.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8D4E2A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FDFBF7' rx='16'/%3E%3Cpath d='M15 75C32 63 48 68 50 73C52 68 68 63 85 75V25C68 13 52 18 50 23C48 18 32 13 15 25V75Z' stroke='%238D4E2A' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M50 68V35' stroke='%233E2723' stroke-width='4.5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="tailwind.css">
+<style>
+  :root{
+    --bg:#FDFBF7; --text:#3E2723; --accent:#8D4E2A; --btn:#A67C52; --btn-soft:#D9B99B; --card:#ffffff;
+  }
+  html.dark{
+    --bg:#1A1A1A; --text:#F0F0F0; --accent:#6F4227; --btn:#6F4227; --btn-soft:#3a2c22; --card:#242119;
+  }
+  *{ -webkit-tap-highlight-color: transparent; }
+  html,body{ background:var(--bg); color:var(--text); }
+  body{ font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: background .25s, color .25s; }
+  .font-display{ font-family: Georgia, 'Times New Roman', serif; }
+  .bg-app{ background:var(--bg); }
+  .text-app{ color:var(--text); }
+  .text-accent{ color:var(--accent); }
+  .bg-accent{ background:var(--accent); }
+  .bg-btn{ background:var(--btn); }
+  .bg-btn-soft{ background:var(--btn-soft); }
+  .border-accent{ border-color:var(--accent); }
+  .card{ background:var(--card); border-radius:1rem; }
+  .screen{ display:none; }
+  .screen.active{ display:block; }
+  ::-webkit-scrollbar{ width:6px; }
+  ::-webkit-scrollbar-thumb{ background:var(--btn); border-radius:4px; }
+  input[type=range]{ accent-color: var(--accent); }
+  .fade-in{ animation: fadeIn .25s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .safe-bottom{ padding-bottom: env(safe-area-inset-bottom); }
+  .safe-top{ padding-top: env(safe-area-inset-top); }
+  .verse-highlight{ background: var(--btn-soft); border-radius:.25rem; }
+</style>
+</head>
+<body class="bg-app text-app min-h-screen flex flex-col">
+
+<!-- ===================== HEADER ===================== -->
+<header class="safe-top sticky top-0 z-30 bg-app/95 backdrop-blur border-b" style="border-color:var(--btn-soft)">
+  <div class="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between">
+    <div class="flex items-center gap-2 min-w-0">
+      <button id="backBtn" class="hidden mr-1 text-xl leading-none active:opacity-50" onclick="goBack()">⬅️</button>
+      <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+        <path d="M15 75C32 63 48 68 50 73C52 68 68 63 85 75V25C68 13 52 18 50 23C48 18 32 13 15 25V75Z" stroke="#8D4E2A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M50 68V35" stroke="#3E2723" stroke-width="4.5"/>
+        <path d="M50 48C40 42 36 48 41 54C46 60 50 56 50 56" stroke="#A67C52" stroke-width="2"/>
+        <path d="M50 42C60 36 64 42 59 48C54 54 50 50 50 50" stroke="#A67C52" stroke-width="2"/>
+        <path d="M50 35C44 22 56 22 50 35Z" fill="#8D4E2A"/>
+      </svg>
+      <div class="leading-none min-w-0">
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-display font-bold text-[15px]" style="color:#3E2723">Gênesis</span>
+          <span class="inline-block w-px h-3" style="background:#A67C52"></span>
+          <span class="text-[10px] font-semibold tracking-wide" style="color:#8D4E2A">CONHECIMENTO</span>
+        </div>
+        <div id="screenTitle" class="text-[11px] opacity-60 truncate">Início</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-1 text-xs font-semibold shrink-0">
+      <button onclick="setLang('pt')" id="langPt" class="px-2 py-1 rounded-full bg-btn-soft">PT</button>
+      <button onclick="setLang('en')" id="langEn" class="px-2 py-1 rounded-full opacity-60">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== MAIN ===================== -->
+<main class="flex-1 max-w-md mx-auto w-full px-4 pb-28 pt-3">
+</main>
+
+<!-- ===================== AUDIO PLAYER (fixed) ===================== -->
+<div id="audioBar" class="hidden fixed left-0 right-0 bottom-16 z-40 px-4">
+  <div class="max-w-md mx-auto card shadow-lg px-4 py-2.5" style="box-shadow:0 6px 20px rgba(0,0,0,.15)">
+    <div class="flex items-center justify-between text-xs mb-1.5">
+      <span id="audioLabel" class="font-semibold truncate pr-2">—</span>
+      <span id="audioSpeed" class="opacity-60 shrink-0">1.0x</span>
+    </div>
+    <div class="w-full h-1.5 rounded-full bg-btn-soft overflow-hidden mb-2">
+      <div id="audioProgress" class="h-full bg-accent" style="width:0%"></div>
+    </div>
+    <div class="flex items-center justify-center gap-6">
+      <button onclick="audioPlay()" class="text-xl active:scale-90">▶️</button>
+      <button onclick="audioPause()" class="text-xl active:scale-90">⏸️</button>
+      <button onclick="audioStop()" class="text-xl active:scale-90">⏹️</button>
+      <button onclick="cycleSpeed()" class="text-xs font-bold border border-accent rounded-full px-2 py-1 active:scale-90">Vel.</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BOTTOM NAV ===================== -->
+<nav class="safe-bottom fixed bottom-0 left-0 right-0 z-30 bg-app border-t" style="border-color:var(--btn-soft)">
+  <div class="max-w-md mx-auto grid grid-cols-5 text-[10px]">
+    <button onclick="showScreen('home')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="home"><span class="text-lg">📅</span>Leitura</button>
+    <button onclick="showScreen('temas')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="temas"><span class="text-lg">📚</span>Temas</button>
+    <button onclick="showScreen('pedido')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="pedido"><span class="text-lg">🙏</span>Pedido</button>
+    <button onclick="showScreen('config')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="config"><span class="text-lg">⚙️</span>Ajustes</button>
+    <button onclick="showScreen('conta')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="conta"><span class="text-lg">👤</span>Conta</button>
+  </div>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
