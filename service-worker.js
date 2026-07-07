@@ -1,4 +1,4 @@
-const CACHE_NAME = 'genesis-conhecimento-v1';
+const CACHE_NAME = '365-manhas-com-deus-v5';
 const ASSETS = [
   './',
   './index.html',

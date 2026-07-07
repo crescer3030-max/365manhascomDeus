@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Gênesis Conhecimento</title>
-<meta name="description" content="Leitura bíblica diária, temas, orações e devocional 100% offline.">
+<title>365 Manhãs com Deus</title>
+<meta name="description" content="Leitura bíblica diária (Almeida 1911), temas, orações, dicionário, mapas e jogos bíblicos — 100% offline.">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#8D4E2A">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FDFBF7' rx='16'/%3E%3Cpath d='M15 75C32 63 48 68 50 73C52 68 68 63 85 75V25C68 13 52 18 50 23C48 18 32 13 15 25V75Z' stroke='%238D4E2A' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M50 68V35' stroke='%233E2723' stroke-width='4.5'/%3E%3C/svg%3E">
@@ -38,15 +38,48 @@
   .safe-bottom{ padding-bottom: env(safe-area-inset-bottom); }
   .safe-top{ padding-top: env(safe-area-inset-top); }
   .verse-highlight{ background: var(--btn-soft); border-radius:.25rem; }
+  .card{ box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  html.dark .card{ box-shadow: 0 1px 3px rgba(0,0,0,.35); }
+  button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .sr-only-focusable{
+    position:absolute; left:-9999px; top:0; z-index:100; background:var(--accent); color:#fff;
+    padding:.5rem 1rem; border-radius:0 0 .5rem 0;
+  }
+  .sr-only-focusable:focus{ left:0; }
+  @media (prefers-reduced-motion: reduce){
+    .fade-in{ animation:none; }
+    *{ transition-duration:.01ms !important; }
+  }
+  /* Utilitários usados pelas novas telas (v5.0) que não estavam no tailwind.css estático */
+  .w-4{ width:1rem; } .w-6{ width:1.5rem; } .h-4{ height:1rem; }
+  .grid-cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .grid-cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .p-6{ padding:1.5rem; } .px-5{ padding-left:1.25rem; padding-right:1.25rem; }
+  .border-2{ border-width:2px; } .border-white{ border-color:#fff; }
+  .flex-wrap{ flex-wrap:wrap; }
+  .font-mono{ font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
+  .leading-tight{ line-height:1.25; }
+  .mt-1{ margin-top:.25rem; } .my-3{ margin-top:.75rem; margin-bottom:.75rem; }
+  .shadow{ box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06); }
+  .text-3xl{ font-size:1.875rem; line-height:2.25rem; }
+  .tracking-widest{ letter-spacing:.1em; }
+  .underline{ text-decoration-line:underline; }
+  .text-\[9px\]{ font-size:9px; }
+  .min-h-\[44px\]{ min-height:44px; }
+  .bg-app\/95{ background-color:var(--bg); }
 </style>
 </head>
 <body class="bg-app text-app min-h-screen flex flex-col">
+
+<a href="#main" class="sr-only-focusable">Pular para o conteúdo</a>
 
 <!-- ===================== HEADER ===================== -->
 <header class="safe-top sticky top-0 z-30 bg-app/95 backdrop-blur border-b" style="border-color:var(--btn-soft)">
   <div class="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between">
     <div class="flex items-center gap-2 min-w-0">
-      <button id="backBtn" class="hidden mr-1 text-xl leading-none active:opacity-50" onclick="goBack()">⬅️</button>
+      <button id="backBtn" class="hidden mr-1 text-xl leading-none active:opacity-50" onclick="goBack()" aria-label="Voltar">⬅️</button>
       <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
         <path d="M15 75C32 63 48 68 50 73C52 68 68 63 85 75V25C68 13 52 18 50 23C48 18 32 13 15 25V75Z" stroke="#8D4E2A" stroke-width="3" stroke-linecap="round"/>
         <path d="M50 68V35" stroke="#3E2723" stroke-width="4.5"/>
@@ -56,22 +89,22 @@
       </svg>
       <div class="leading-none min-w-0">
         <div class="flex items-baseline gap-1.5">
-          <span class="font-display font-bold text-[15px]" style="color:#3E2723">Gênesis</span>
-          <span class="inline-block w-px h-3" style="background:#A67C52"></span>
-          <span class="text-[10px] font-semibold tracking-wide" style="color:#8D4E2A">CONHECIMENTO</span>
+          <span class="font-display font-bold text-[15px]" style="color:var(--text)">365 Manhãs</span>
+          <span class="inline-block w-px h-3" style="background:var(--btn)"></span>
+          <span class="text-[10px] font-semibold tracking-wide" style="color:var(--accent)">COM DEUS</span>
         </div>
         <div id="screenTitle" class="text-[11px] opacity-60 truncate">Início</div>
       </div>
     </div>
     <div class="flex items-center gap-1 text-xs font-semibold shrink-0">
-      <button onclick="setLang('pt')" id="langPt" class="px-2 py-1 rounded-full bg-btn-soft">PT</button>
-      <button onclick="setLang('en')" id="langEn" class="px-2 py-1 rounded-full opacity-60">EN</button>
+      <button onclick="setLang('pt')" id="langPt" class="px-2 py-1 rounded-full bg-btn-soft" aria-label="Português">PT</button>
+      <button onclick="setLang('en')" id="langEn" class="px-2 py-1 rounded-full opacity-60" aria-label="English">EN</button>
     </div>
   </div>
 </header>
 
 <!-- ===================== MAIN ===================== -->
-<main class="flex-1 max-w-md mx-auto w-full px-4 pb-28 pt-3">
+<main id="main" role="main" class="flex-1 max-w-md mx-auto w-full px-4 pb-28 pt-3">
 </main>
 
 <!-- ===================== AUDIO PLAYER (fixed) ===================== -->
@@ -96,11 +129,11 @@
 <!-- ===================== BOTTOM NAV ===================== -->
 <nav class="safe-bottom fixed bottom-0 left-0 right-0 z-30 bg-app border-t" style="border-color:var(--btn-soft)">
   <div class="max-w-md mx-auto grid grid-cols-5 text-[10px]">
-    <button onclick="showScreen('home')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="home"><span class="text-lg">📅</span>Leitura</button>
-    <button onclick="showScreen('temas')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="temas"><span class="text-lg">📚</span>Temas</button>
-    <button onclick="showScreen('pedido')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="pedido"><span class="text-lg">🙏</span>Pedido</button>
-    <button onclick="showScreen('config')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="config"><span class="text-lg">⚙️</span>Ajustes</button>
-    <button onclick="showScreen('conta')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="conta"><span class="text-lg">👤</span>Conta</button>
+    <button onclick="showScreen('home')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="home" aria-label="Leitura"><span class="text-lg">📅</span>Leitura</button>
+    <button onclick="showScreen('temas')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="temas" aria-label="Temas"><span class="text-lg">📚</span>Temas</button>
+    <button onclick="showScreen('pedido')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="pedido" aria-label="Pedido"><span class="text-lg">🙏</span>Pedido</button>
+    <button onclick="showScreen('jogos')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="jogos" aria-label="Jogos"><span class="text-lg">🎲</span>Jogos</button>
+    <button onclick="showScreen('mais')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="mais" aria-label="Mais"><span class="text-lg">☰</span>Mais</button>
   </div>
 </nav>
 

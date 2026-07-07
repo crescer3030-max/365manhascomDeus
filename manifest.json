@@ -1,12 +1,15 @@
 {
-  "name": "Gênesis Conhecimento - Manhã com Deus",
-  "short_name": "Gên. Conhecimento",
-  "description": "Leitura bíblica diária, temas, orações e devocional 100% offline.",
+  "name": "365 Manhãs com Deus",
+  "short_name": "365 Manhãs",
+  "description": "Leitura bíblica diária (Almeida 1911), temas, orações, dicionário, mapas e jogos bíblicos — 100% offline.",
+  "id": "./index.html",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#FDFBF7",
   "theme_color": "#8D4E2A",
   "orientation": "portrait",
+  "lang": "pt-BR",
+  "categories": ["lifestyle", "education", "books"],
   "icons": [
     { "src": "icon.svg", "sizes": "192x192 512x512", "type": "image/svg+xml", "purpose": "any" }
   ]
