@@ -125,7 +125,7 @@ function applyFontSize(){
 const I18N = {
   pt: {
     home:'Leitura Diária', temas:'Temas Específicos', pedido:'Pedido Especial', config:'Configurações', conta:'Minha Conta',
-    mais:'Mais', jogos:'Jogos Bíblicos', dicionario:'Dicionário Bíblico', mapas:'Mapas Bíblicos', planos:'Planos e Licença',
+    mais:'Mais', jogos:'Jogos Bíblicos', planos:'Planos e Licença',
     start_reading:'Começar Leitura', day:'Dia', of:'de', prev_day:'Dia Anterior', next_day:'Dia Seguinte',
     ot:'Antigo Testamento', nt:'Novo Testamento', mark_read:'Marcar como lido', already_read:'Lido ✓',
     calendar:'Calendário', plan_desc:'Leitura organizada para você ler toda a Bíblia em 1 ano (929 capítulos do Antigo Testamento + 260 do Novo Testamento — 1189 no total), distribuídos entre os 365 dias sem sobras.',
@@ -147,7 +147,7 @@ const I18N = {
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
-    mais:'More', jogos:'Bible Games', dicionario:'Bible Dictionary', mapas:'Bible Maps', planos:'Plans & License',
+    mais:'More', jogos:'Bible Games', planos:'Plans & License',
     start_reading:'Start Reading', day:'Day', of:'of', prev_day:'Previous Day', next_day:'Next Day',
     ot:'Old Testament', nt:'New Testament', mark_read:'Mark as read', already_read:'Read ✓',
     calendar:'Calendar', plan_desc:'A plan to read the whole Bible in 1 year (929 Old Testament + 260 New Testament chapters — 1189 total), spread across 365 days with no leftovers.',
@@ -285,8 +285,6 @@ function render(){
     case 'jogos': titleEl.textContent = t('jogos'); html = renderJogosHub(); break;
     case 'jogo': titleEl.textContent = (GAMES_LIST.find(g=>g.id===ACTIVE_GAME)||{}).name || t('jogos'); html = renderGame(ACTIVE_GAME); break;
     case 'mais': titleEl.textContent = t('mais'); html = renderMais(); break;
-    case 'dicionario': titleEl.textContent = t('dicionario'); html = renderDicionario(); break;
-    case 'mapas': titleEl.textContent = t('mapas'); html = renderMapas(); break;
     case 'planos': titleEl.textContent = t('planos'); html = renderPlanos(); break;
     case 'config': titleEl.textContent = t('config'); html = renderConfig(); break;
     case 'conta': titleEl.textContent = t('conta'); html = renderConta(); break;
@@ -545,8 +543,6 @@ function renderMais(){
   const items = [
     ['config','⚙️', t('config')],
     ['conta','👤', t('conta')],
-    ['dicionario','📔', t('dicionario')],
-    ['mapas','🗺️', t('mapas')],
     ['planos','💎', t('planos')],
   ];
   return items.map(([id,icon,label])=>`
@@ -777,13 +773,13 @@ function savePassword(){
 
 function renderAjuda(){
   const faqs = STATE.lang==='pt' ? [
-    ['O app funciona sem internet?','Sim. Depois do primeiro carregamento, todo o conteúdo (textos, áudio, temas, jogos, dicionário e mapas) funciona 100% offline.'],
+    ['O app funciona sem internet?','Sim. Depois do primeiro carregamento, todo o conteúdo (textos, áudio, temas e jogos) funciona 100% offline.'],
     ['Meus dados são enviados para algum servidor?','Não. Tudo fica salvo apenas neste dispositivo, criptografado com AES-256, no armazenamento local do navegador.'],
     ['Como funciona o plano de leitura?','A Bíblia inteira (929 capítulos do Antigo Testamento + 260 do Novo Testamento) é dividida nos 365 dias sem sobras. Você só avança para o dia seguinte depois de concluir o dia atual.'],
     ['Perco meu progresso se desinstalar?','Sim, pois os dados ficam salvos localmente. Recomendamos não limpar os dados do navegador.'],
     ['Como funciona o código de licença?','Ao comprar um plano pela Hotmart, você recebe um código único. Digite-o na tela de Planos para liberar o teste de 7 dias ou a assinatura escolhida neste dispositivo.'],
   ] : [
-    ['Does the app work without internet?','Yes. After the first load, all content (texts, audio, topics, games, dictionary and maps) works 100% offline.'],
+    ['Does the app work without internet?','Yes. After the first load, all content (texts, audio, topics and games) works 100% offline.'],
     ['Is my data sent to any server?','No. Everything is stored only on this device, encrypted with AES-256, in local browser storage.'],
     ['How does the reading plan work?','The whole Bible (929 Old Testament + 260 New Testament chapters) is split across 365 days with no leftovers. You can only move to the next day after finishing the current one.'],
     ['Do I lose my progress if I uninstall?','Yes, since data is stored locally. We recommend not clearing your browser data.'],
@@ -802,112 +798,6 @@ function logout(){
   STATE = structuredClone(DEFAULT_STATE);
   applyTheme();
   showScreen('home');
-}
-
-/* ---------------- Dicionário Bíblico Offline ---------------- */
-const DICTIONARY = [
-  ['Aleluia','Expressão de louvor que significa "louvai ao Senhor".'],
-  ['Amém','Palavra hebraica que significa "assim seja" ou "é verdade", usada ao final de orações.'],
-  ['Arca da Aliança','Caixa sagrada que continha as tábuas da lei, símbolo da presença de Deus com Israel.'],
-  ['Batismo','Rito de imersão ou aspersão em água que simboliza purificação e nova vida em Cristo.'],
-  ['Bênção','Declaração de favor e proteção divina sobre uma pessoa.'],
-  ['Circuncisão','Sinal da aliança de Deus com Abraão e seus descendentes.'],
-  ['Concílio','Assembleia de líderes religiosos reunida para decidir questões importantes.'],
-  ['Dízimo','A décima parte dos bens ou rendimentos oferecida a Deus.'],
-  ['Discípulo','Aquele que segue e aprende com um mestre; usado para os seguidores de Jesus.'],
-  ['Êxodo','A saída do povo de Israel do Egito, sob a liderança de Moisés.'],
-  ['Fariseus','Grupo religioso judaico rigoroso na observância da lei.'],
-  ['Getsêmani','Jardim ao pé do Monte das Oliveiras onde Jesus orou antes de ser preso.'],
-  ['Glória','A manifestação visível da grandeza e santidade de Deus.'],
-  ['Graça','Favor imerecido de Deus concedido ao ser humano.'],
-  ['Hosana','Expressão de louvor que significa "salva, agora" ou "socorre".'],
-  ['Jubileu','Ano especial a cada cinquenta anos, de libertação e restituição de terras.'],
-  ['Levitas','Membros da tribo de Levi, responsáveis pelo serviço no tabernáculo e templo.'],
-  ['Maná','Alimento que Deus enviou do céu para sustentar Israel no deserto.'],
-  ['Mensias/Messias','"Ungido"; título que aponta para o Salvador prometido, Jesus Cristo.'],
-  ['Messias','"Ungido"; título que aponta para o Salvador prometido, Jesus Cristo.'],
-  ['Milagre','Ato sobrenatural que revela o poder e a intervenção de Deus.'],
-  ['Parábola','História simples usada por Jesus para ensinar verdades espirituais.'],
-  ['Páscoa','Festa judaica que celebra a libertação do Egito; também associada à ressurreição de Cristo.'],
-  ['Pecado','Transgressão da lei ou vontade de Deus.'],
-  ['Pentecostes','Festa em que o Espírito Santo foi derramado sobre os discípulos.'],
-  ['Profeta','Pessoa chamada por Deus para falar em seu nome ao povo.'],
-  ['Redenção','Ato de resgatar ou libertar alguém, especialmente do pecado.'],
-  ['Ressurreição','Retorno à vida após a morte; central na fé cristã pela ressurreição de Jesus.'],
-  ['Sábado','Sétimo dia da semana, separado para descanso e adoração.'],
-  ['Sacerdote','Pessoa consagrada para oferecer sacrifícios e mediar entre o povo e Deus.'],
-  ['Saduceus','Grupo religioso judaico que não acreditava na ressurreição.'],
-  ['Sinagoga','Local de reunião e ensino da comunidade judaica.'],
-  ['Sinédrio','Supremo tribunal religioso judaico em Jerusalém.'],
-  ['Tabernáculo','Tenda sagrada usada como santuário móvel de Israel no deserto.'],
-  ['Templo','Casa de adoração construída em Jerusalém para o culto a Deus.'],
-  ['Ungido','Aquele consagrado com óleo para uma função sagrada; título aplicado ao Messias.'],
-  ['Aliança','Acordo solene entre Deus e o seu povo.'],
-  ['Salmo','Cântico ou poema de louvor, súplica ou gratidão dirigido a Deus.'],
-  ['Apóstolo','"Enviado"; título dado aos discípulos comissionados por Jesus para pregar o evangelho.'],
-  ['Evangelho','"Boas novas"; a mensagem da salvação em Jesus Cristo.'],
-  ['Epístola','Carta escrita por um apóstolo a uma igreja ou pessoa, presente no Novo Testamento.']
-];
-function renderDicionario(){
-  return `
-  <input id="dictInput" placeholder="${STATE.lang==='pt'?'Buscar termo...':'Search term...'}"
-    class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-4" style="border-color:var(--btn-soft)"
-    oninput="renderDictResults(this.value)">
-  <div id="dictResults">${dictResultsHtml('')}</div>
-  `;
-}
-function dictResultsHtml(query){
-  const needle = normalize(query.trim().toLowerCase());
-  const list = DICTIONARY.filter(([term,def]) => !needle || normalize(term.toLowerCase()).includes(needle) || normalize(def.toLowerCase()).includes(needle));
-  if(!list.length) return `<div class="card p-4 text-center opacity-70">${t('no_results')}</div>`;
-  return list.map(([term,def])=>`
-    <div class="card p-3.5 border mb-2" style="border-color:var(--btn-soft)">
-      <div class="text-sm font-bold text-accent mb-1">${escapeHtml(term)}</div>
-      <div class="text-sm opacity-80">${escapeHtml(def)}</div>
-    </div>`).join('');
-}
-function renderDictResults(query){
-  document.getElementById('dictResults').innerHTML = dictResultsHtml(query);
-}
-
-/* ---------------- Mapas Bíblicos Interativos ---------------- */
-const BIBLE_MAP_POINTS = [
-  { x:52, y:38, name:'Jerusalém', desc:'Cidade santa, capital do reino de Judá e centro do Templo.', ref:'2 Sm 5:6-9' },
-  { x:50, y:44, name:'Belém', desc:'Cidade natal de Davi e local do nascimento de Jesus.', ref:'Miquéias 5:2; Lucas 2:4-7' },
-  { x:47, y:20, name:'Nazaré', desc:'Cidade da Galileia onde Jesus cresceu.', ref:'Lucas 2:39-40' },
-  { x:49, y:22, name:'Mar da Galileia', desc:'Lago onde Jesus chamou os primeiros discípulos e acalmou a tempestade.', ref:'Mateus 4:18; Marcos 4:39' },
-  { x:46, y:26, name:'Cafarnaum', desc:'Cidade à beira do Mar da Galileia, base do ministério de Jesus.', ref:'Mateus 4:13' },
-  { x:53, y:55, name:'Mar Morto', desc:'Mar salgado próximo a Sodoma e Gomorra.', ref:'Gênesis 19:24-28' },
-  { x:56, y:33, name:'Jericó', desc:'A primeira cidade conquistada por Josué em Canaã.', ref:'Josué 6' },
-  { x:58, y:20, name:'Rio Jordão', desc:'Rio onde Jesus foi batizado por João Batista.', ref:'Mateus 3:13-17' },
-  { x:20, y:60, name:'Egito', desc:'Terra onde José governou e de onde Moisés tirou o povo de Israel.', ref:'Êxodo 12:31-42' },
-  { x:80, y:35, name:'Babilônia', desc:'Império para onde o povo de Judá foi levado cativo.', ref:'2 Reis 25:8-11' },
-  { x:38, y:15, name:'Damasco', desc:'Cidade onde Saulo teve seu encontro com Jesus e se converteu.', ref:'Atos 9:1-9' },
-  { x:70, y:12, name:'Antioquia', desc:'Cidade onde os discípulos foram chamados cristãos pela primeira vez.', ref:'Atos 11:26' },
-];
-function renderMapas(){
-  const markers = BIBLE_MAP_POINTS.map((p,i)=>`
-    <button onclick="showMapPoint(${i})" class="absolute w-4 h-4 rounded-full bg-accent border-2 border-white shadow" style="left:${p.x}%; top:${p.y}%; transform:translate(-50%,-50%)" aria-label="${escapeHtml(p.name)}"></button>
-  `).join('');
-  return `
-  <p class="text-xs opacity-70 mb-3">${STATE.lang==='pt' ? 'Toque nos marcadores para conhecer lugares importantes da Bíblia.' : 'Tap the markers to learn about important places in the Bible.'}</p>
-  <div class="relative w-full rounded-xl overflow-hidden border mb-3" style="border-color:var(--btn-soft); aspect-ratio:4/5; background:linear-gradient(135deg,#D9B99B33,#8D4E2A22)">
-    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full opacity-40">
-      <path d="M30 5 L75 5 L85 45 L70 70 L55 95 L40 80 L15 60 Z" fill="none" stroke="var(--accent)" stroke-width="0.6"/>
-    </svg>
-    ${markers}
-  </div>
-  <div id="mapDetail"></div>
-  `;
-}
-function showMapPoint(i){
-  const p = BIBLE_MAP_POINTS[i];
-  document.getElementById('mapDetail').innerHTML = `
-    <div class="card p-4 border" style="border-color:var(--btn-soft)">
-      <div class="font-display font-bold mb-1">📍 ${escapeHtml(p.name)}</div>
-      <p class="text-sm opacity-80 mb-1">${escapeHtml(p.desc)}</p>
-      <div class="text-xs text-accent font-semibold">${escapeHtml(p.ref)}</div>
-    </div>`;
 }
 
 /* ---------------- Planos e Licença (Hotmart) ---------------- */

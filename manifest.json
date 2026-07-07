@@ -1,7 +1,7 @@
 {
   "name": "365 Manhãs com Deus",
   "short_name": "365 Manhãs",
-  "description": "Leitura bíblica diária (Almeida 1911), temas, orações, dicionário, mapas e jogos bíblicos — 100% offline.",
+  "description": "Leitura bíblica diária (Almeida 1911), temas, orações e jogos bíblicos — 100% offline.",
   "id": "./index.html",
   "start_url": "./index.html",
   "display": "standalone",
