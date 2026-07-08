@@ -1978,7 +1978,18 @@ async function init(){
   }
 
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+    navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' }).then((reg) => {
+      reg.update().catch(()=>{});
+      reg.addEventListener('updatefound', () => {
+        const newWorker = reg.installing;
+        if(!newWorker) return;
+        newWorker.addEventListener('statechange', () => {
+          if(newWorker.state === 'activated'){
+            toast(STATE.lang==='pt' ? 'App atualizado! Reabra para ver a versão mais nova.' : 'App updated! Reopen to see the newest version.');
+          }
+        });
+      });
+    }).catch(()=>{});
   }
 }
 init();
