@@ -76,7 +76,7 @@
 <a href="#main" class="sr-only-focusable">Pular para o conteúdo</a>
 
 <!-- ===================== HEADER ===================== -->
-<header class="safe-top sticky top-0 z-30 bg-app/95 backdrop-blur border-b" style="border-color:var(--btn-soft)">
+<header id="appHeader" class="safe-top sticky top-0 z-30 bg-app/95 backdrop-blur border-b" style="border-color:var(--btn-soft)">
   <div class="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between">
     <div class="flex items-center gap-2 min-w-0">
       <button id="backBtn" class="hidden mr-1 text-xl leading-none active:opacity-50" onclick="goBack()" aria-label="Voltar">⬅️</button>
@@ -127,7 +127,7 @@
 </div>
 
 <!-- ===================== BOTTOM NAV ===================== -->
-<nav class="safe-bottom fixed bottom-0 left-0 right-0 z-30 bg-app border-t" style="border-color:var(--btn-soft)">
+<nav id="appNav" class="safe-bottom fixed bottom-0 left-0 right-0 z-30 bg-app border-t" style="border-color:var(--btn-soft)">
   <div class="max-w-md mx-auto grid grid-cols-5 text-[10px]">
     <button onclick="showScreen('home')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="home" aria-label="Leitura"><span class="text-lg">📅</span>Leitura</button>
     <button onclick="showScreen('temas')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="temas" aria-label="Temas"><span class="text-lg">📚</span>Temas</button>

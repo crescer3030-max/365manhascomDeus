@@ -14,7 +14,8 @@ const DEFAULT_STATE = {
   palette: 'terracota',
   fontSize: 17,
   audioSpeed: 1.0,
-  voiceProfile: 0,
+  audioVolume: 1.0,
+  voiceGender: 'feminina',
   sleepMode: false,
   sleepMinutes: 20,
   reminderTime: '06:30',
@@ -24,13 +25,17 @@ const DEFAULT_STATE = {
   favorites: [],
   notes: {},
   history: [],
-  profile: { name: '', birthday: '' },
+  profile: { name: '', birthday: '', email: '', phone: '', country: 'Brasil', state: '', city: '' },
   passwordHash: null,
   startDate: null,
+  onboardingDone: false,
+  termsAccepted: false,
+  gamesSeen: {},
   license: { plan: null, code: null, activatedAt: null, expiresAt: null }
 };
 
 let STATE = structuredClone(DEFAULT_STATE);
+let SESSION_UNLOCKED = false;
 
 /* ---------------- Criptografia local (AES-256-GCM) ----------------
    O app é 100% offline: a chave é gerada uma vez neste dispositivo e
@@ -247,9 +252,15 @@ function firstLockedDay(){
 let CURRENT_SCREEN = 'home';
 let SCREEN_STACK = [];
 const TOP_LEVEL_SCREENS = ['home','temas','pedido','jogos','mais'];
+const GATE_SCREENS = ['cadastro','entrada'];
 
 function showScreen(name, opts){
   opts = opts || {};
+  // Portão de acesso: cadastro obrigatório na 1ª vez, depois senha a cada abertura.
+  if(name !== 'documentos'){
+    if(!STATE.onboardingDone) name = 'cadastro';
+    else if(STATE.passwordHash && !SESSION_UNLOCKED) name = 'entrada';
+  }
   if(!opts.fromBack){
     if(CURRENT_SCREEN && CURRENT_SCREEN !== name) SCREEN_STACK.push(CURRENT_SCREEN);
   }
@@ -264,6 +275,9 @@ function showScreen(name, opts){
   const backBtn = document.getElementById('backBtn');
   const topLevel = TOP_LEVEL_SCREENS.includes(name);
   backBtn.classList.toggle('hidden', topLevel && SCREEN_STACK.length===0);
+  const isGate = GATE_SCREENS.includes(name);
+  document.getElementById('appHeader').classList.toggle('hidden', isGate);
+  document.getElementById('appNav').classList.toggle('hidden', isGate);
   window.scrollTo(0,0);
 }
 function goBack(){
@@ -277,6 +291,9 @@ function render(){
   const titleEl = document.getElementById('screenTitle');
   let html = '';
   switch(CURRENT_SCREEN){
+    case 'cadastro': titleEl.textContent = ''; html = renderCadastro(); break;
+    case 'entrada': titleEl.textContent = ''; html = renderEntrada(); break;
+    case 'documentos': titleEl.textContent = t('account_help'); html = renderDocumentos(); break;
     case 'home': titleEl.textContent = t('home'); html = renderHome(); break;
     case 'reading': titleEl.textContent = t('home'); html = renderReading(); break;
     case 'calendar': titleEl.textContent = t('calendar'); html = renderCalendar(); break;
@@ -595,9 +612,12 @@ function renderConfig(){
       ${[0.8,1.0,1.2].map(s=>`<button onclick="setSpeed(${s})" class="flex-1 rounded-xl py-2 font-semibold ${STATE.audioSpeed===s?'bg-accent text-white':'bg-btn-soft'}">${s}x</button>`).join('')}
     </div>
     <div class="text-sm font-semibold mb-2">${t('settings_voice')}</div>
-    <div class="flex gap-2">
-      ${[0,1,2].map(i=>`<button onclick="setVoiceProfile(${i})" class="flex-1 rounded-xl py-2 font-semibold ${STATE.voiceProfile===i?'bg-accent text-white':'bg-btn-soft'}">${STATE.lang==='pt'?'Voz':'Voice'} ${i+1}</button>`).join('')}
+    <div class="flex gap-2 mb-3">
+      <button onclick="setVoiceGender('feminina')" class="flex-1 rounded-xl py-2 font-semibold ${STATE.voiceGender==='feminina'?'bg-accent text-white':'bg-btn-soft'}">${STATE.lang==='pt'?'Voz Feminina':'Female Voice'}</button>
+      <button onclick="setVoiceGender('masculina')" class="flex-1 rounded-xl py-2 font-semibold ${STATE.voiceGender==='masculina'?'bg-accent text-white':'bg-btn-soft'}">${STATE.lang==='pt'?'Voz Masculina':'Male Voice'}</button>
     </div>
+    <div class="text-sm font-semibold mb-2">${STATE.lang==='pt'?'Volume':'Volume'}: ${Math.round(STATE.audioVolume*100)}%</div>
+    <input type="range" min="0.2" max="1" step="0.1" value="${STATE.audioVolume}" oninput="setVolume(this.value)" class="w-full" aria-label="Volume">
   </div>
 
   <div class="card p-4 border mb-3" style="border-color:var(--btn-soft)">
@@ -624,13 +644,18 @@ function renderConfig(){
       class="w-full rounded-xl px-3 py-2 border bg-transparent ${STATE.reminderOn?'':'opacity-40 pointer-events-none'}" style="border-color:var(--btn-soft)">
     <p class="text-xs opacity-60 mt-2">${STATE.lang==='pt' ? 'Como o app funciona offline, o lembrete aparece apenas enquanto o app estiver aberto no navegador/dispositivo.' : 'Since the app works offline, the reminder only appears while the app is open on your device.'}</p>
   </div>
+
+  <button onclick="showScreen('documentos')" class="w-full card border p-3.5 flex items-center gap-3 mt-3" style="border-color:var(--btn-soft)">
+    <span class="text-lg">📄</span><span class="font-semibold text-sm flex-1 text-left">${STATE.lang==='pt' ? 'Termos e Políticas' : 'Terms & Policies'}</span><span class="opacity-40">›</span>
+  </button>
   `;
 }
 function setTheme(v){ STATE.theme=v; saveState(); applyTheme(); render(); }
 function setPalette(id){ STATE.palette=id; saveState(); applyPalette(); render(); }
 function setFontSize(v){ STATE.fontSize=parseInt(v); saveState(); applyFontSize(); render(); }
 function setSpeed(v){ STATE.audioSpeed=v; saveState(); const el=document.getElementById('audioSpeed'); if(el) el.textContent=v.toFixed(1)+'x'; render(); }
-function setVoiceProfile(i){ STATE.voiceProfile=i; saveState(); render(); }
+function setVoiceGender(g){ STATE.voiceGender=g; saveState(); render(); }
+function setVolume(v){ STATE.audioVolume=parseFloat(v); saveState(); render(); }
 function toggleSleepMode(){ STATE.sleepMode=!STATE.sleepMode; saveState(); render(); }
 function setSleepMinutes(m){ STATE.sleepMinutes=m; saveState(); render(); }
 function toggleReminder(){ STATE.reminderOn=!STATE.reminderOn; saveState(); render(); }
@@ -658,17 +683,38 @@ function renderConta(){
 }
 
 function renderPerfil(){
+  const p = STATE.profile;
+  const tier = ageTier(p.birthday);
   return `
   <label class="text-sm font-semibold block mb-1.5">${t('your_name')}</label>
-  <input id="profName" value="${escapeHtml(STATE.profile.name||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+  <input id="profName" value="${escapeHtml(p.name||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
   <label class="text-sm font-semibold block mb-1.5">${t('your_birthday')}</label>
-  <input id="profBirthday" type="date" value="${STATE.profile.birthday||''}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-4" style="border-color:var(--btn-soft)">
+  <input id="profBirthday" type="date" value="${p.birthday||''}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-2" style="border-color:var(--btn-soft)">
+  ${tier ? `<div class="text-xs opacity-60 mb-3">${STATE.lang==='pt'?'Faixa etária':'Age group'}: <span class="font-semibold text-accent">${ageTierLabel(tier)}</span></div>` : '<div class="mb-3"></div>'}
+  <label class="text-sm font-semibold block mb-1.5">E-mail</label>
+  <input id="profEmail" type="email" value="${escapeHtml(p.email||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+  <label class="text-sm font-semibold block mb-1.5">Telefone</label>
+  <input id="profPhone" type="tel" value="${escapeHtml(p.phone||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+  <label class="text-sm font-semibold block mb-1.5">País</label>
+  <input id="profCountry" value="${escapeHtml(p.country||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+  <label class="text-sm font-semibold block mb-1.5">Estado (UF)</label>
+  <select id="profState" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+    <option value="">—</option>
+    ${BRAZIL_STATES.map(uf=>`<option value="${uf}" ${p.state===uf?'selected':''}>${uf}</option>`).join('')}
+  </select>
+  <label class="text-sm font-semibold block mb-1.5">Município</label>
+  <input id="profCity" value="${escapeHtml(p.city||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-4" style="border-color:var(--btn-soft)">
   <button onclick="saveProfile()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold">${t('save')}</button>
   `;
 }
 function saveProfile(){
   STATE.profile.name = document.getElementById('profName').value.trim();
   STATE.profile.birthday = document.getElementById('profBirthday').value;
+  STATE.profile.email = document.getElementById('profEmail').value.trim();
+  STATE.profile.phone = document.getElementById('profPhone').value.trim();
+  STATE.profile.country = document.getElementById('profCountry').value.trim();
+  STATE.profile.state = document.getElementById('profState').value;
+  STATE.profile.city = document.getElementById('profCity').value.trim();
   saveState();
   checkBirthday();
   showScreen('conta');
@@ -796,8 +842,155 @@ function logout(){
   if(!confirm(t('logout_confirm'))) return;
   localStorage.removeItem(STORAGE_KEY);
   STATE = structuredClone(DEFAULT_STATE);
+  SESSION_UNLOCKED = false;
   applyTheme();
   showScreen('home');
+}
+
+/* ---------------- Cadastro inicial + Tela de senha (portão de acesso) ---------------- */
+const BRAZIL_STATES = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+
+function ageTier(birthday){
+  if(!birthday) return null;
+  const bd = new Date(birthday);
+  if(isNaN(bd)) return null;
+  const today = new Date();
+  let age = today.getFullYear() - bd.getFullYear();
+  const m = today.getMonth() - bd.getMonth();
+  if(m < 0 || (m === 0 && today.getDate() < bd.getDate())) age--;
+  if(age < 13) return 'crianca';
+  if(age < 18) return 'adolescente';
+  if(age < 60) return 'adulto';
+  return 'melhoridade';
+}
+function ageTierLabel(tier){
+  return { crianca:'Criança', adolescente:'Adolescente', adulto:'Adulto', melhoridade:'Melhor Idade' }[tier] || '—';
+}
+
+function renderCadastro(){
+  const p = STATE.profile;
+  return `
+  <div class="pt-10 pb-6 text-center">
+    <div class="font-display text-2xl font-bold mb-1">365 Manhãs com Deus</div>
+    <div class="text-xs opacity-60">${STATE.lang==='pt' ? 'Vamos criar seu acesso — leva menos de 1 minuto.' : "Let's set up your access — takes less than a minute."}</div>
+  </div>
+  <label class="text-sm font-semibold block mb-1.5">${t('your_name')} *</label>
+  <input id="cadNome" value="${escapeHtml(p.name||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">${t('your_birthday')} *</label>
+  <input id="cadNascimento" type="date" value="${p.birthday||''}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">E-mail</label>
+  <input id="cadEmail" type="email" value="${escapeHtml(p.email||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">Telefone</label>
+  <input id="cadTelefone" type="tel" value="${escapeHtml(p.phone||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">${t('settings_lang')}</label>
+  <div class="flex gap-2 mb-3">
+    <button type="button" onclick="setLang('pt')" class="flex-1 rounded-xl py-2 font-semibold ${STATE.lang==='pt'?'bg-accent text-white':'bg-btn-soft'}">Português</button>
+    <button type="button" onclick="setLang('en')" class="flex-1 rounded-xl py-2 font-semibold ${STATE.lang==='en'?'bg-accent text-white':'bg-btn-soft'}">English</button>
+  </div>
+
+  <label class="text-sm font-semibold block mb-1.5">País</label>
+  <input id="cadPais" value="${escapeHtml(p.country||'Brasil')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">Estado (UF)</label>
+  <select id="cadEstado" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+    <option value="">—</option>
+    ${BRAZIL_STATES.map(uf=>`<option value="${uf}" ${p.state===uf?'selected':''}>${uf}</option>`).join('')}
+  </select>
+
+  <label class="text-sm font-semibold block mb-1.5">Município</label>
+  <input id="cadMunicipio" value="${escapeHtml(p.city||'')}" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-4" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">${t('new_password')} *</label>
+  <input id="cadSenha1" type="password" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+  <label class="text-sm font-semibold block mb-1.5">${t('confirm_password')} *</label>
+  <input id="cadSenha2" type="password" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-4" style="border-color:var(--btn-soft)">
+
+  <label class="flex items-start gap-2 mb-2 text-xs">
+    <input id="cadTermos" type="checkbox" class="mt-0.5">
+    <span>${STATE.lang==='pt' ? 'Li e concordo com o' : 'I read and agree to the'} <button type="button" onclick="showScreen('documentos')" class="underline text-accent">${STATE.lang==='pt' ? 'Termo de Uso, Política de Privacidade, Política de Segurança e Política de Conteúdo' : 'Terms of Use, Privacy, Security and Content Policies'}</button>.</span>
+  </label>
+
+  <div id="cadErro" class="text-xs text-red-700 mb-2"></div>
+  <button onclick="completeCadastro()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold">${STATE.lang==='pt' ? 'Concluir Cadastro' : 'Complete Signup'}</button>
+  `;
+}
+function completeCadastro(){
+  const nome = document.getElementById('cadNome').value.trim();
+  const nascimento = document.getElementById('cadNascimento').value;
+  const senha1 = document.getElementById('cadSenha1').value;
+  const senha2 = document.getElementById('cadSenha2').value;
+  const termos = document.getElementById('cadTermos').checked;
+  const erroEl = document.getElementById('cadErro');
+
+  if(!nome || !nascimento || !senha1){
+    erroEl.textContent = STATE.lang==='pt' ? 'Preencha nome, data de nascimento e senha.' : 'Fill in name, birthday and password.';
+    return;
+  }
+  if(senha1 !== senha2){
+    erroEl.textContent = STATE.lang==='pt' ? 'As senhas não coincidem.' : 'Passwords do not match.';
+    return;
+  }
+  if(!termos){
+    erroEl.textContent = STATE.lang==='pt' ? 'Você precisa concordar com os Termos para continuar.' : 'You must agree to the Terms to continue.';
+    return;
+  }
+  STATE.profile = {
+    name: nome,
+    birthday: nascimento,
+    email: document.getElementById('cadEmail').value.trim(),
+    phone: document.getElementById('cadTelefone').value.trim(),
+    country: document.getElementById('cadPais').value.trim() || 'Brasil',
+    state: document.getElementById('cadEstado').value,
+    city: document.getElementById('cadMunicipio').value.trim(),
+  };
+  STATE.passwordHash = btoa(unescape(encodeURIComponent(senha1)));
+  STATE.termsAccepted = true;
+  STATE.onboardingDone = true;
+  SESSION_UNLOCKED = true;
+  saveState();
+  showScreen('home');
+}
+
+function renderEntrada(){
+  return `
+  <div class="pt-16 pb-8 text-center">
+    <div class="font-display text-2xl font-bold mb-1">365 Manhãs com Deus</div>
+    <div class="text-sm opacity-70">${STATE.profile.name ? (STATE.lang==='pt' ? 'Olá, ' : 'Hi, ') + escapeHtml(STATE.profile.name) + '!' : ''}</div>
+  </div>
+  <label class="text-sm font-semibold block mb-1.5">${t('account_password')}</label>
+  <input id="entradaSenha" type="password" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-2" style="border-color:var(--btn-soft)" onkeydown="if(event.key==='Enter') checkEntrada()">
+  <div id="entradaErro" class="text-xs text-red-700 mb-3"></div>
+  <button onclick="checkEntrada()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold">${STATE.lang==='pt' ? 'Entrar' : 'Enter'}</button>
+  `;
+}
+function checkEntrada(){
+  const val = document.getElementById('entradaSenha').value;
+  const hash = btoa(unescape(encodeURIComponent(val)));
+  if(hash === STATE.passwordHash){
+    SESSION_UNLOCKED = true;
+    document.getElementById('entradaErro').textContent = '';
+    showScreen('home');
+  }else{
+    document.getElementById('entradaErro').textContent = STATE.lang==='pt' ? 'Senha incorreta.' : 'Wrong password.';
+  }
+}
+
+const POLICY_DOCS = [
+  ['Termo de Uso', `Ao usar o "365 Manhãs com Deus" você concorda em utilizar o aplicativo apenas para fins pessoais, devocionais e educativos. O conteúdo bíblico é reproduzido a partir da tradução Almeida Revista e Corrigida 1911, de domínio público. É proibido redistribuir, revender ou modificar o aplicativo sem autorização do idealizador, Marcelo Cabral dos Santos. O uso é fornecido "como está", sem garantias de disponibilidade contínua.`],
+  ['Política de Privacidade (LGPD)', `Em conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/2018), informamos que os dados fornecidos no cadastro (nome, data de nascimento, e-mail, telefone, localidade) ficam armazenados apenas neste dispositivo, de forma criptografada (AES-256), e nunca são enviados a servidores externos pelo núcleo do aplicativo. Você pode apagar todos os seus dados a qualquer momento em "Minha Conta → Sair". Não compartilhamos, vendemos ou cedemos esses dados a terceiros.`],
+  ['Política de Segurança', `Os dados salvos localmente são protegidos com criptografia AES-256-GCM. A senha de acesso cadastrada protege apenas o uso local deste dispositivo — como o aplicativo funciona 100% offline, não existe recuperação de senha por e-mail nem sincronização entre aparelhos. Recomendamos não compartilhar seu dispositivo desbloqueado com terceiros enquanto estiver com a sessão ativa.`],
+  ['Política de Conteúdo', `Todo o conteúdo do aplicativo (textos, orações, jogos e mensagens) segue exclusivamente princípios cristãos alinhados aos ensinamentos de Jesus Cristo: fé, amor, perdão e verdade bíblica. O texto bíblico utilizado é o da Almeida Revista e Corrigida 1911, reproduzido de forma integral e sem alterações. Não há representação visual de Deus, Jesus Cristo ou seres celestiais em nenhuma parte do aplicativo.`],
+];
+function renderDocumentos(){
+  return POLICY_DOCS.map(([titulo,texto])=>`
+    <div class="card p-4 border mb-3" style="border-color:var(--btn-soft)">
+      <div class="font-display font-bold mb-2">${titulo}</div>
+      <p class="text-sm leading-relaxed opacity-80">${escapeHtml(texto)}</p>
+    </div>`).join('');
 }
 
 /* ---------------- Planos e Licença (Hotmart) ---------------- */
@@ -807,6 +1000,7 @@ const PLANS = [
   { id:'TRI', label:'Trimestral', price:'R$ 25,40/mês (15% off)', note:'Total R$ 76,20', days:90 },
   { id:'SEM', label:'Semestral', price:'R$ 22,40/mês (25% off)', note:'Total R$ 134,40', days:180 },
   { id:'ANUAL', label:'Anual', price:'R$ 19,40/mês (35% off)', note:'Total R$ 232,80', days:365 },
+  { id:'FAMILIAR', label:'Familiar', price:'R$ 39,90/mês', note:'Total R$ 39,90 · Até 6 perfis independentes', days:30 },
 ];
 // Checksum simples para validação 100% offline do código de licença entregue pela Hotmart.
 function licenseChecksum(base){
@@ -868,8 +1062,8 @@ function renderPlanos(){
   ${statusHtml}
   ${plansHtml}
   <p class="text-xs opacity-70 my-3">${STATE.lang==='pt'
-    ? 'Todos os planos liberam todos os recursos igualmente. Cancelamento a qualquer momento, sem multas. Ao comprar pela Hotmart você recebe o e-book, o link do app e um código de licença único — cole o código abaixo para ativar.'
-    : 'All plans unlock all features equally. Cancel anytime, no fees. Buying through Hotmart delivers the e-book, app link and a unique license code — paste it below to activate.'}</p>
+    ? 'Todos os planos liberam todos os recursos igualmente. Cancelamento a qualquer momento, sem multas. O plano Familiar libera até 6 perfis independentes no mesmo dispositivo. Ao comprar pela Hotmart você recebe o e-book, o link do app e um código de licença único — cole o código abaixo para ativar.'
+    : 'All plans unlock all features equally. Cancel anytime, no fees. The Family plan unlocks up to 6 independent profiles on the same device. Buying through Hotmart delivers the e-book, app link and a unique license code — paste it below to activate.'}</p>
   <div class="card p-4 border" style="border-color:var(--btn-soft)">
     <label class="text-sm font-semibold block mb-1.5">${STATE.lang==='pt'?'Código de licença':'License code'}</label>
     <input id="licenseInput" placeholder="365-TESTE-XXXX-XX" class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-2 uppercase" style="border-color:var(--btn-soft)">
@@ -902,6 +1096,17 @@ function shuffle(arr){
   for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
   return a;
 }
+// Não repete itens de um banco de conteúdo até que todos já tenham aparecido pelo menos uma vez.
+function pickOrder(gameId, bankLength){
+  STATE.gamesSeen = STATE.gamesSeen || {};
+  const seen = STATE.gamesSeen[gameId] || [];
+  let remaining = Array.from({length: bankLength}, (_,i)=>i).filter(i=>!seen.includes(i));
+  if(remaining.length === 0) remaining = Array.from({length: bankLength}, (_,i)=>i);
+  const order = shuffle(remaining);
+  STATE.gamesSeen[gameId] = order.length === bankLength ? order.slice() : [...seen, ...order];
+  saveState();
+  return order;
+}
 function renderJogosHub(){
   return `<div class="grid grid-cols-3 gap-3">
     ${GAMES_LIST.map(g=>`
@@ -917,7 +1122,7 @@ function openGame(id){
   showScreen('jogo');
 }
 function initGame(id){
-  if(id==='quiz') GSTATE = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, selected:null };
+  if(id==='quiz') GSTATE = { order: pickOrder('quiz', QUIZ_BANK.length), idx:0, score:0, answered:false, selected:null };
   else if(id==='forca'){
     const word = shuffle(WORD_BANK)[0];
     GSTATE = { word, guessed:[], wrong:0, maxWrong:6, over:false };
@@ -926,13 +1131,13 @@ function initGame(id){
     const pairs = shuffle(MEMORY_SYMBOLS.flatMap((s,i)=>[{sym:s,pairId:i},{sym:s,pairId:i}]));
     GSTATE = { cards: pairs, flipped:[], matched:[], lock:false, moves:0 };
   }
-  else if(id==='versiculo') GSTATE = { order: shuffle(VERSE_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, selected:null };
+  else if(id==='versiculo') GSTATE = { order: pickOrder('versiculo', VERSE_BANK.length), idx:0, score:0, answered:false, selected:null };
   else if(id==='ordem') initOrdemGame();
   else if(id==='cacapalavras') initWordSearch();
-  else if(id==='verdadeirofalso') GSTATE = { order: shuffle(TF_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, choice:null };
-  else if(id==='personagem') GSTATE = { order: shuffle(CHAR_BANK.map((_,i)=>i)), idx:0, score:0, cluesShown:1, answered:false, options:null };
+  else if(id==='verdadeirofalso') GSTATE = { order: pickOrder('verdadeirofalso', TF_BANK.length), idx:0, score:0, answered:false, choice:null };
+  else if(id==='personagem') GSTATE = { order: pickOrder('personagem', CHAR_BANK.length), idx:0, score:0, cluesShown:1, answered:false, options:null };
   else if(id==='velha') GSTATE = { board:Array(9).fill(null), over:false, winner:null };
-  else if(id==='quemsoueu') GSTATE = { order: shuffle(CHAR_BANK.map((_,i)=>i)), idx:0, cluesShown:1, guess:'', revealed:false };
+  else if(id==='quemsoueu') GSTATE = { order: pickOrder('quemsoueu', CHAR_BANK.length), idx:0, cluesShown:1, guess:'', revealed:false };
   else if(id==='atnt') GSTATE = { round:0, total:10, score:0, current: pickAtNtQuestion() };
   else if(id==='embaralhada') GSTATE = { word: shuffle(WORD_BANK)[0], scrambled:null, guess:'', result:null };
   if(id==='embaralhada') GSTATE.scrambled = scrambleWord(GSTATE.word);
@@ -1457,13 +1662,24 @@ let SPEECH_START_TS = 0;
 let SPEECH_EST_DURATION = 0;
 let PROGRESS_TIMER = null;
 let SLEEP_TIMER = null;
-let AVAILABLE_VOICES = [];
+let AVAILABLE_VOICES = { feminina: null, masculina: null };
 
+const FEMALE_VOICE_HINTS = ['female','mulher','fem','luciana','vitoria','vitória','maria','joana','camila','francisca','samantha','victoria','zira','susan','helena'];
+const MALE_VOICE_HINTS = ['male','homem','masc','daniel','felipe','ricardo','diego','miguel','alex','tom','fred','jorge'];
+function classifyVoiceGender(v){
+  const n = v.name.toLowerCase();
+  if(FEMALE_VOICE_HINTS.some(h=>n.includes(h))) return 'feminina';
+  if(MALE_VOICE_HINTS.some(h=>n.includes(h))) return 'masculina';
+  return null;
+}
 function refreshVoices(){
   const all = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
   const langPrefix = STATE.lang === 'pt' ? 'pt' : 'en';
   const preferred = all.filter(v => v.lang && v.lang.toLowerCase().startsWith(langPrefix));
-  AVAILABLE_VOICES = (preferred.length ? preferred : all).slice(0, 3);
+  const pool = preferred.length ? preferred : all;
+  const feminina = pool.find(v=>classifyVoiceGender(v)==='feminina') || pool[0] || null;
+  const masculina = pool.find(v=>classifyVoiceGender(v)==='masculina') || pool.find(v=>v!==feminina) || pool[0] || null;
+  AVAILABLE_VOICES = { feminina, masculina };
 }
 if(window.speechSynthesis){
   window.speechSynthesis.onvoiceschanged = refreshVoices;
@@ -1479,8 +1695,9 @@ function playText(text, label){
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = STATE.lang === 'pt' ? 'pt-BR' : 'en-US';
   utter.rate = STATE.audioSpeed;
+  utter.volume = STATE.audioVolume;
   refreshVoices();
-  const voice = AVAILABLE_VOICES[STATE.voiceProfile] || AVAILABLE_VOICES[0];
+  const voice = AVAILABLE_VOICES[STATE.voiceGender] || AVAILABLE_VOICES.feminina;
   if(voice) utter.voice = voice;
   utter.onend = () => {
     stopProgressTimer();
@@ -1538,6 +1755,41 @@ function armSleepTimer(){
   }
 }
 function clearSleepTimer(){ if(SLEEP_TIMER){ clearTimeout(SLEEP_TIMER); SLEEP_TIMER=null; } }
+
+/* ---------------- Calendário de feriados nacionais + datas cristãs ---------------- */
+function easterDate(year){
+  const a=year%19,b=Math.floor(year/100),c=year%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),
+        g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,
+        m=Math.floor((a+11*h+22*l)/451);
+  const month=Math.floor((h+l-7*m+114)/31);
+  const day=((h+l-7*m+114)%31)+1;
+  return new Date(year, month-1, day);
+}
+function addDays(d, n){ const r = new Date(d); r.setDate(r.getDate()+n); return r; }
+function holidaysForYear(year){
+  const easter = easterDate(year);
+  const key = (d) => `${d.getMonth()+1}-${d.getDate()}`;
+  const map = {
+    '1-1': 'Confraternização Universal',
+    '4-21': 'Tiradentes',
+    '5-1': 'Dia do Trabalho',
+    '9-7': 'Independência do Brasil',
+    '10-12': 'Nossa Senhora Aparecida',
+    '11-2': 'Finados',
+    '11-15': 'Proclamação da República',
+    '12-25': 'Natal',
+  };
+  map[key(addDays(easter,-47))] = 'Carnaval';
+  map[key(addDays(easter,-2))] = 'Sexta-feira Santa';
+  map[key(easter)] = 'Páscoa';
+  map[key(addDays(easter,60))] = 'Corpus Christi';
+  return map;
+}
+function checkHolidayToday(){
+  const today = new Date();
+  const map = holidaysForYear(today.getFullYear());
+  return map[`${today.getMonth()+1}-${today.getDate()}`] || null;
+}
 
 /* ---------------- Compartilhar ---------------- */
 function shareContent(ref, text){
@@ -1600,6 +1852,10 @@ async function init(){
 
   if(checkBirthday()){
     setTimeout(()=>toast(t('happy_birthday')), 600);
+  }
+  const holiday = checkHolidayToday();
+  if(holiday){
+    setTimeout(()=>toast(`🎉 ${STATE.lang==='pt' ? 'Hoje é' : 'Today is'} ${holiday}!`), 1800);
   }
 
   if('serviceWorker' in navigator){
