@@ -1,44 +1,52 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FDECC8"/>
-      <stop offset="45%" stop-color="#F0B86E"/>
-      <stop offset="100%" stop-color="#8D4E2A"/>
-    </linearGradient>
-    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFE9A8" stop-opacity="0.95"/>
-      <stop offset="60%" stop-color="#F7C55C" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#F7C55C" stop-opacity="0"/>
+    <radialGradient id="goldBg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#FFF3C4"/>
+      <stop offset="55%" stop-color="#FCE588"/>
+      <stop offset="100%" stop-color="#F7D45C"/>
+    </radialGradient>
+    <radialGradient id="sunDisc" cx="42%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#FFC947"/>
+      <stop offset="100%" stop-color="#FF9F1C"/>
     </radialGradient>
   </defs>
 
-  <rect width="512" height="512" rx="104" fill="url(#sky)"/>
+  <rect width="512" height="512" rx="96" fill="url(#goldBg)"/>
 
-  <!-- brilho do sol nascendo -->
-  <circle cx="256" cy="330" r="190" fill="url(#sunGlow)"/>
+  <!-- raios do sol -->
+  <g fill="#FFA83D">
+    <g id="rayGroup">
+      <rect x="248" y="60" width="16" height="46" rx="8"/>
+    </g>
+    <use href="#rayGroup" transform="rotate(22.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(45 256 230)"/>
+    <use href="#rayGroup" transform="rotate(67.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(90 256 230)"/>
+    <use href="#rayGroup" transform="rotate(112.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(135 256 230)"/>
+    <use href="#rayGroup" transform="rotate(157.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(180 256 230)"/>
+    <use href="#rayGroup" transform="rotate(202.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(225 256 230)"/>
+    <use href="#rayGroup" transform="rotate(247.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(270 256 230)"/>
+    <use href="#rayGroup" transform="rotate(292.5 256 230)"/>
+    <use href="#rayGroup" transform="rotate(315 256 230)"/>
+    <use href="#rayGroup" transform="rotate(337.5 256 230)"/>
+  </g>
 
-  <!-- raios -->
-  <g stroke="#FBDA8B" stroke-width="10" stroke-linecap="round" opacity="0.85">
-    <line x1="256" y1="150" x2="256" y2="118"/>
-    <line x1="150" y1="222" x2="122" y2="200"/>
-    <line x1="362" y1="222" x2="390" y2="200"/>
-    <line x1="118" y1="330" x2="86" y2="330"/>
-    <line x1="394" y1="330" x2="426" y2="330"/>
+  <!-- linhas do horizonte atrás do sol -->
+  <g stroke="#E3A63C" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.55">
+    <path d="M120 250 Q 200 225 300 245 T 400 235"/>
+    <path d="M110 275 Q 210 255 300 270 T 405 262"/>
   </g>
 
   <!-- disco do sol -->
-  <circle cx="256" cy="330" r="92" fill="#F7C55C"/>
-
-  <!-- horizonte -->
-  <rect x="0" y="392" width="512" height="120" fill="#7A431F"/>
-  <rect x="0" y="392" width="512" height="10" fill="#5C2F16" opacity="0.4"/>
+  <circle cx="256" cy="230" r="100" fill="url(#sunDisc)"/>
 
   <!-- cruz -->
-  <g fill="#3E2723">
-    <rect x="234" y="90" width="44" height="330" rx="14"/>
-    <rect x="150" y="196" width="212" height="44" rx="14"/>
-  </g>
-  <g fill="#FDECC8" opacity="0.18">
-    <rect x="234" y="90" width="18" height="330" rx="9"/>
+  <g fill="#FFFFFF">
+    <rect x="238" y="150" width="36" height="222" rx="14"/>
+    <rect x="188" y="196" width="136" height="36" rx="14"/>
   </g>
 </svg>

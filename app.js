@@ -318,6 +318,23 @@ function render(){
 }
 
 /* ---------------- HOME / Leitura Diária ---------------- */
+function sunMascot(size){
+  size = size || 64;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#F7C55C" stroke-width="6" stroke-linecap="round">
+      <line x1="50" y1="6" x2="50" y2="16"/><line x1="50" y1="84" x2="50" y2="94"/>
+      <line x1="6" y1="50" x2="16" y2="50"/><line x1="84" y1="50" x2="94" y2="50"/>
+      <line x1="18" y1="18" x2="25" y2="25"/><line x1="75" y1="75" x2="82" y2="82"/>
+      <line x1="82" y1="18" x2="75" y2="25"/><line x1="18" y1="82" x2="25" y2="75"/>
+    </g>
+    <circle cx="50" cy="50" r="30" fill="#FFC947"/>
+    <circle cx="40" cy="46" r="3.2" fill="#3E2723"/>
+    <circle cx="60" cy="46" r="3.2" fill="#3E2723"/>
+    <path d="M40 58 Q50 66 60 58" stroke="#3E2723" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+    <circle cx="33" cy="55" r="4.5" fill="#FF9F7A" opacity="0.55"/>
+    <circle cx="67" cy="55" r="4.5" fill="#FF9F7A" opacity="0.55"/>
+  </svg>`;
+}
 function renderHome(){
   const day = STATE.currentDay;
   const plan = planForDay(day);
@@ -329,7 +346,10 @@ function renderHome(){
 
   return `
   <div class="card p-5 mb-4 border" style="border-color:var(--btn-soft)">
-    <div class="text-xs uppercase tracking-wide opacity-60 mb-1">${t('day')} ${day} ${t('of')} ${TOTAL_DAYS}</div>
+    <div class="flex items-start justify-between mb-1">
+      <div class="text-xs uppercase tracking-wide opacity-60">${t('day')} ${day} ${t('of')} ${TOTAL_DAYS}</div>
+      <div class="shrink-0 -mt-2 -mr-1">${sunMascot(48)}</div>
+    </div>
     <div class="font-display text-xl font-bold mb-1">365 Manhãs com Deus</div>
     <div class="text-sm opacity-80 mb-3">${summary}</div>
     <div class="w-full h-2 rounded-full bg-btn-soft overflow-hidden mb-3">
@@ -1791,34 +1811,133 @@ function checkHolidayToday(){
   return map[`${today.getMonth()+1}-${today.getDate()}`] || null;
 }
 
-/* ---------------- Compartilhar ---------------- */
-function shareContent(ref, text){
-  const shareText = `"${text}"\n— ${ref} (Bíblia Almeida 1911)\n\n📖 365 Manhãs com Deus`;
-  if(navigator.share){
-    navigator.share({ title: '365 Manhãs com Deus', text: shareText }).catch(()=>{});
-    return;
-  }
-  openShareMenu(shareText);
+/* ---------------- Cartão visual para compartilhar ---------------- */
+function roundRectPath(ctx, x, y, w, h, r){
+  if(ctx.roundRect){ ctx.beginPath(); ctx.roundRect(x,y,w,h,r); return; }
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
 }
-function openShareMenu(shareText){
+function wrapCanvasText(ctx, text, maxWidth){
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  words.forEach(w=>{
+    const test = line ? line+' '+w : w;
+    if(ctx.measureText(test).width > maxWidth && line){ lines.push(line); line = w; }
+    else line = test;
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+function generateShareCardImage(ref, text){
+  return new Promise((resolve, reject)=>{
+    try{
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080; canvas.height = 1350;
+      const ctx = canvas.getContext('2d');
+
+      const bgGrad = ctx.createLinearGradient(0,0,0,canvas.height);
+      bgGrad.addColorStop(0, '#FFF3C4'); bgGrad.addColorStop(0.5, '#FCE588'); bgGrad.addColorStop(1, '#F7D45C');
+      ctx.fillStyle = bgGrad; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      const cx = canvas.width/2, cy = 300, r = 130;
+      ctx.fillStyle = '#FFA83D';
+      for(let i=0;i<16;i++){
+        ctx.save();
+        ctx.translate(cx,cy);
+        ctx.rotate(i*(Math.PI*2/16));
+        roundRectPath(ctx, -11, -r-70, 22, 60, 10);
+        ctx.fill();
+        ctx.restore();
+      }
+      const sunGrad = ctx.createRadialGradient(cx-40,cy-40,10,cx,cy,r);
+      sunGrad.addColorStop(0,'#FFC947'); sunGrad.addColorStop(1,'#FF9F1C');
+      ctx.fillStyle = sunGrad;
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      roundRectPath(ctx, cx-18, cy-90, 36, 220, 14); ctx.fill();
+      roundRectPath(ctx, cx-70, cy-46, 140, 36, 14); ctx.fill();
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#3E2723';
+      ctx.font = 'italic 64px Georgia, serif';
+      ctx.fillText('“', cx, 540);
+
+      ctx.font = '44px Georgia, serif';
+      const lines = wrapCanvasText(ctx, text, 880);
+      let ty = 600;
+      lines.forEach(line=>{ ctx.fillText(line, cx, ty); ty += 58; });
+
+      ctx.font = 'bold 38px Georgia, serif';
+      ctx.fillStyle = '#8D4E2A';
+      ctx.fillText('— ' + ref, cx, ty + 40);
+
+      ctx.font = 'bold 48px Georgia, serif';
+      ctx.fillStyle = '#1B2A4A';
+      ctx.fillText('365 Manhãs com Deus', cx, canvas.height - 96);
+      ctx.font = '30px Georgia, serif';
+      ctx.fillStyle = '#5C4526';
+      ctx.fillText('Leitura bíblica diária · Almeida 1911', cx, canvas.height - 52);
+
+      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('toBlob falhou')), 'image/png');
+    }catch(e){ reject(e); }
+  });
+}
+function downloadBlob(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 4000);
+}
+let LAST_SHARE_BLOB = null;
+
+/* ---------------- Compartilhar ---------------- */
+async function shareContent(ref, text){
+  const shareText = `"${text}"\n— ${ref} (Bíblia Almeida 1911)\n\n📖 365 Manhãs com Deus`;
+  let blob = null;
+  try{ blob = await generateShareCardImage(ref, text); }catch(e){ blob = null; }
+
+  if(blob){
+    try{
+      const file = new File([blob], '365-manhas-com-deus.png', { type:'image/png' });
+      if(navigator.canShare && navigator.canShare({ files:[file] })){
+        await navigator.share({ files:[file], title:'365 Manhãs com Deus', text: shareText });
+        return;
+      }
+    }catch(e){ /* segue para o menu abaixo */ }
+  } else if(navigator.share){
+    try{ await navigator.share({ title:'365 Manhãs com Deus', text: shareText }); return; }catch(e){}
+  }
+  openShareMenu(shareText, blob);
+}
+function openShareMenu(shareText, imageBlob){
   const existing = document.getElementById('shareSheet');
   if(existing) existing.remove();
+  LAST_SHARE_BLOB = imageBlob || null;
   const enc = encodeURIComponent(shareText);
   const sheet = document.createElement('div');
   sheet.id = 'shareSheet';
   sheet.className = 'fixed inset-0 z-50 flex items-end';
+  const imgBtn = imageBlob ? `<button onclick='downloadShareImage()' class="flex flex-col items-center gap-1"><span class="text-2xl">🖼️</span>Baixar cartão</button>` : '';
   sheet.innerHTML = `
     <div class="absolute inset-0 bg-black/40" onclick="document.getElementById('shareSheet').remove()"></div>
     <div class="relative w-full max-w-md mx-auto card p-4 pb-8 safe-bottom">
       <div class="text-sm font-semibold mb-3">${t('share')}</div>
-      <div class="grid grid-cols-4 gap-3 text-center text-xs">
+      <div class="grid ${imageBlob ? 'grid-cols-5' : 'grid-cols-4'} gap-3 text-center text-xs">
         <a href="https://wa.me/?text=${enc}" target="_blank" class="flex flex-col items-center gap-1"><span class="text-2xl">💬</span>WhatsApp</a>
         <a href="mailto:?subject=365 Manhãs com Deus&body=${enc}" class="flex flex-col items-center gap-1"><span class="text-2xl">✉️</span>E-mail</a>
         <button onclick='copyShareText(${JSON.stringify(shareText)})' class="flex flex-col items-center gap-1"><span class="text-2xl">📋</span>Copiar</button>
         <a href="https://www.instagram.com/" target="_blank" class="flex flex-col items-center gap-1"><span class="text-2xl">📸</span>Instagram</a>
+        ${imgBtn}
       </div>
     </div>`;
   document.body.appendChild(sheet);
+}
+function downloadShareImage(){
+  if(LAST_SHARE_BLOB) downloadBlob(LAST_SHARE_BLOB, '365-manhas-com-deus.png');
 }
 function copyShareText(text){
   navigator.clipboard.writeText(text).then(()=>{
