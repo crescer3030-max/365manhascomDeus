@@ -148,7 +148,9 @@ const I18N = {
     logout_confirm:'Isso vai apagar todos os seus dados salvos neste dispositivo (progresso, favoritos, anotações). Deseja continuar?',
     copied:'Copiado!', search_results:'Resultados', no_results:'Nenhum versículo encontrado.',
     happy_birthday:'🎂 Feliz aniversário! Que Deus renove suas forças e abençoe este novo ciclo da sua vida.',
-    day_locked:'Conclua o dia anterior para avançar para este dia.'
+    day_locked:'Conclua o dia anterior para avançar para este dia.',
+    ebook:'E-book Extra', chapter:'Capítulo', prev_chapter:'Capítulo Anterior', next_chapter:'Próximo Capítulo',
+    download_pdf:'Baixar em PDF'
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
@@ -170,7 +172,9 @@ const I18N = {
     logout_confirm:'This will erase all your saved data on this device (progress, favorites, notes). Continue?',
     copied:'Copied!', search_results:'Results', no_results:'No verses found.',
     happy_birthday:'🎂 Happy birthday! May God renew your strength and bless this new season of your life.',
-    day_locked:'Finish the previous day before moving on to this one.'
+    day_locked:'Finish the previous day before moving on to this one.',
+    ebook:'Bonus E-book', chapter:'Chapter', prev_chapter:'Previous Chapter', next_chapter:'Next Chapter',
+    download_pdf:'Download as PDF'
   }
 };
 function t(key){ return (I18N[STATE.lang] && I18N[STATE.lang][key]) || I18N.pt[key] || key; }
@@ -302,6 +306,7 @@ function render(){
     case 'jogos': titleEl.textContent = t('jogos'); html = renderJogosHub(); break;
     case 'jogo': titleEl.textContent = (GAMES_LIST.find(g=>g.id===ACTIVE_GAME)||{}).name || t('jogos'); html = renderGame(ACTIVE_GAME); break;
     case 'mais': titleEl.textContent = t('mais'); html = renderMais(); break;
+    case 'ebook': titleEl.textContent = t('ebook'); html = renderEbook(); break;
     case 'planos': titleEl.textContent = t('planos'); html = renderPlanos(); break;
     case 'config': titleEl.textContent = t('config'); html = renderConfig(); break;
     case 'conta': titleEl.textContent = t('conta'); html = renderConta(); break;
@@ -578,6 +583,7 @@ function generatePrayer(){
 /* ---------------- "Mais" (hub) ---------------- */
 function renderMais(){
   const items = [
+    ['ebook','📘', t('ebook')],
     ['config','⚙️', t('config')],
     ['conta','👤', t('conta')],
     ['planos','💎', t('planos')],
@@ -586,6 +592,89 @@ function renderMais(){
     <button onclick="showScreen('${id}')" class="w-full card border p-3.5 flex items-center gap-3 mb-2" style="border-color:var(--btn-soft)">
       <span class="text-lg">${icon}</span><span class="font-semibold text-sm flex-1 text-left">${label}</span><span class="opacity-40">›</span>
     </button>`).join('');
+}
+
+/* ---------------- E-book Extra (16 capítulos) ---------------- */
+const EBOOK_TITULO = 'Ganhando Dinheiro com Inteligência Artificial de Modo Ético';
+const EBOOK_VERSAO = '1.0 — E-book Inteligente';
+const EBOOK_CAPITULOS = [
+  { titulo:'CAPÍTULO 1 — Por que usar a IA com ética e princípios sólidos', corpo:'• Princípios cristãos e verdade absoluta\n• A importância de agir com honestidade\n• Por que o caminho ético traz resultados duradouros\n• Aviso: Resultados dependem do seu esforço!' },
+  { titulo:'CAPÍTULO 2 — O que é Inteligência Artificial e como ela funciona', corpo:'• Conceitos simples e sem complicações\n• O que a IA consegue fazer e quais são seus limites\n• Diferenças entre tipos de IA\n• Como ela pode ajudar você de forma saudável' },
+  { titulo:'CAPÍTULO 3 — O que é permitido e o que é proibido — Leis e Direitos Autorais', corpo:'• Regras da LGPD e direitos autorais\n• O que é plágio e como evitar\n• Uso correto de conteúdos de terceiros\n• Responsabilidade sobre o que você cria' },
+  { titulo:'CAPÍTULO 4 — Preparando sua mentalidade para o sucesso sustentável', corpo:'• Disciplina e dedicação\n• Metas realistas e honestas\n• Resiliência e aprendizado contínuo\n• Valorizando o trabalho e o respeito ao próximo' },
+  { titulo:'CAPÍTULO 5 — As formas mais honestas de gerar renda com IA', corpo:'✅ Criação de conteúdo original\n✅ Venda de infoprodutos próprios\n✅ Serviços profissionais\n✅ Parcerias transparentes\n❌ Proibido: Promessas falsas, golpes ou enganos' },
+  { titulo:'CAPÍTULO 6 — Ferramentas confiáveis: gratuitas e pagas, com uso correto', corpo:'• Indicações seguras e éticas\n• Como usar sem violar regras\n• Vantagens e cuidados de cada ferramenta\n• O que evitar e por quê' },
+  { titulo:'CAPÍTULO 7 — Como criar comandos (prompts) eficazes e sem plágio', corpo:'• Estrutura correta de pedidos\n• Como pedir o que quer sem copiar\n• Dicas para obter resultados originais\n• Respeito ao trabalho de outros' },
+  { titulo:'CAPÍTULO 8 — Criando e vendendo infoprodutos originais', corpo:'• Ideias que funcionam no Brasil\n• Estruturação e qualidade\n• Preço justo e valor entregue\n• Plataformas recomendadas' },
+  { titulo:'CAPÍTULO 9 — Trabalhando como afiliado de forma transparente', corpo:'• O que é e como funciona com ética\n• Escolhendo produtos confiáveis\n• Divulgação sem enganos\n• Relação de confiança com o público' },
+  { titulo:'CAPÍTULO 10 — Serviços profissionais com IA: como oferecer e precificar', corpo:'• Tipos de serviços válidos\n• Como cobrar de forma justa\n• Qualidade e compromisso\n• Contratos e responsabilidade' },
+  { titulo:'CAPÍTULO 11 — Criação de conteúdo para redes sociais e plataformas', corpo:'• Conteúdo autêntico e útil\n• Respeito às regras de cada rede\n• Originalidade e valor\n• Engajamento verdadeiro' },
+  { titulo:'CAPÍTULO 12 — Passo a passo de pesquisa de mercado e oportunidades', corpo:'• O que analisar\n• Onde encontrar dados confiáveis\n• Identificar o que o público realmente precisa\n• Oportunidades legais e sustentáveis' },
+  { titulo:'CAPÍTULO 13 — Escolhendo as plataformas certas para vender', corpo:'• Hotmart, Kiwify, TikTok Shop, Kwai Shop, Shopee, Amazon, Mercado Livre\n• Regras de cada uma\n• Como se adaptar sem perder a ética\n• Vantagens e cuidados' },
+  { titulo:'CAPÍTULO 14 — Construindo confiança e credibilidade com seu público', corpo:'• Transparência e verdade\n• Cumprir o que promete\n• Relacionamento respeitoso\n• Reputação que dura' },
+  { titulo:'CAPÍTULO 15 — Erros comuns a evitar e como se proteger', corpo:'• Promessas irreais\n• Cópia de conteúdo\n• Desrespeito às leis\n• Como se defender de golpes e riscos' },
+  { titulo:'CAPÍTULO 16 — Seu plano de ação prático para começar hoje', corpo:'• Passo a passo simples e seguro\n• O que fazer primeiro\n• Organização e progresso\n• Caminho para resultados sólidos e honestos' },
+];
+let EBOOK_CAPITULO_ATUAL = 1;
+
+function renderEbook(){
+  const total = EBOOK_CAPITULOS.length;
+  const cap = EBOOK_CAPITULOS[EBOOK_CAPITULO_ATUAL - 1];
+  const plainText = `${cap.titulo}\n\n${cap.corpo}`;
+
+  return `
+  <div class="card p-4 border mb-3 text-center" style="border-color:var(--btn-soft)">
+    <div class="font-display font-bold text-lg mb-1">${escapeHtml(EBOOK_TITULO)}</div>
+    <div class="text-xs opacity-60">${t('chapter')} ${EBOOK_CAPITULO_ATUAL} ${t('of')} ${total}</div>
+  </div>
+
+  <div class="card p-4 border mb-4" style="border-color:var(--btn-soft)">
+    <div class="font-display font-bold mb-2" style="font-size:${STATE.fontSize}px">📖 ${escapeHtml(cap.titulo)}</div>
+    <p class="leading-relaxed whitespace-pre-line" style="font-size:${STATE.fontSize}px">${escapeHtml(cap.corpo)}</p>
+  </div>
+
+  <div class="flex items-center justify-center gap-4 mb-4 text-sm">
+    <button onclick='playText(${JSON.stringify(plainText)}, ${JSON.stringify(cap.titulo)})' class="active:scale-90" aria-label="${t('listen')}">▶️ ${t('listen')}</button>
+    <button onclick="audioPause()" class="active:scale-90" aria-label="${t('pause')}">⏸️</button>
+    <button onclick="audioStop()" class="active:scale-90" aria-label="${t('stop')}">⏹️</button>
+  </div>
+
+  <div class="flex items-center justify-between gap-2 mb-3">
+    <button ${EBOOK_CAPITULO_ATUAL<=1?'disabled':''} onclick="changeEbookChapter(-1)" class="flex-1 rounded-xl py-2.5 font-semibold text-sm bg-btn-soft ${EBOOK_CAPITULO_ATUAL<=1?'opacity-30':''}">⬅️ ${t('prev_chapter')}</button>
+    <button ${EBOOK_CAPITULO_ATUAL>=total?'disabled':''} onclick="changeEbookChapter(1)" class="flex-1 rounded-xl py-2.5 font-semibold text-sm bg-btn-soft ${EBOOK_CAPITULO_ATUAL>=total?'opacity-30':''}">${t('next_chapter')} ➡️</button>
+  </div>
+
+  <button onclick="downloadEbookPdf()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold">📄 ${t('download_pdf')}</button>
+  `;
+}
+
+function changeEbookChapter(delta){
+  const total = EBOOK_CAPITULOS.length;
+  EBOOK_CAPITULO_ATUAL = Math.min(total, Math.max(1, EBOOK_CAPITULO_ATUAL + delta));
+  audioStop();
+  render();
+}
+
+function downloadEbookPdf(){
+  const win = window.open('', '_blank');
+  if(!win){ toast(t('download_pdf')); return; }
+  const corpo = EBOOK_CAPITULOS.map(c =>
+    `<h2>📖 ${escapeHtml(c.titulo)}</h2><p style="white-space:pre-line">${escapeHtml(c.corpo)}</p>`
+  ).join('<hr>');
+  win.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>${escapeHtml(EBOOK_TITULO)}</title>
+  <style>
+    body{ font-family: Georgia, 'Times New Roman', serif; max-width:720px; margin:40px auto; padding:0 24px; line-height:1.6; color:#222; }
+    h1{ text-align:center; } h2{ color:#8D4E2A; margin-top:2em; }
+    .versao{ text-align:center; opacity:.6; margin-bottom:2em; }
+    hr{ border:none; border-top:1px solid #ddd; margin:2em 0; }
+  </style></head><body>
+    <h1>${escapeHtml(EBOOK_TITULO)}</h1>
+    <div class="versao">${escapeHtml(EBOOK_VERSAO)}</div>
+    ${corpo}
+  </body></html>`);
+  win.document.close();
+  win.focus();
+  setTimeout(() => win.print(), 300);
 }
 
 /* ---------------- Configurações ---------------- */
