@@ -1,16 +1,15 @@
 {
   "name": "365 Manhãs com Deus",
-  "short_name": "365 Manhãs",
-  "description": "Leitura bíblica diária (Almeida 1911), temas, orações e jogos bíblicos — 100% offline.",
-  "id": "./index.html",
+  "short_name": "365 Deus",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#FDFBF7",
-  "theme_color": "#8D4E2A",
-  "orientation": "portrait",
-  "lang": "pt-BR",
-  "categories": ["lifestyle", "education", "books"],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
-    { "src": "icon.svg", "sizes": "192x192 512x512", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "icone.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
   ]
 }
