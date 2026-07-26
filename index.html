@@ -2,144 +2,421 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>365 Manhãs com Deus</title>
-<meta name="description" content="Leitura bíblica diária (Almeida 1911), temas, orações e jogos bíblicos — 100% offline.">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#8D4E2A">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="tailwind.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcelo Cabral — Hub de Produtos</title>
+<meta name="description" content="Transformação digital, IA de modo ético e propósito. Produtos, e-books e guias práticos.">
 <style>
-  :root{
-    --bg:#FDFBF7; --text:#3E2723; --accent:#8D4E2A; --btn:#A67C52; --btn-soft:#D9B99B; --card:#ffffff;
-  }
-  html.dark{
-    --bg:#1A1A1A; --text:#F0F0F0; --accent:#6F4227; --btn:#6F4227; --btn-soft:#3a2c22; --card:#242119;
-  }
-  *{ -webkit-tap-highlight-color: transparent; }
-  html,body{ background:var(--bg); color:var(--text); }
-  body{ font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; transition: background .25s, color .25s; }
-  .font-display{ font-family: Georgia, 'Times New Roman', serif; }
-  .bg-app{ background:var(--bg); }
-  .text-app{ color:var(--text); }
-  .text-accent{ color:var(--accent); }
-  .bg-accent{ background:var(--accent); }
-  .bg-btn{ background:var(--btn); }
-  .bg-btn-soft{ background:var(--btn-soft); }
-  .border-accent{ border-color:var(--accent); }
-  .card{ background:var(--card); border-radius:1rem; }
-  .screen{ display:none; }
-  .screen.active{ display:block; }
-  ::-webkit-scrollbar{ width:6px; }
-  ::-webkit-scrollbar-thumb{ background:var(--btn); border-radius:4px; }
-  input[type=range]{ accent-color: var(--accent); }
-  .fade-in{ animation: fadeIn .25s ease; }
-  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
-  .safe-bottom{ padding-bottom: env(safe-area-inset-bottom); }
-  .safe-top{ padding-top: env(safe-area-inset-top); }
-  .verse-highlight{ background: var(--btn-soft); border-radius:.25rem; }
-  .card{ box-shadow: 0 1px 3px rgba(0,0,0,.06); }
-  html.dark .card{ box-shadow: 0 1px 3px rgba(0,0,0,.35); }
-  button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible{
-    outline: 2px solid var(--accent); outline-offset: 2px;
-  }
-  .sr-only-focusable{
-    position:absolute; left:-9999px; top:0; z-index:100; background:var(--accent); color:#fff;
-    padding:.5rem 1rem; border-radius:0 0 .5rem 0;
-  }
-  .sr-only-focusable:focus{ left:0; }
-  @media (prefers-reduced-motion: reduce){
-    .fade-in{ animation:none; }
-    *{ transition-duration:.01ms !important; }
-  }
-  /* Utilitários usados pelas novas telas (v5.0) que não estavam no tailwind.css estático */
-  .w-4{ width:1rem; } .w-6{ width:1.5rem; } .h-4{ height:1rem; }
-  .grid-cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .grid-cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .p-6{ padding:1.5rem; } .px-5{ padding-left:1.25rem; padding-right:1.25rem; }
-  .border-2{ border-width:2px; } .border-white{ border-color:#fff; }
-  .flex-wrap{ flex-wrap:wrap; }
-  .font-mono{ font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; }
-  .leading-tight{ line-height:1.25; }
-  .mt-1{ margin-top:.25rem; } .my-3{ margin-top:.75rem; margin-bottom:.75rem; }
-  .shadow{ box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06); }
-  .text-3xl{ font-size:1.875rem; line-height:2.25rem; }
-  .tracking-widest{ letter-spacing:.1em; }
-  .underline{ text-decoration-line:underline; }
-  .text-\[9px\]{ font-size:9px; }
-  .min-h-\[44px\]{ min-height:44px; }
-  .bg-app\/95{ background-color:var(--bg); }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --grafite:#1B1F27; --grafite2:#2A2F3A; --dourado:#D4A657; --dourado-esc:#A67C2E;
+  --bg:#F7F5F1; --card:#fff; --txt:#1B1F27; --txt2:#6B6558; --borda:#E7E2D8;
+  --verde-wpp:#25D366; --sucesso:#1E9E52; --erro:#D64545;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+img{max-width:100%;display:block}
+.container{max-width:640px;margin:0 auto;padding:0 18px}
+
+header.topo{background:linear-gradient(135deg,var(--grafite),var(--grafite2));color:#fff;padding:28px 0 34px}
+.topo-in{display:flex;align-items:center;gap:14px}
+.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));
+  display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:#241a06;flex-shrink:0}
+.topo-nome{font-size:19px;font-weight:800}
+.topo-sub{font-size:12.5px;color:#D8D2C4;margin-top:2px}
+.selos{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.selo{background:rgba(212,166,87,.16);border:1px solid rgba(212,166,87,.4);color:var(--dourado);
+  font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:20px}
+
+.hero{background:var(--card);margin:-18px 18px 22px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.12);
+  overflow:hidden;position:relative;z-index:2}
+.hero-faixa{background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));color:#241a06;
+  font-size:11px;font-weight:800;letter-spacing:1px;padding:7px 18px;text-align:center}
+.hero-corpo{padding:22px 20px 24px}
+.hero-corpo h1{font-size:21px;line-height:1.28;font-weight:800;color:var(--grafite);margin-bottom:10px}
+.hero-corpo .desc{font-size:14px;color:var(--txt2);margin-bottom:16px}
+.hero-beneficios{margin-bottom:18px}
+.hero-beneficios li{list-style:none;display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin-bottom:9px}
+.hero-beneficios li b{color:var(--sucesso);flex-shrink:0}
+.hero-preco{display:flex;align-items:baseline;gap:8px;margin-bottom:16px}
+.hero-preco .por{font-size:26px;font-weight:800;color:var(--grafite)}
+.btn-cta{display:block;width:100%;text-align:center;padding:15px;border-radius:11px;font-weight:800;font-size:15px;
+  background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));color:#241a06;
+  box-shadow:0 8px 20px rgba(212,166,87,.35)}
+.btn-cta:active{transform:scale(.98)}
+.aviso-legal-hero{font-size:10.5px;color:var(--txt2);text-align:center;margin-top:10px;line-height:1.6}
+
+.secao{margin:26px 0 8px}
+.secao-tit{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:0 18px}
+.secao-tit h2{font-size:15px;font-weight:800;color:var(--grafite)}
+.secao-tit span{font-size:11px;color:var(--txt2);font-weight:700}
+.prateleira{display:flex;gap:12px;overflow-x:auto;padding:0 18px 6px;scroll-snap-type:x mandatory}
+.prateleira::-webkit-scrollbar{height:5px}
+.prateleira::-webkit-scrollbar-thumb{background:var(--borda);border-radius:10px}
+.pcard{flex:0 0 200px;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--borda);
+  scroll-snap-align:start;display:flex;flex-direction:column}
+.pcard-img{height:110px;background:linear-gradient(135deg,var(--grafite),var(--grafite2));
+  display:flex;align-items:center;justify-content:center;font-size:34px;position:relative}
+.pcard-tag{position:absolute;top:8px;left:8px;background:var(--dourado);color:#241a06;font-size:9px;
+  font-weight:800;padding:3px 8px;border-radius:12px}
+.pcard-corpo{padding:12px 13px 14px;flex:1;display:flex;flex-direction:column}
+.pcard-corpo h3{font-size:13px;font-weight:800;color:var(--grafite);margin-bottom:5px;line-height:1.25}
+.pcard-corpo p{font-size:11.5px;color:var(--txt2);margin-bottom:10px;flex:1}
+.pcard-preco{font-size:13px;font-weight:800;color:var(--grafite);margin-bottom:8px}
+.pcard-preco .gratis{color:var(--sucesso)}
+.pcard-btn{display:block;text-align:center;padding:9px;border-radius:8px;font-size:12px;font-weight:800;
+  background:var(--grafite);color:#fff}
+.pcard-btn.dourado{background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));color:#241a06}
+
+.captura{background:var(--card);margin:28px 18px;border-radius:16px;padding:22px 20px;border:1px solid var(--borda)}
+.captura h2{font-size:16px;font-weight:800;color:var(--grafite);margin-bottom:6px}
+.captura .desc{font-size:13px;color:var(--txt2);margin-bottom:16px}
+.canal-opcoes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.canal-opt{padding:12px 8px;border:2px solid var(--borda);border-radius:10px;text-align:center;
+  font-size:12.5px;font-weight:700;color:var(--txt2);background:#fff}
+.canal-opt.sel{border-color:var(--dourado);background:rgba(212,166,87,.1);color:var(--dourado-esc)}
+.campo-form{margin-bottom:12px}
+.campo-form label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:var(--txt2)}
+.campo-form input{width:100%;padding:12px 13px;border:1.5px solid var(--borda);border-radius:9px;font-size:14px}
+.campo-form input:focus{outline:none;border-color:var(--dourado)}
+.lgpd-linha{display:flex;gap:9px;align-items:flex-start;margin:14px 0 16px;font-size:11.5px;color:var(--txt2);line-height:1.55}
+.lgpd-linha input{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--dourado-esc)}
+.msg-status{font-size:12px;padding:10px 12px;border-radius:8px;margin-bottom:12px;display:none}
+.msg-status.erro{display:block;background:#FDEEEE;color:var(--erro)}
+.msg-status.ok{display:block;background:#EAF7EE;color:var(--sucesso)}
+
+footer{padding:26px 18px 100px;text-align:center;font-size:11px;color:var(--txt2);line-height:1.8}
+footer a{color:var(--dourado-esc);font-weight:700}
+
+.wpp-flutuante{position:fixed;right:18px;bottom:18px;z-index:500;background:var(--verde-wpp);color:#fff;
+  width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:28px;box-shadow:0 8px 22px rgba(37,211,102,.45);animation:pulsa 2.2s infinite}
+@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+.overlay-exit{display:none;position:fixed;inset:0;background:rgba(27,31,39,.72);z-index:900;
+  align-items:center;justify-content:center;padding:20px}
+.overlay-exit.on{display:flex}
+.modal-exit{background:var(--card);border-radius:18px;max-width:400px;width:100%;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.4);position:relative}
+.modal-exit-topo{background:linear-gradient(135deg,var(--grafite),var(--grafite2));color:#fff;
+  padding:26px 22px;text-align:center}
+.modal-exit-topo .selo-exit{background:var(--dourado);color:#241a06;font-size:10px;font-weight:800;
+  padding:4px 10px;border-radius:12px;display:inline-block;margin-bottom:10px}
+.modal-exit-topo h3{font-size:18px;font-weight:800;line-height:1.3}
+.modal-exit-corpo{padding:20px 22px 24px}
+.fechar-exit{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+  width:30px;height:30px;border-radius:50%;font-size:16px;font-weight:700}
+
+@media(min-width:480px){ .container{padding:0 24px} }
 </style>
 </head>
-<body class="bg-app text-app min-h-screen flex flex-col">
+<body>
 
-<a href="#main" class="sr-only-focusable">Pular para o conteúdo</a>
-
-<!-- ===================== HEADER ===================== -->
-<header id="appHeader" class="safe-top sticky top-0 z-30 bg-app/95 backdrop-blur border-b" style="border-color:var(--btn-soft)">
-  <div class="max-w-md mx-auto px-4 py-2.5 flex items-center justify-between">
-    <div class="flex items-center gap-2 min-w-0">
-      <button id="backBtn" class="hidden mr-1 text-xl leading-none active:opacity-50" onclick="goBack()" aria-label="Voltar">⬅️</button>
-      <svg width="34" height="34" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
-        <circle cx="50" cy="64" r="18" fill="var(--accent)"/>
-        <g stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
-          <line x1="50" y1="38" x2="50" y2="30"/>
-          <line x1="30" y1="46" x2="24" y2="40"/>
-          <line x1="70" y1="46" x2="76" y2="40"/>
-        </g>
-        <rect x="46" y="20" width="8" height="58" rx="3" fill="var(--text)"/>
-        <rect x="32" y="40" width="36" height="8" rx="3" fill="var(--text)"/>
-      </svg>
-      <div class="leading-none min-w-0">
-        <div class="flex items-baseline gap-1.5">
-          <span class="font-display font-bold text-[15px]" style="color:var(--text)">365 Manhãs</span>
-          <span class="inline-block w-px h-3" style="background:var(--btn)"></span>
-          <span class="text-[10px] font-semibold tracking-wide" style="color:var(--accent)">COM DEUS</span>
-        </div>
-        <div id="screenTitle" class="text-[11px] opacity-60 truncate">Início</div>
+<header class="topo">
+  <div class="container">
+    <div class="topo-in">
+      <div class="avatar">MC</div>
+      <div>
+        <div class="topo-nome">Marcelo Cabral</div>
+        <div class="topo-sub">Transformação Digital · IA de Modo Ético · Propósito</div>
       </div>
     </div>
-    <div class="flex items-center gap-1 text-xs font-semibold shrink-0">
-      <button onclick="setLang('pt')" id="langPt" class="px-2 py-1 rounded-full bg-btn-soft" aria-label="Português">PT</button>
-      <button onclick="setLang('en')" id="langEn" class="px-2 py-1 rounded-full opacity-60" aria-label="English">EN</button>
+    <div class="selos">
+      <span class="selo">🎓 MBA em Inteligência Artificial</span>
+      <span class="selo">🎓 Pós-graduação em Engenharia de Software</span>
+      <span class="selo">✅ Conteúdo com fonte verificada</span>
     </div>
   </div>
 </header>
 
-<!-- ===================== MAIN ===================== -->
-<main id="main" role="main" class="flex-1 max-w-md mx-auto w-full px-4 pb-28 pt-3">
-</main>
+<div class="hero">
+  <div class="hero-faixa">⭐ PRODUTO EM DESTAQUE</div>
+  <div class="hero-corpo">
+    <h1>Ganhando Dinheiro com Inteligência Artificial de Modo Ético</h1>
+    <div class="desc">Um guia direto sobre como usar IA de forma transparente e responsável — sem promessa de ganho fácil, com método real.</div>
+    <ul class="hero-beneficios">
+      <li><b>✓</b> Linguagem simples, sem jargão técnico</li>
+      <li><b>✓</b> Fontes verificadas e checklist anti-promessa</li>
+      <li><b>✓</b> Conteúdo pensado para quem está começando do zero</li>
+    </ul>
+    <div class="hero-preco"><span class="por">R$ 47</span></div>
+    <a class="btn-cta" href="#" id="linkCheckoutHero" data-produto="ebook-ia-etica">🔓 Quero acessar agora</a>
+    <div class="aviso-legal-hero">Pagamento processado pela plataforma de checkout (Hotmart/Kiwify). Sem garantia de resultado financeiro — conteúdo educacional.</div>
+  </div>
+</div>
 
-<!-- ===================== AUDIO PLAYER (fixed) ===================== -->
-<div id="audioBar" class="hidden fixed left-0 right-0 bottom-16 z-40 px-4">
-  <div class="max-w-md mx-auto card shadow-lg px-4 py-2.5" style="box-shadow:0 6px 20px rgba(0,0,0,.15)">
-    <div class="flex items-center justify-between text-xs mb-1.5">
-      <span id="audioLabel" class="font-semibold truncate pr-2">—</span>
-      <span id="audioSpeed" class="opacity-60 shrink-0">1.0x</span>
+<section class="secao">
+  <div class="secao-tit"><h2>🙏 Espiritualidade</h2><span>1 app</span></div>
+  <div class="prateleira">
+    <div class="pcard">
+      <div class="pcard-img">📖<span class="pcard-tag">APP GRÁTIS</span></div>
+      <div class="pcard-corpo">
+        <h3>365 Manhãs com Deus</h3>
+        <p>Devocional diário completo, com plano de leitura de 365 dias.</p>
+        <div class="pcard-preco"><span class="gratis">Grátis</span></div>
+        <a class="pcard-btn dourado" href="https://crescer3030-max.github.io/365manhascomDeus/index.html" target="_blank" rel="noopener">Abrir o app</a>
+      </div>
     </div>
-    <div class="w-full h-1.5 rounded-full bg-btn-soft overflow-hidden mb-2">
-      <div id="audioProgress" class="h-full bg-accent" style="width:0%"></div>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="secao-tit"><h2>💰 Educação Financeira</h2><span>exemplo — edite</span></div>
+  <div class="prateleira">
+    <div class="pcard">
+      <div class="pcard-img">👩‍💼</div>
+      <div class="pcard-corpo">
+        <h3>Finanças para Mulheres</h3>
+        <p>Guia prático de organização financeira do zero.</p>
+        <div class="pcard-preco">R$ 27</div>
+        <a class="pcard-btn" href="#" data-produto="financas-mulheres">Ver mais</a>
+      </div>
     </div>
-    <div class="flex items-center justify-center gap-6">
-      <button onclick="audioPlay()" class="text-xl active:scale-90">▶️</button>
-      <button onclick="audioPause()" class="text-xl active:scale-90">⏸️</button>
-      <button onclick="audioStop()" class="text-xl active:scale-90">⏹️</button>
-      <button onclick="cycleSpeed()" class="text-xs font-bold border border-accent rounded-full px-2 py-1 active:scale-90">Vel.</button>
+    <div class="pcard">
+      <div class="pcard-img">📈</div>
+      <div class="pcard-corpo">
+        <h3>Investimentos para Jovens</h3>
+        <p>Primeiros passos para quem nunca investiu.</p>
+        <div class="pcard-preco">R$ 27</div>
+        <a class="pcard-btn" href="#" data-produto="investimentos-jovens">Ver mais</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="secao-tit"><h2>🔧 Soluções Práticas</h2><span>exemplo — edite</span></div>
+  <div class="prateleira">
+    <div class="pcard">
+      <div class="pcard-img">🛠️</div>
+      <div class="pcard-corpo">
+        <h3>Pequenos Consertos Domésticos</h3>
+        <p>Guia rápido para resolver o básico em casa.</p>
+        <div class="pcard-preco">R$ 9,90</div>
+        <a class="pcard-btn" href="#" data-produto="consertos-domesticos">Ver mais</a>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img">🪛</div>
+      <div class="pcard-corpo">
+        <h3>Faça-Você-Mesmo</h3>
+        <p>Projetos simples para o fim de semana.</p>
+        <div class="pcard-preco">R$ 9,90</div>
+        <a class="pcard-btn" href="#" data-produto="faca-voce-mesmo">Ver mais</a>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-img">🗂️</div>
+      <div class="pcard-corpo">
+        <h3>Organização</h3>
+        <p>Checklist de organização da casa em 7 dias.</p>
+        <div class="pcard-preco">R$ 9,90</div>
+        <a class="pcard-btn" href="#" data-produto="organizacao">Ver mais</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="captura" id="formCapturaPrincipal">
+  <h2>📥 Receba um material grátis</h2>
+  <div class="desc">Escolha como prefere receber — sem spam, você pode cancelar quando quiser.</div>
+
+  <div class="canal-opcoes">
+    <button type="button" class="canal-opt sel" data-canal="whatsapp">📱 Via WhatsApp</button>
+    <button type="button" class="canal-opt" data-canal="email">✉️ Via E-mail</button>
+  </div>
+
+  <form id="formLead" novalidate>
+    <div class="campo-form">
+      <label for="leadNome">Seu nome</label>
+      <input type="text" id="leadNome" placeholder="Como podemos te chamar" required>
+    </div>
+    <div class="campo-form" id="campoContato">
+      <label for="leadContato" id="labelContato">Seu WhatsApp (com DDD)</label>
+      <input type="text" id="leadContato" placeholder="(11) 91234-5678" required>
+    </div>
+    <div class="lgpd-linha">
+      <input type="checkbox" id="leadLGPD" required>
+      <label for="leadLGPD">Autorizo o contato para receber este material e futuras novidades gratuitas, conforme a Lei Geral de Proteção de Dados (LGPD). Posso cancelar quando quiser.</label>
+    </div>
+    <div class="msg-status" id="msgStatusForm"></div>
+    <button type="submit" class="btn-cta" id="btnEnviarLead">Quero receber grátis</button>
+  </form>
+</div>
+
+<footer>
+  <div>© 2026 Marcelo Cabral — Transformação Digital & IA de Modo Ético</div>
+  <div style="margin-top:6px">Conteúdo educacional. Sem garantia de resultado financeiro. Dados tratados conforme a LGPD (Lei 13.709/2018).</div>
+  <div style="margin-top:10px"><a href="#" id="linkPolitica">Política de Privacidade</a></div>
+</footer>
+
+<a class="wpp-flutuante" id="wppFlutuante" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬</a>
+
+<div class="overlay-exit" id="overlayExit">
+  <div class="modal-exit">
+    <button class="fechar-exit" id="fecharExit">×</button>
+    <div class="modal-exit-topo">
+      <div class="selo-exit">ESPERA!</div>
+      <h3>Antes de sair, leve um material grátis</h3>
+    </div>
+    <div class="modal-exit-corpo">
+      <p style="font-size:13px;color:var(--txt2);margin-bottom:16px">Um guia rápido e prático, sem custo. Deixe seu contato e enviamos agora.</p>
+      <button class="btn-cta" id="btnExitIr">Quero o material grátis</button>
     </div>
   </div>
 </div>
 
-<!-- ===================== BOTTOM NAV ===================== -->
-<nav id="appNav" class="safe-bottom fixed bottom-0 left-0 right-0 z-30 bg-app border-t" style="border-color:var(--btn-soft)">
-  <div class="max-w-md mx-auto grid grid-cols-5 text-[10px]">
-    <button onclick="showScreen('home')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="home" aria-label="Leitura"><span class="text-lg">📅</span>Leitura</button>
-    <button onclick="showScreen('temas')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="temas" aria-label="Temas"><span class="text-lg">📚</span>Temas</button>
-    <button onclick="showScreen('pedido')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="pedido" aria-label="Pedido"><span class="text-lg">🙏</span>Pedido</button>
-    <button onclick="showScreen('jogos')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="jogos" aria-label="Jogos"><span class="text-lg">🎲</span>Jogos</button>
-    <button onclick="showScreen('mais')" class="navBtn flex flex-col items-center py-2 gap-0.5" data-nav="mais" aria-label="Mais"><span class="text-lg">☰</span>Mais</button>
-  </div>
-</nav>
+<script>
+"use strict";
 
-<script src="app.js"></script>
+var CONFIG = {
+  numeroWhatsApp: "5511999999999",
+  mensagemWhatsAppPadrao: "Olá! Vim pelo site e quero saber mais sobre os materiais gratuitos.",
+  linksCheckout: {
+    "ebook-ia-etica": "#SUBSTITUA_PELO_LINK_HOTMART_OU_KIWIFY",
+    "financas-mulheres": "#SUBSTITUA_PELO_LINK",
+    "investimentos-jovens": "#SUBSTITUA_PELO_LINK",
+    "consertos-domesticos": "#SUBSTITUA_PELO_LINK",
+    "faca-voce-mesmo": "#SUBSTITUA_PELO_LINK",
+    "organizacao": "#SUBSTITUA_PELO_LINK"
+  },
+  emailContato: "contato@seudominio.com.br"
+};
+
+function $(id){ return document.getElementById(id); }
+
+function montarLinkWhatsApp(msg){
+  return "https://wa.me/" + CONFIG.numeroWhatsApp + "?text=" + encodeURIComponent(msg || CONFIG.mensagemWhatsAppPadrao);
+}
+
+var canalEscolhido = "whatsapp";
+
+document.addEventListener("DOMContentLoaded", function(){
+  var wpp = $("wppFlutuante");
+  if(wpp) wpp.href = montarLinkWhatsApp();
+
+  var links = document.querySelectorAll("[data-produto]");
+  for(var i=0; i<links.length; i++){
+    var el = links[i];
+    var prod = el.getAttribute("data-produto");
+    var url = CONFIG.linksCheckout[prod];
+    if(url) el.setAttribute("href", url);
+    el.addEventListener("click", function(e){
+      if(this.getAttribute("href").indexOf("#SUBSTITUA") === 0){
+        e.preventDefault();
+        alert("Link de checkout ainda não configurado para este produto.\nEdite CONFIG.linksCheckout no código.");
+      }
+    });
+  }
+
+  var opts = document.querySelectorAll(".canal-opt");
+  for(var j=0; j<opts.length; j++){
+    opts[j].addEventListener("click", function(){
+      for(var k=0; k<opts.length; k++) opts[k].classList.remove("sel");
+      this.classList.add("sel");
+      canalEscolhido = this.getAttribute("data-canal");
+      var label = $("labelContato");
+      var input = $("leadContato");
+      if(canalEscolhido === "whatsapp"){
+        label.textContent = "Seu WhatsApp (com DDD)";
+        input.placeholder = "(11) 91234-5678";
+        input.type = "tel";
+      } else {
+        label.textContent = "Seu e-mail";
+        input.placeholder = "seuemail@exemplo.com";
+        input.type = "email";
+      }
+    });
+  }
+
+  var form = $("formLead");
+  if(form) form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var nome = $("leadNome").value.trim();
+    var contato = $("leadContato").value.trim();
+    var lgpd = $("leadLGPD").checked;
+    var status = $("msgStatusForm");
+    status.className = "msg-status";
+
+    if(!nome){
+      status.textContent = "Digite seu nome.";
+      status.className = "msg-status erro";
+      $("leadNome").focus();
+      return;
+    }
+    if(!contato){
+      status.textContent = "Preencha o campo de contato.";
+      status.className = "msg-status erro";
+      $("leadContato").focus();
+      return;
+    }
+    if(canalEscolhido === "email" && !validarEmail(contato)){
+      status.textContent = "Digite um e-mail válido.";
+      status.className = "msg-status erro";
+      $("leadContato").focus();
+      return;
+    }
+    if(canalEscolhido === "whatsapp" && !validarTelefone(contato)){
+      status.textContent = "Digite um número de WhatsApp válido, com DDD.";
+      status.className = "msg-status erro";
+      $("leadContato").focus();
+      return;
+    }
+    if(!lgpd){
+      status.textContent = "Marque a autorização de contato (LGPD) para continuar.";
+      status.className = "msg-status erro";
+      return;
+    }
+
+    status.textContent = "Tudo certo! Abrindo " + (canalEscolhido === "whatsapp" ? "o WhatsApp" : "seu e-mail") + "...";
+    status.className = "msg-status ok";
+    processarLead(nome, contato, canalEscolhido);
+  });
+
+  document.addEventListener("mouseleave", function(e){
+    if(e.clientY <= 0) mostrarExitIntent();
+  });
+
+  var bFechar = $("fecharExit");
+  if(bFechar) bFechar.addEventListener("click", fecharExitIntent);
+
+  var ov = $("overlayExit");
+  if(ov) ov.addEventListener("click", function(e){ if(e.target === ov) fecharExitIntent(); });
+
+  var btnIr = $("btnExitIr");
+  if(btnIr) btnIr.addEventListener("click", function(){
+    fecharExitIntent();
+    var alvo = $("formCapturaPrincipal");
+    if(alvo) alvo.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+});
+
+function validarEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function validarTelefone(v){ return v.replace(/\D/g,"").length >= 10; }
+
+function processarLead(nome, contato, canal){
+  var msg = "Olá! Meu nome é " + nome + ". Vim pelo site e quero receber o material gratuito.";
+  if(canal === "whatsapp"){
+    window.open(montarLinkWhatsApp(msg), "_blank", "noopener");
+  } else {
+    var assunto = encodeURIComponent("Quero o material gratuito");
+    var corpo = encodeURIComponent("Nome: " + nome + "\nE-mail: " + contato + "\n\n" + msg +
+      "\n\n(Nota: para captura automática de e-mail em produção, conecte um serviço gratuito como Brevo ou Mailchimp.)");
+    window.location.href = "mailto:" + CONFIG.emailContato + "?subject=" + assunto + "&body=" + corpo;
+  }
+}
+
+var exitJaMostrado = false;
+function mostrarExitIntent(){
+  if(exitJaMostrado) return;
+  exitJaMostrado = true;
+  var ov = $("overlayExit");
+  if(ov) ov.classList.add("on");
+}
+function fecharExitIntent(){
+  var ov = $("overlayExit");
+  if(ov) ov.classList.remove("on");
+}
+</script>
 </body>
 </html>
