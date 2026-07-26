@@ -1,15 +1,15 @@
 {
   "name": "365 Manhãs com Deus",
-  "short_name": "365 Deus",
+  "short_name": "365 Manhãs",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#000000",
   "icons": [
     {
-      "src": "icone.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "icone.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
