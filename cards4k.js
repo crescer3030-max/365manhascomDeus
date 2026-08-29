@@ -19,6 +19,11 @@
 
 const CARD_W = 1080;
 const CARD_H = 1350;
+// Papel de parede: proporção de tela cheia de celular (não o recorte 9:16 do
+// cartão pra feed/story). Sem QR, sem rodapé de marketing e sem número do
+// dia — é pra uso pessoal na tela de bloqueio, não pra compartilhar.
+const WALLPAPER_W = 1080;
+const WALLPAPER_H = 2340;
 
 /* ---------------- Personas ---------------- */
 const CARD_PERSONAS = {
@@ -61,6 +66,16 @@ const CARD_PERSONAS = {
     quoteMark: '#8D4E2A',
     font: 'Georgia, "Times New Roman", serif',
     illustration: drawCenaMelhorIdade,
+  },
+  // Persona especial pro cartão de conclusão do plano (dia 365) — não entra
+  // no seletor normal de 5 estilos, é usada só pela tela de conclusão.
+  conclusao: {
+    label: 'Conclusão',
+    bgFrom: '#FFF3C4', bgTo: '#FFD966',
+    text: '#3D2314', accent: '#B8860B', badgeText: '#3D2314',
+    quoteMark: '#8D4E2A',
+    font: 'Georgia, "Times New Roman", serif',
+    illustration: drawCenaConclusao,
   },
 };
 const CARD_PERSONA_ORDER = ['crianca', 'adolescente', 'jovem', 'adulto', 'melhor-idade'];
@@ -257,6 +272,40 @@ function drawCenaMelhorIdade(ctx, W, H) {
   const petals = ['#E7A64C', '#D97A5A', '#B5875A'];
   [[W * 0.2, Z(H, 0.98), 18], [W * 0.8, Z(H, 1.0), 19]].forEach(([x, y, s], i) => drawFlower(ctx, x, y, s, petals[i], '#FFF3B0'));
 }
+function drawCenaConclusao(ctx, W, H) {
+  // confete espalhado pela cena
+  const colors = ['#FFD700', '#FF6B6B', '#6BCB77', '#4D96FF', '#FF6FCF', '#FFA53D'];
+  for (let i = 0; i < 60; i++) {
+    const x = (i * 53) % W;
+    const y = Z(H, ((i * 37) % 100) / 100);
+    ctx.save(); ctx.translate(x, y); ctx.rotate(((i * 47) % 360) * Math.PI / 180);
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fillRect(-5, -8, 10, 16);
+    ctx.restore();
+  }
+  // pequenos estouros de festa (tipo fogos) espalhados no céu
+  [[W * 0.2, Z(H, 0.14)], [W * 0.8, Z(H, 0.22)], [W * 0.5, Z(H, 0.08)]].forEach(([x, y]) => {
+    ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    for (let a = 0; a < 8; a++) {
+      const ang = a * Math.PI / 4;
+      ctx.beginPath(); ctx.moveTo(x + Math.cos(ang) * 8, y + Math.sin(ang) * 8); ctx.lineTo(x + Math.cos(ang) * 22, y + Math.sin(ang) * 22); ctx.stroke();
+    }
+  });
+  // troféu
+  const tx = W * 0.5, ty = Z(H, 0.7);
+  ctx.fillStyle = '#F4D99F';
+  ctx.beginPath();
+  ctx.moveTo(tx - 60, ty - 70); ctx.quadraticCurveTo(tx - 60, ty - 10, tx, ty - 10);
+  ctx.quadraticCurveTo(tx + 60, ty - 10, tx + 60, ty - 70); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = '#D4AF37'; ctx.lineWidth = 10;
+  ctx.beginPath(); ctx.arc(tx - 72, ty - 50, 20, 0, Math.PI * 2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(tx + 72, ty - 50, 20, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = '#E8B93D'; ctx.beginPath(); ctx.arc(tx, ty - 46, 22, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#D4AF37';
+  _rr(ctx, tx - 10, ty - 10, 20, 40, 4); ctx.fill();
+  _rr(ctx, tx - 50, ty + 30, 100, 18, 6); ctx.fill();
+  _rr(ctx, tx - 35, ty + 48, 70, 14, 5); ctx.fill();
+}
 
 /* ---------------- Badge, rodapé, QR ---------------- */
 function drawBadge365(ctx, cfg) {
@@ -362,6 +411,40 @@ function drawTextBlock(ctx, W, H, cfg, data, bandY) {
   ctx.restore();
 }
 
+// Texto do papel de parede: sem tema, sem QR/rodapé embaixo — só o
+// versículo, centralizado com folga na faixa de legenda (que aqui é bem
+// mais alta que a do cartão, já que não precisa reservar espaço pro QR).
+function drawWallpaperText(ctx, W, H, cfg, data, bandY) {
+  ctx.save();
+  ctx.textAlign = 'center';
+  const cx = W / 2;
+  const zoneTop = bandY, zoneBottom = H - 80;
+  const zoneH = zoneBottom - zoneTop;
+
+  ctx.font = '600 44px Georgia, serif';
+  const verseLines = _wrapText(ctx, data.versiculo || '', W * 0.8).slice(0, 5);
+  const quoteH = 60, verseLH = 56, refGap = 26, refH = 40;
+  const totalH = quoteH + verseLines.length * verseLH + (data.referencia ? refGap + refH : 0);
+  let y = zoneTop + Math.max(40, (zoneH - totalH) / 2) + quoteH;
+
+  ctx.font = 'italic 700 54px Georgia, serif';
+  ctx.fillStyle = cfg.quoteMark;
+  ctx.fillText('“', cx, y);
+  y += 10;
+
+  ctx.font = '600 44px Georgia, serif';
+  ctx.fillStyle = cfg.text;
+  verseLines.forEach(line => { ctx.fillText(line, cx, y); y += verseLH; });
+
+  if (data.referencia) {
+    y += refGap;
+    ctx.font = 'bold 34px Georgia, serif';
+    ctx.fillStyle = cfg.accent;
+    ctx.fillText('— ' + data.referencia, cx, y);
+  }
+  ctx.restore();
+}
+
 /* ---------------- Classe principal ---------------- */
 class CardGenerator4K {
   /**
@@ -438,6 +521,56 @@ class CardGenerator4K {
     const a = document.createElement('a');
     a.href = url;
     a.download = `card-dia-${String(this.dia).padStart(3, '0')}-${this.persona}.${ext}`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    return blob;
+  }
+
+  /** Papel de parede em tela cheia (sem QR/rodapé/dia) — pra tela de bloqueio. */
+  renderWallpaper(scale) {
+    scale = scale || 1;
+    const cfg = CARD_PERSONAS[this.persona];
+    const canvas = document.createElement('canvas');
+    canvas.width = WALLPAPER_W * scale;
+    canvas.height = WALLPAPER_H * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(scale, scale);
+
+    const bg = ctx.createLinearGradient(0, 0, 0, WALLPAPER_H);
+    bg.addColorStop(0, cfg.bgFrom); bg.addColorStop(1, cfg.bgTo);
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, WALLPAPER_W, WALLPAPER_H);
+
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, 0, WALLPAPER_W, Z_H(WALLPAPER_H));
+    ctx.clip();
+    cfg.illustration(ctx, WALLPAPER_W, WALLPAPER_H);
+    ctx.restore();
+
+    const bandY = drawCaptionBand(ctx, WALLPAPER_W, WALLPAPER_H, cfg);
+    drawWallpaperText(ctx, WALLPAPER_W, WALLPAPER_H, cfg, {
+      versiculo: this.versiculo, referencia: this.referencia,
+    }, bandY);
+    drawBadge365(ctx, cfg);
+
+    this.wallpaperCanvas = canvas;
+    return canvas;
+  }
+
+  toBlobWallpaper(type, quality, scale) {
+    if (!this.wallpaperCanvas || scale) this.renderWallpaper(scale || 1);
+    return new Promise((resolve, reject) => {
+      this.wallpaperCanvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('toBlob falhou')), type || 'image/png', quality);
+    });
+  }
+
+  async downloadWallpaper(opts) {
+    opts = opts || {};
+    const scale = opts.hq ? 2 : 1;
+    const blob = await this.toBlobWallpaper('image/png', undefined, scale);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `papel-de-parede-dia-${String(this.dia).padStart(3, '0')}-${this.persona}.png`;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 4000);
     return blob;

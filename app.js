@@ -153,7 +153,11 @@ const I18N = {
     card_reference:'Referência', card_reflection:'Reflexão (opcional)', card_generate_idea:'Gerar ideia de devocional',
     card_question:'Pergunta', card_action:'Ação', card_prayer:'Oração', card_generate:'Gerar Cartão',
     card_export_hq:'Exportar 4K (alta resolução)', card_share:'Compartilhar cartão',
-    streak_current:'dias seguidos', streak_best:'recorde'
+    card_wallpaper:'Papel de Parede',
+    streak_current:'dias seguidos', streak_best:'recorde',
+    conclusao_titulo:'Você completou os 365 dias!',
+    conclusao_texto:'Parabéns por caminhar com Deus todos os dias deste ano. Guarde essa conquista.',
+    conclusao_baixar:'Baixar cartão de conclusão', conclusao_fechar:'Fechar', conclusao_tema:'Jornada Completa'
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
@@ -180,7 +184,11 @@ const I18N = {
     card_reference:'Reference', card_reflection:'Reflection (optional)', card_generate_idea:'Generate devotional idea',
     card_question:'Question', card_action:'Action', card_prayer:'Prayer', card_generate:'Generate Card',
     card_export_hq:'Export 4K (high resolution)', card_share:'Share card',
-    streak_current:'day streak', streak_best:'best streak'
+    card_wallpaper:'Wallpaper',
+    streak_current:'day streak', streak_best:'best streak',
+    conclusao_titulo:'You completed all 365 days!',
+    conclusao_texto:'Congratulations on walking with God every day this year. Keep this milestone.',
+    conclusao_baixar:'Download completion card', conclusao_fechar:'Close', conclusao_tema:'Journey Complete'
   }
 };
 function t(key){ return (I18N[STATE.lang] && I18N[STATE.lang][key]) || I18N.pt[key] || key; }
@@ -502,10 +510,12 @@ function changeDay(delta){
 }
 
 function markDayRead(day){
+  const alreadyDone = Object.keys(STATE.readDays).length === TOTAL_DAYS;
   STATE.readDays[day] = true;
   STATE.history.unshift({ day, date: new Date().toISOString(), type:'leitura' });
   saveState();
   render();
+  if(day === TOTAL_DAYS && !alreadyDone) setTimeout(showConclusaoModal, 500);
 }
 
 /* ---------------- Calendar ---------------- */
@@ -712,6 +722,7 @@ function renderCartoes(){
     <button onclick="baixarCartao(true)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ JPG</button>
   </div>
   <button onclick="baixarCartaoHQ()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-2">✨ ${t('card_export_hq')}</button>
+  <button onclick="baixarPapelDeParede()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-2">📱 ${t('card_wallpaper')}</button>
   <button onclick="compartilharCartao()" class="w-full bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">📤 ${t('card_share')}</button>
   `;
 }
@@ -774,6 +785,41 @@ async function compartilharCartao(){
     }
   }catch(e){ /* segue para o menu abaixo */ }
   openShareMenu(shareText, blob);
+}
+async function baixarPapelDeParede(){
+  if(!CARTAO_ATUAL) atualizarCartaoPreview();
+  await CARTAO_ATUAL.downloadWallpaper({});
+}
+
+/* ---------------- Cartão de conclusão (dia 365) ---------------- */
+function showConclusaoModal(){
+  const existing = document.getElementById('conclusaoModal');
+  if(existing) existing.remove();
+  const div = document.createElement('div');
+  div.id = 'conclusaoModal';
+  div.className = 'fixed inset-0 z-50 flex items-center justify-center p-6';
+  div.innerHTML = `
+    <div class="absolute inset-0 bg-black/60" onclick="document.getElementById('conclusaoModal').remove()"></div>
+    <div class="relative card p-6 max-w-sm w-full text-center safe-bottom">
+      <div class="text-5xl mb-3">🏆</div>
+      <div class="font-display text-xl font-bold mb-2">${t('conclusao_titulo')}</div>
+      <p class="text-sm opacity-80 mb-5">${t('conclusao_texto')}</p>
+      <button onclick="baixarCartaoConclusao()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold mb-2">🏆 ${t('conclusao_baixar')}</button>
+      <button onclick="document.getElementById('conclusaoModal').remove()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">${t('conclusao_fechar')}</button>
+    </div>`;
+  document.body.appendChild(div);
+}
+async function baixarCartaoConclusao(){
+  const gen = new CardGenerator4K({
+    persona: 'conclusao',
+    dia: TOTAL_DAYS,
+    tema: t('conclusao_tema'),
+    referencia: '2 Timóteo 4:7',
+    versiculo: STATE.lang === 'pt'
+      ? 'Combati o bom combate, acabei a carreira, guardei a fé.'
+      : 'I have fought the good fight, I have finished the race, I have kept the faith.',
+  });
+  await gen.download({});
 }
 
 /* ---------------- Configurações ---------------- */
