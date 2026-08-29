@@ -148,7 +148,11 @@ const I18N = {
     logout_confirm:'Isso vai apagar todos os seus dados salvos neste dispositivo (progresso, favoritos, anotações). Deseja continuar?',
     copied:'Copiado!', search_results:'Resultados', no_results:'Nenhum versículo encontrado.',
     happy_birthday:'🎂 Feliz aniversário! Que Deus renove suas forças e abençoe este novo ciclo da sua vida.',
-    day_locked:'Conclua o dia anterior para avançar para este dia.'
+    day_locked:'Conclua o dia anterior para avançar para este dia.',
+    cartoes:'Cartões 4K', card_persona:'Estilo', card_day:'Dia', card_theme:'Tema', card_verse:'Versículo / Frase',
+    card_reference:'Referência', card_reflection:'Reflexão (opcional)', card_generate_idea:'Gerar ideia de devocional',
+    card_question:'Pergunta', card_action:'Ação', card_prayer:'Oração', card_generate:'Gerar Cartão',
+    card_export_hq:'Exportar 4K (alta resolução)', card_share:'Compartilhar cartão'
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
@@ -170,7 +174,11 @@ const I18N = {
     logout_confirm:'This will erase all your saved data on this device (progress, favorites, notes). Continue?',
     copied:'Copied!', search_results:'Results', no_results:'No verses found.',
     happy_birthday:'🎂 Happy birthday! May God renew your strength and bless this new season of your life.',
-    day_locked:'Finish the previous day before moving on to this one.'
+    day_locked:'Finish the previous day before moving on to this one.',
+    cartoes:'4K Cards', card_persona:'Style', card_day:'Day', card_theme:'Theme', card_verse:'Verse / Phrase',
+    card_reference:'Reference', card_reflection:'Reflection (optional)', card_generate_idea:'Generate devotional idea',
+    card_question:'Question', card_action:'Action', card_prayer:'Prayer', card_generate:'Generate Card',
+    card_export_hq:'Export 4K (high resolution)', card_share:'Share card'
   }
 };
 function t(key){ return (I18N[STATE.lang] && I18N[STATE.lang][key]) || I18N.pt[key] || key; }
@@ -301,6 +309,7 @@ function render(){
     case 'pedido': titleEl.textContent = t('pedido'); html = renderPedido(); break;
     case 'jogos': titleEl.textContent = t('jogos'); html = renderJogosHub(); break;
     case 'jogo': titleEl.textContent = (GAMES_LIST.find(g=>g.id===ACTIVE_GAME)||{}).name || t('jogos'); html = renderGame(ACTIVE_GAME); break;
+    case 'cartoes': titleEl.textContent = t('cartoes'); html = renderCartoes(); break;
     case 'mais': titleEl.textContent = t('mais'); html = renderMais(); break;
     case 'planos': titleEl.textContent = t('planos'); html = renderPlanos(); break;
     case 'config': titleEl.textContent = t('config'); html = renderConfig(); break;
@@ -315,6 +324,7 @@ function render(){
   }
   main.innerHTML = `<div class="fade-in">${html}</div>`;
   applyFontSize();
+  if(CURRENT_SCREEN === 'cartoes') atualizarCartaoPreview();
 }
 
 /* ---------------- HOME / Leitura Diária ---------------- */
@@ -362,6 +372,11 @@ function renderHome(){
 
   <button onclick="showScreen('calendar')" class="w-full card border p-4 flex items-center justify-between mb-3" style="border-color:var(--btn-soft)">
     <span class="font-semibold">📆 ${t('calendar')}</span>
+    <span class="opacity-50">›</span>
+  </button>
+
+  <button onclick="showScreen('cartoes')" class="w-full card border p-4 flex items-center justify-between mb-3" style="border-color:var(--btn-soft)">
+    <span class="font-semibold">🎨 ${t('cartoes')}</span>
     <span class="opacity-50">›</span>
   </button>
   `;
@@ -578,6 +593,7 @@ function generatePrayer(){
 /* ---------------- "Mais" (hub) ---------------- */
 function renderMais(){
   const items = [
+    ['cartoes','🎨', t('cartoes')],
     ['config','⚙️', t('config')],
     ['conta','👤', t('conta')],
     ['planos','💎', t('planos')],
@@ -586,6 +602,135 @@ function renderMais(){
     <button onclick="showScreen('${id}')" class="w-full card border p-3.5 flex items-center gap-3 mb-2" style="border-color:var(--btn-soft)">
       <span class="text-lg">${icon}</span><span class="font-semibold text-sm flex-1 text-left">${label}</span><span class="opacity-40">›</span>
     </button>`).join('');
+}
+
+/* ---------------- Cartões 4K (gerador de cards por persona) ---------------- */
+let CARTOES_STATE = null;
+let CARTAO_ATUAL = null;
+
+function initCartoesState(){
+  const persona = ageTier(STATE.profile.birthday) || 'adulto';
+  const dia = STATE.currentDay;
+  CARTOES_STATE = { persona, dia, tema:'', referencia:'', versiculo:'', reflexao:'' };
+  preencherCartaoComDia(dia);
+}
+function preencherCartaoComDia(dia){
+  const plan = planForDay(dia);
+  const first = plan.ot[0] || plan.nt[0];
+  if(first && BIBLE){
+    const ch = getChapter(first.code, first.chapterNum);
+    CARTOES_STATE.tema = bookName(first.code);
+    CARTOES_STATE.referencia = `${bookName(first.code)} ${first.chapterNum}:${ch.v[0].n}`;
+    CARTOES_STATE.versiculo = ch.v[0].t;
+  }
+}
+function renderCartoes(){
+  if(!CARTOES_STATE) initCartoesState();
+  const cs = CARTOES_STATE;
+  const personaBtns = CARD_PERSONA_ORDER.map(id => {
+    const active = cs.persona === id;
+    return `<button onclick="setCartaoPersona('${id}')" class="rounded-xl py-2 px-1 text-[11px] font-semibold border ${active?'bg-accent text-white':'bg-btn-soft'}" style="border-color:var(--btn-soft)">${CARD_PERSONAS[id].label}</button>`;
+  }).join('');
+
+  return `
+  <label class="text-sm font-semibold block mb-1.5">${t('card_persona')}</label>
+  <div class="grid grid-cols-5 gap-1.5 mb-4">${personaBtns}</div>
+
+  <label class="text-sm font-semibold block mb-1.5">${t('card_day')}</label>
+  <input id="cartaoDia" type="number" min="1" max="${TOTAL_DAYS}" value="${cs.dia}" onchange="setCartaoDia(this.value)"
+    class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">${t('card_theme')}</label>
+  <input id="cartaoTema" value="${escapeHtml(cs.tema)}" oninput="CARTOES_STATE.tema=this.value"
+    class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">${t('card_verse')}</label>
+  <textarea id="cartaoVersiculo" rows="3" oninput="CARTOES_STATE.versiculo=this.value"
+    class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">${escapeHtml(cs.versiculo)}</textarea>
+
+  <label class="text-sm font-semibold block mb-1.5">${t('card_reference')}</label>
+  <input id="cartaoReferencia" value="${escapeHtml(cs.referencia)}" oninput="CARTOES_STATE.referencia=this.value"
+    class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-3" style="border-color:var(--btn-soft)">
+
+  <label class="text-sm font-semibold block mb-1.5">${t('card_reflection')}</label>
+  <textarea id="cartaoReflexao" rows="2" oninput="CARTOES_STATE.reflexao=this.value"
+    class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-2" style="border-color:var(--btn-soft)">${escapeHtml(cs.reflexao)}</textarea>
+  <button onclick="gerarIdeiaCartao()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-4">💡 ${t('card_generate_idea')}</button>
+
+  <div id="cartaoIdeiaExtra" class="mb-4"></div>
+
+  <div class="flex justify-center mb-4">
+    <canvas id="cartaoPreview" width="1080" height="1350" style="width:100%;max-width:320px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.15)"></canvas>
+  </div>
+
+  <button onclick="atualizarCartaoPreview()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold mb-3">🖼️ ${t('card_generate')}</button>
+  <div class="grid grid-cols-2 gap-2 mb-2">
+    <button onclick="baixarCartao(false)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ PNG</button>
+    <button onclick="baixarCartao(true)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ JPG</button>
+  </div>
+  <button onclick="baixarCartaoHQ()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-2">✨ ${t('card_export_hq')}</button>
+  <button onclick="compartilharCartao()" class="w-full bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">📤 ${t('card_share')}</button>
+  `;
+}
+function setCartaoPersona(id){ CARTOES_STATE.persona = id; render(); }
+function setCartaoDia(v){
+  const dia = Math.min(TOTAL_DAYS, Math.max(1, parseInt(v, 10) || 1));
+  CARTOES_STATE.dia = dia;
+  preencherCartaoComDia(dia);
+  render();
+}
+function gerarIdeiaCartao(){
+  const cs = CARTOES_STATE;
+  const ideia = gerarDevocionalLocal({ persona: cs.persona, dia: cs.dia, tema: cs.tema, referencia: cs.referencia, versiculo: cs.versiculo });
+  cs.reflexao = ideia.reflexao;
+  const extra = document.getElementById('cartaoIdeiaExtra');
+  if(extra){
+    extra.innerHTML = `<div class="card p-3 border text-xs leading-relaxed" style="border-color:var(--btn-soft)">
+      <p class="mb-1"><b>${t('card_question')}:</b> ${escapeHtml(ideia.pergunta)}</p>
+      <p class="mb-1"><b>${t('card_action')}:</b> ${escapeHtml(ideia.acao)}</p>
+      <p><b>${t('card_prayer')}:</b> ${escapeHtml(ideia.oracao)}</p>
+    </div>`;
+  }
+  render();
+}
+function _cartaoGerador(){
+  const cs = CARTOES_STATE;
+  return new CardGenerator4K({
+    persona: cs.persona, dia: cs.dia, tema: cs.tema, referencia: cs.referencia,
+    versiculo: cs.versiculo, reflexao: cs.reflexao,
+  });
+}
+function atualizarCartaoPreview(){
+  if(!CARTOES_STATE) return;
+  const preview = document.getElementById('cartaoPreview');
+  if(!preview) return;
+  const gen = _cartaoGerador();
+  const canvas = gen.render(1);
+  CARTAO_ATUAL = gen;
+  const pctx = preview.getContext('2d');
+  pctx.clearRect(0, 0, preview.width, preview.height);
+  pctx.drawImage(canvas, 0, 0);
+}
+async function baixarCartao(jpg){
+  if(!CARTAO_ATUAL) atualizarCartaoPreview();
+  await CARTAO_ATUAL.download({ jpg });
+}
+async function baixarCartaoHQ(){
+  if(!CARTAO_ATUAL) atualizarCartaoPreview();
+  await CARTAO_ATUAL.download({ hq: true });
+}
+async function compartilharCartao(){
+  if(!CARTAO_ATUAL) atualizarCartaoPreview();
+  const blob = await CARTAO_ATUAL.toBlob('image/png');
+  const shareText = `"${CARTOES_STATE.versiculo}"\n— ${CARTOES_STATE.referencia}\n\n📖 365 Manhãs com Deus`;
+  try{
+    const file = new File([blob], 'cartao-365-manhas.png', { type: 'image/png' });
+    if(navigator.canShare && navigator.canShare({ files: [file] })){
+      await navigator.share({ files: [file], title: '365 Manhãs com Deus', text: shareText });
+      return;
+    }
+  }catch(e){ /* segue para o menu abaixo */ }
+  openShareMenu(shareText, blob);
 }
 
 /* ---------------- Configurações ---------------- */
@@ -880,11 +1025,12 @@ function ageTier(birthday){
   if(m < 0 || (m === 0 && today.getDate() < bd.getDate())) age--;
   if(age < 13) return 'crianca';
   if(age < 18) return 'adolescente';
+  if(age < 30) return 'jovem';
   if(age < 60) return 'adulto';
-  return 'melhoridade';
+  return 'melhor-idade';
 }
 function ageTierLabel(tier){
-  return { crianca:'Criança', adolescente:'Adolescente', adulto:'Adulto', melhoridade:'Melhor Idade' }[tier] || '—';
+  return { crianca:'Criança', adolescente:'Adolescente', jovem:'Jovem Adulto', adulto:'Adulto', 'melhor-idade':'Melhor Idade' }[tier] || '—';
 }
 
 function renderCadastro(){
@@ -972,6 +1118,7 @@ function completeCadastro(){
   STATE.onboardingDone = true;
   SESSION_UNLOCKED = true;
   saveState();
+  SCREEN_STACK = [];
   showScreen('home');
 }
 
@@ -993,6 +1140,7 @@ function checkEntrada(){
   if(hash === STATE.passwordHash){
     SESSION_UNLOCKED = true;
     document.getElementById('entradaErro').textContent = '';
+    SCREEN_STACK = [];
     showScreen('home');
   }else{
     document.getElementById('entradaErro').textContent = STATE.lang==='pt' ? 'Senha incorreta.' : 'Wrong password.';
@@ -1811,80 +1959,10 @@ function checkHolidayToday(){
   return map[`${today.getMonth()+1}-${today.getDate()}`] || null;
 }
 
-/* ---------------- Cartão visual para compartilhar ---------------- */
-function roundRectPath(ctx, x, y, w, h, r){
-  if(ctx.roundRect){ ctx.beginPath(); ctx.roundRect(x,y,w,h,r); return; }
-  ctx.beginPath();
-  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
-  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
-}
-function wrapCanvasText(ctx, text, maxWidth){
-  const words = text.split(' ');
-  const lines = [];
-  let line = '';
-  words.forEach(w=>{
-    const test = line ? line+' '+w : w;
-    if(ctx.measureText(test).width > maxWidth && line){ lines.push(line); line = w; }
-    else line = test;
-  });
-  if(line) lines.push(line);
-  return lines;
-}
-function generateShareCardImage(ref, text){
-  return new Promise((resolve, reject)=>{
-    try{
-      const canvas = document.createElement('canvas');
-      canvas.width = 1080; canvas.height = 1350;
-      const ctx = canvas.getContext('2d');
-
-      const bgGrad = ctx.createLinearGradient(0,0,0,canvas.height);
-      bgGrad.addColorStop(0, '#FFF3C4'); bgGrad.addColorStop(0.5, '#FCE588'); bgGrad.addColorStop(1, '#F7D45C');
-      ctx.fillStyle = bgGrad; ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      const cx = canvas.width/2, cy = 300, r = 130;
-      ctx.fillStyle = '#FFA83D';
-      for(let i=0;i<16;i++){
-        ctx.save();
-        ctx.translate(cx,cy);
-        ctx.rotate(i*(Math.PI*2/16));
-        roundRectPath(ctx, -11, -r-70, 22, 60, 10);
-        ctx.fill();
-        ctx.restore();
-      }
-      const sunGrad = ctx.createRadialGradient(cx-40,cy-40,10,cx,cy,r);
-      sunGrad.addColorStop(0,'#FFC947'); sunGrad.addColorStop(1,'#FF9F1C');
-      ctx.fillStyle = sunGrad;
-      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      roundRectPath(ctx, cx-18, cy-90, 36, 220, 14); ctx.fill();
-      roundRectPath(ctx, cx-70, cy-46, 140, 36, 14); ctx.fill();
-
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#3E2723';
-      ctx.font = 'italic 64px Georgia, serif';
-      ctx.fillText('“', cx, 540);
-
-      ctx.font = '44px Georgia, serif';
-      const lines = wrapCanvasText(ctx, text, 880);
-      let ty = 600;
-      lines.forEach(line=>{ ctx.fillText(line, cx, ty); ty += 58; });
-
-      ctx.font = 'bold 38px Georgia, serif';
-      ctx.fillStyle = '#8D4E2A';
-      ctx.fillText('— ' + ref, cx, ty + 40);
-
-      ctx.font = 'bold 48px Georgia, serif';
-      ctx.fillStyle = '#1B2A4A';
-      ctx.fillText('365 Manhãs com Deus', cx, canvas.height - 96);
-      ctx.font = '30px Georgia, serif';
-      ctx.fillStyle = '#5C4526';
-      ctx.fillText('Leitura bíblica diária · Almeida 1911', cx, canvas.height - 52);
-
-      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('toBlob falhou')), 'image/png');
-    }catch(e){ reject(e); }
-  });
-}
+/* ---------------- Cartão visual para compartilhar ----------------
+   O gerador de cards (5 estilos por persona, badge, QR real, rodapé)
+   vive em cards4k.js (classe CardGenerator4K) — ver também a tela
+   "Cartões 4K" (renderCartoes). Aqui só montamos os dados do dia. */
 function downloadBlob(blob, filename){
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1898,7 +1976,14 @@ let LAST_SHARE_BLOB = null;
 async function shareContent(ref, text){
   const shareText = `"${text}"\n— ${ref} (Bíblia Almeida 1911)\n\n📖 365 Manhãs com Deus`;
   let blob = null;
-  try{ blob = await generateShareCardImage(ref, text); }catch(e){ blob = null; }
+  try{
+    const persona = ageTier(STATE.profile.birthday) || 'adulto';
+    const plan = planForDay(STATE.currentDay);
+    const first = plan.ot[0] || plan.nt[0];
+    const tema = first ? bookName(first.code) : '';
+    const gen = new CardGenerator4K({ persona, dia: STATE.currentDay, tema, referencia: ref, versiculo: text });
+    blob = await gen.toBlob('image/png');
+  }catch(e){ blob = null; }
 
   if(blob){
     try{
@@ -1967,7 +2052,17 @@ async function init(){
 
   await loadBible();
   refreshVoices();
-  showScreen('home');
+
+  // Link do QR Code dos cartões: ?dia=NN abre direto naquele dia da leitura.
+  const params = new URLSearchParams(window.location.search);
+  const diaParam = parseInt(params.get('dia'), 10);
+  if(diaParam && diaParam >= 1 && diaParam <= TOTAL_DAYS && isDayUnlocked(diaParam)){
+    STATE.currentDay = diaParam;
+    saveState();
+    showScreen('reading');
+  } else {
+    showScreen('home');
+  }
 
   if(checkBirthday()){
     setTimeout(()=>toast(t('happy_birthday')), 600);
