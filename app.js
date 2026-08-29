@@ -152,7 +152,8 @@ const I18N = {
     cartoes:'Cartões 4K', card_persona:'Estilo', card_day:'Dia', card_theme:'Tema', card_verse:'Versículo / Frase',
     card_reference:'Referência', card_reflection:'Reflexão (opcional)', card_generate_idea:'Gerar ideia de devocional',
     card_question:'Pergunta', card_action:'Ação', card_prayer:'Oração', card_generate:'Gerar Cartão',
-    card_export_hq:'Exportar 4K (alta resolução)', card_share:'Compartilhar cartão'
+    card_export_hq:'Exportar 4K (alta resolução)', card_share:'Compartilhar cartão',
+    streak_current:'dias seguidos', streak_best:'recorde'
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
@@ -178,7 +179,8 @@ const I18N = {
     cartoes:'4K Cards', card_persona:'Style', card_day:'Day', card_theme:'Theme', card_verse:'Verse / Phrase',
     card_reference:'Reference', card_reflection:'Reflection (optional)', card_generate_idea:'Generate devotional idea',
     card_question:'Question', card_action:'Action', card_prayer:'Prayer', card_generate:'Generate Card',
-    card_export_hq:'Export 4K (high resolution)', card_share:'Share card'
+    card_export_hq:'Export 4K (high resolution)', card_share:'Share card',
+    streak_current:'day streak', streak_best:'best streak'
   }
 };
 function t(key){ return (I18N[STATE.lang] && I18N[STATE.lang][key]) || I18N.pt[key] || key; }
@@ -345,6 +347,32 @@ function sunMascot(size){
     <circle cx="67" cy="55" r="4.5" fill="#FF9F7A" opacity="0.55"/>
   </svg>`;
 }
+// Sequência de dias (streak): conta dias de calendário consecutivos com pelo
+// menos uma leitura marcada, usando STATE.history (não os números do plano,
+// já que o usuário pode ler mais de um dia do plano no mesmo dia real).
+function localDateKey(d){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function computeStreak(){
+  const readDates = new Set();
+  STATE.history.forEach(h => { if(h.type === 'leitura') readDates.add(localDateKey(new Date(h.date))); });
+  if(!readDates.size) return { current: 0, best: 0 };
+
+  let current = 0;
+  let cursor = new Date();
+  if(!readDates.has(localDateKey(cursor))) cursor = addDays(cursor, -1); // ainda não leu hoje: não quebra a sequência
+  while(readDates.has(localDateKey(cursor))){ current++; cursor = addDays(cursor, -1); }
+
+  const sorted = Array.from(readDates).sort();
+  let best = 0, run = 0, prevDate = null;
+  sorted.forEach(key => {
+    const d = new Date(key + 'T00:00:00');
+    run = (prevDate && Math.round((d - prevDate) / 86400000) === 1) ? run + 1 : 1;
+    best = Math.max(best, run);
+    prevDate = d;
+  });
+  return { current, best: Math.max(best, current) };
+}
 function renderHome(){
   const day = STATE.currentDay;
   const plan = planForDay(day);
@@ -353,6 +381,7 @@ function renderHome(){
   const summary = noneToday
     ? t('ot_done')
     : `${plan.ot.map(c=>bookAbbrev(c.code)+' '+c.chapterNum).join(', ')}${plan.nt.length ? (plan.ot.length?' + ':'') + plan.nt.map(c=>bookAbbrev(c.code)+' '+c.chapterNum).join(', ') : ''}`;
+  const streak = computeStreak();
 
   return `
   <div class="card p-5 mb-4 border" style="border-color:var(--btn-soft)">
@@ -367,6 +396,20 @@ function renderHome(){
     </div>
     <button onclick="showScreen('reading')" class="w-full bg-accent text-white font-semibold rounded-xl py-3 active:opacity-80">${t('start_reading')}</button>
   </div>
+
+  ${streak.current > 0 || streak.best > 0 ? `
+  <div class="flex items-center gap-3 mb-4">
+    <div class="card border flex-1 p-3 text-center" style="border-color:var(--btn-soft)">
+      <div class="text-2xl leading-none mb-1">🔥</div>
+      <div class="text-lg font-bold leading-none">${streak.current}</div>
+      <div class="text-[10px] opacity-60 uppercase tracking-wide mt-1">${t('streak_current')}</div>
+    </div>
+    <div class="card border flex-1 p-3 text-center" style="border-color:var(--btn-soft)">
+      <div class="text-2xl leading-none mb-1">🏆</div>
+      <div class="text-lg font-bold leading-none">${streak.best}</div>
+      <div class="text-[10px] opacity-60 uppercase tracking-wide mt-1">${t('streak_best')}</div>
+    </div>
+  </div>` : ''}
 
   <p class="text-xs opacity-70 mb-4">${t('plan_desc')}</p>
 
