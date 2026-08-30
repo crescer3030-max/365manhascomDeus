@@ -151,7 +151,7 @@ const I18N = {
     day_locked:'Conclua o dia anterior para avançar para este dia.',
     cartoes:'Cartões 4K', card_persona:'Estilo', card_day:'Dia', card_theme:'Tema', card_verse:'Versículo / Frase',
     card_reference:'Referência', card_reflection:'Reflexão (opcional)', card_generate_idea:'Gerar ideia de devocional',
-    card_question:'Pergunta', card_action:'Ação', card_prayer:'Oração', card_generate:'Gerar Cartão',
+    card_question:'Pergunta', card_action:'Ação', card_prayer:'Oração', card_para_levar:'Para levar no coração', card_generate:'Gerar Cartão',
     card_export_hq:'Exportar 4K (alta resolução)', card_share:'Compartilhar cartão',
     card_wallpaper:'Papel de Parede',
     streak_current:'dias seguidos', streak_best:'recorde',
@@ -182,7 +182,7 @@ const I18N = {
     day_locked:'Finish the previous day before moving on to this one.',
     cartoes:'4K Cards', card_persona:'Style', card_day:'Day', card_theme:'Theme', card_verse:'Verse / Phrase',
     card_reference:'Reference', card_reflection:'Reflection (optional)', card_generate_idea:'Generate devotional idea',
-    card_question:'Question', card_action:'Action', card_prayer:'Prayer', card_generate:'Generate Card',
+    card_question:'Question', card_action:'Action', card_prayer:'Prayer', card_para_levar:'To carry in your heart', card_generate:'Generate Card',
     card_export_hq:'Export 4K (high resolution)', card_share:'Share card',
     card_wallpaper:'Wallpaper',
     streak_current:'day streak', streak_best:'best streak',
@@ -742,7 +742,8 @@ function gerarIdeiaCartao(){
     extra.innerHTML = `<div class="card p-3 border text-xs leading-relaxed" style="border-color:var(--btn-soft)">
       <p class="mb-1"><b>${t('card_question')}:</b> ${escapeHtml(ideia.pergunta)}</p>
       <p class="mb-1"><b>${t('card_action')}:</b> ${escapeHtml(ideia.acao)}</p>
-      <p><b>${t('card_prayer')}:</b> ${escapeHtml(ideia.oracao)}</p>
+      <p class="mb-1"><b>${t('card_prayer')}:</b> ${escapeHtml(ideia.oracao)}</p>
+      <p><b>${t('card_para_levar')}:</b> “${escapeHtml(ideia.paraLevar)}”</p>
     </div>`;
   }
   render();

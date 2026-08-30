@@ -52,8 +52,10 @@ const CARD_PERSONAS = {
     illustration: drawCenaJovem,
   },
   adulto: {
+    // Paleta "premium" (azul-marinho + dourado) alinhada à identidade
+    // visual do e-book/landing page: céu noturno, nascer do sol, dourado.
     label: 'Adulto',
-    bgFrom: '#FAF7EE', bgTo: '#F3ECD9',
+    bgFrom: '#0B1B33', bgTo: '#E8A33D',
     text: '#2C2C2C', accent: '#D4AF37', badgeText: '#3D2314',
     quoteMark: '#B8860B',
     font: 'Georgia, "Times New Roman", serif',
@@ -215,43 +217,43 @@ function drawCenaJovem(ctx, W, H) {
   ctx.fillStyle = '#FFFFFF'; ctx.beginPath(); ctx.ellipse(W * 0.5 - 118, Z(H, 0.86) + 8, 20, 16, 0, 0, Math.PI * 2); ctx.fill();
 }
 function drawCenaAdulto(ctx, W, H) {
-  // Luz suave de manhã (substitui a moldura de janela vazia): um brilho
-  // quente atrás da mesa, como sol entrando por uma janela fora de quadro.
-  const glow = ctx.createRadialGradient(W * 0.72, Z(H, 0.22), 20, W * 0.72, Z(H, 0.22), 420);
-  glow.addColorStop(0, 'rgba(255,229,153,.85)'); glow.addColorStop(1, 'rgba(255,229,153,0)');
+  // Céu noturno clareando até o dourado do amanhecer — a mesma composição
+  // "jornada ao nascer do sol" do e-book/landing page (montanhas em
+  // silhueta, sol raiando, trilha até uma cruz simples no alto do morro).
+  const glow = ctx.createRadialGradient(W * 0.5, Z(H, 0.6), 10, W * 0.5, Z(H, 0.6), 480);
+  glow.addColorStop(0, 'rgba(255,214,140,.9)'); glow.addColorStop(1, 'rgba(255,214,140,0)');
   ctx.fillStyle = glow; ctx.fillRect(0, 0, W, Z(H, 1));
-  ctx.strokeStyle = 'rgba(212,175,55,.35)'; ctx.lineWidth = 3;
-  for (let i = 0; i < 5; i++) {
-    ctx.beginPath(); ctx.moveTo(W * 0.72 + 40 + i * 46, 0); ctx.lineTo(W * 0.4 + i * 30, Z(H, 0.55)); ctx.stroke();
-  }
 
-  // mesa
-  ctx.fillStyle = '#EDE0BD'; _rr(ctx, W * 0.1, Z(H, 0.76), W * 0.8, 20, 9); ctx.fill();
+  drawSunFace(ctx, W * 0.5, Z(H, 0.6), 66, '#F4C97A', '#FFE7B0', '#E8A33D', false);
 
-  // xícara de café (maior, com alça bem definida)
-  const cupX = W * 0.32, cupY = Z(H, 0.68);
-  ctx.fillStyle = '#FFFFFF'; ctx.beginPath(); ctx.ellipse(cupX, cupY + 46, 46, 14, 0, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = '#FFFFFF'; _rr(ctx, cupX - 46, cupY, 92, 46, 6); ctx.fill();
-  ctx.fillStyle = '#6F4A2E'; ctx.beginPath(); ctx.ellipse(cupX, cupY, 46, 15, 0, 0, Math.PI * 2); ctx.fill();
-  ctx.strokeStyle = '#D4AF37'; ctx.lineWidth = 7; ctx.lineCap = 'round';
-  ctx.beginPath(); ctx.arc(cupX + 50, cupY + 22, 20, -1.1, 1.1); ctx.stroke();
+  const ranges = [
+    { y: 0.5, color: '#16283F', amp: 55 },
+    { y: 0.62, color: '#0F1D30', amp: 75 },
+    { y: 0.74, color: '#0A1524', amp: 95 },
+  ];
+  ranges.forEach(({ y, color, amp }) => {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(0, Z(H, 1));
+    ctx.lineTo(0, Z(H, y) + amp * 0.4);
+    ctx.bezierCurveTo(W * 0.2, Z(H, y) - amp * 0.5, W * 0.35, Z(H, y) + amp * 0.6, W * 0.5, Z(H, y));
+    ctx.bezierCurveTo(W * 0.68, Z(H, y) - amp * 0.4, W * 0.82, Z(H, y) + amp * 0.5, W, Z(H, y) - amp * 0.2);
+    ctx.lineTo(W, Z(H, 1));
+    ctx.closePath();
+    ctx.fill();
+  });
 
-  // livro aberto (lombada central visível)
-  ctx.save(); ctx.translate(W * 0.62, Z(H, 0.7));
-  ctx.fillStyle = '#FBF8EE';
-  ctx.beginPath(); ctx.moveTo(0, -6); ctx.quadraticCurveTo(-64, -20, -66, 4); ctx.lineTo(-64, 34); ctx.quadraticCurveTo(-62, 14, 0, 24); ctx.closePath(); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(0, -6); ctx.quadraticCurveTo(64, -20, 66, 4); ctx.lineTo(64, 34); ctx.quadraticCurveTo(62, 14, 0, 24); ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = '#D8C9A0'; ctx.lineWidth = 1.5;
-  for (let i = 1; i <= 4; i++) {
-    ctx.beginPath(); ctx.moveTo(-i * 14, -8 + i * 1.5); ctx.lineTo(-i * 13, 26 - i * 1.5); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(i * 14, -8 + i * 1.5); ctx.lineTo(i * 13, 26 - i * 1.5); ctx.stroke();
-  }
-  ctx.restore();
+  // trilha dourada subindo até a cruz
+  ctx.strokeStyle = 'rgba(244,201,122,.55)'; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(W * 0.5, Z(H, 1));
+  ctx.quadraticCurveTo(W * 0.46, Z(H, 0.82), W * 0.5, Z(H, 0.7));
+  ctx.stroke();
 
-  // planta
-  ctx.fillStyle = '#7CA982';
-  for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.ellipse(W * 0.85 + (i % 2 ? 9 : -9), Z(H, 0.62) - i * 13, 10, 24, i % 2 ? 0.3 : -0.3, 0, Math.PI * 2); ctx.fill(); }
-  ctx.fillStyle = '#B08252'; _rr(ctx, W * 0.85 - 20, Z(H, 0.64), 40, 26, 6); ctx.fill();
+  // cruz simples no alto do morro
+  ctx.strokeStyle = '#0A1524'; ctx.lineWidth = 6; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(W * 0.5, Z(H, 0.56)); ctx.lineTo(W * 0.5, Z(H, 0.70)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W * 0.5 - 16, Z(H, 0.61)); ctx.lineTo(W * 0.5 + 16, Z(H, 0.61)); ctx.stroke();
 }
 function drawCenaMelhorIdade(ctx, W, H) {
   drawSunFace(ctx, W * 0.5, Z(H, 0.18), 62, '#E7A64C', '#F4D99F', '#D9A441', false);
@@ -305,6 +307,39 @@ function drawCenaConclusao(ctx, W, H) {
   _rr(ctx, tx - 10, ty - 10, 20, 40, 4); ctx.fill();
   _rr(ctx, tx - 50, ty + 30, 100, 18, 6); ctx.fill();
   _rr(ctx, tx - 35, ty + 48, 70, 14, 5); ctx.fill();
+}
+
+/* ---------------- Moldura ornamentada ---------------- */
+// Linha dupla + florão nos 4 cantos, no tom de destaque de cada persona —
+// o mesmo recurso visual usado no e-book/pôster/landing page de referência.
+function drawOrnateFrame(ctx, W, H, color) {
+  const m = 26;
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.globalAlpha = 0.5; ctx.lineWidth = 2;
+  ctx.strokeRect(m, m, W - m * 2, H - m * 2);
+  ctx.globalAlpha = 0.3; ctx.lineWidth = 1;
+  ctx.strokeRect(m + 6, m + 6, W - (m + 6) * 2, H - (m + 6) * 2);
+
+  ctx.globalAlpha = 0.85; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+  const corner = (cx, cy, rot) => {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(rot);
+    ctx.beginPath();
+    ctx.moveTo(0, 34);
+    ctx.quadraticCurveTo(0, 0, 34, 0);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(14, 14, 4.5, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  };
+  corner(m, m, 0);
+  corner(W - m, m, Math.PI / 2);
+  corner(W - m, H - m, Math.PI);
+  corner(m, H - m, -Math.PI / 2);
+  ctx.restore();
 }
 
 /* ---------------- Badge, rodapé, QR ---------------- */
@@ -499,6 +534,7 @@ class CardGenerator4K {
     drawBadge365(ctx, cfg);
     drawFooter(ctx, CARD_W, CARD_H, this.dia, cfg);
     drawQRCode(ctx, CARD_W, CARD_H, this.url, cfg);
+    drawOrnateFrame(ctx, CARD_W, CARD_H, cfg.accent);
 
     this.canvas = canvas;
     return canvas;
