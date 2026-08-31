@@ -1,0 +1,297 @@
+{
+  "projeto": "365 Manhãs com Deus",
+  "modulo": "Feriados e Datas Especiais",
+  "versao": "1.0",
+  "feriados_cristaos": [
+    {
+      "id": "natal",
+      "nome": "Natal de Jesus",
+      "data": "25-12",
+      "tema": "Encarnação",
+      "versiculo_referencia": "Lucas 2:11",
+      "versiculo_modernizado": "Porque hoje vos nasceu, na cidade de Davi, o Salvador, que é Cristo, o Senhor.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Jesus Nasceu Hoje",
+          "conteudo": "Feliz Natal! Hoje celebramos o nascimento de Jesus. Ele veio ao mundo por amor a você. Jesus é a maior prova do amor de Deus.",
+          "acao": "Celebre o nascimento de Jesus com sua família."
+        },
+        "adolescente": {
+          "titulo": "O Significado do Natal",
+          "conteudo": "Natal não é só presentes. É celebrar a vinda de Jesus. Deus se fez homem para estar com você, para te salvar.",
+          "acao": "Reflita sobre o real significado do Natal."
+        },
+        "jovem": {
+          "titulo": "Encarnação: Deus Conosco",
+          "conteudo": "Jesus nasceu porque Deus nos ama. Não é história — é realidade que transforma vidas. Sua vida importa para Deus.",
+          "acao": "Compartilhe o significado do Natal com alguém."
+        },
+        "adulto": {
+          "titulo": "Natal: Celebração de Redenção",
+          "conteudo": "Natal marca o início da história de redenção. Jesus veio para transformar vidas, sociedades, eternidades. Que seu Natal seja profundamente cristão.",
+          "acao": "Dedique este Natal a Deus de forma verdadeira."
+        },
+        "melhor-idade": {
+          "titulo": "Recordações de Natais com Deus",
+          "conteudo": "Quantos Natais já vivemos? E em cada um, Deus estava conosco. Jesus nasceu para nos salvar. Que recordemos isso com gratidão.",
+          "acao": "Compartilhe histórias de Natais especiais com seus netos."
+        }
+      },
+      "versiculo_alm1911": "Que hoje, na cidade de David, vos nasceu o Salvador, que é Christo, o Senhor."
+    },
+    {
+      "id": "semana_santa",
+      "nome": "Páscoa",
+      "data": "domingo-de-pascoa",
+      "tema": "Redenção",
+      "versiculo_referencia": "1 Coríntios 15:57",
+      "versiculo_modernizado": "Mas graças sejam dadas a Deus, que nos dá a vitória por nosso Senhor Jesus Cristo.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Jesus Ressuscitou!",
+          "conteudo": "Na Páscoa, celebramos que Jesus morreu por nós e ressuscitou! Ele venceu a morte. Você é amado.",
+          "acao": "Celebre a ressurreição com alegria."
+        },
+        "adolescente": {
+          "titulo": "Poder da Ressurreição",
+          "conteudo": "Jesus ressuscitou. Isso significa que Ele é mais forte que tudo. Se você está em Jesus, você também é vencedor.",
+          "acao": "Medite sobre o poder da ressurreição."
+        },
+        "jovem": {
+          "titulo": "Viver a Ressurreição",
+          "conteudo": "A ressurreição de Jesus não é apenas história. É realidade que nos liberta. Viva como ressuscitado em tudo que você faz.",
+          "acao": "Viva como ressuscitado nesta Páscoa."
+        },
+        "adulto": {
+          "titulo": "Esperança da Ressurreição",
+          "conteudo": "Jesus ressuscitou. Isso transforma tudo. Nossa vida, nossos sofrimentos, nosso futuro — tudo tem esperança em Jesus ressuscitado.",
+          "acao": "Renove sua fé na ressurreição."
+        },
+        "melhor-idade": {
+          "titulo": "Eternidade Garantida",
+          "conteudo": "Na ressurreição de Jesus, nossa eternidade é garantida. Não temos medo da morte porque Jesus venceu. Aleluia!",
+          "acao": "Louvor e adoração pela ressurreição."
+        }
+      },
+      "versiculo_alm1911": "Mas graças a Deus que nos dá a vitoria por nosso Senhor Jesus Christo."
+    },
+    {
+      "id": "pentecostes",
+      "nome": "Pentecostes",
+      "data": "49-dias-apos-pascoa",
+      "tema": "Espírito Santo",
+      "versiculo_referencia": "Atos 1:8",
+      "versiculo_modernizado": "Mas recebereis poder, ao descer sobre vós o Espírito Santo, e ser-me-eis testemunhas tanto em Jerusalém como em toda a Judeia e Samaria, e até aos confins da terra.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "O Espírito Santo Vem",
+          "conteudo": "No Pentecostes, o Espírito Santo veio com poder! Ele nos dá força, coragem e amor. Você é cheio do Espírito Santo.",
+          "acao": "Peça ao Espírito Santo para te guiar."
+        },
+        "adolescente": {
+          "titulo": "Poder do Espírito Santo",
+          "conteudo": "O Espírito Santo não é ideia vaga. É força real que transforma. Se você crê em Jesus, o Espírito Santo está com você.",
+          "acao": "Deixe o Espírito Santo guiar suas decisões."
+        },
+        "jovem": {
+          "titulo": "Ungido pelo Espírito",
+          "conteudo": "O Espírito Santo vem sobre você como unção. Para seu chamado, seu trabalho, sua vida. Viva ungido.",
+          "acao": "Busque o enchimento do Espírito Santo."
+        },
+        "adulto": {
+          "titulo": "Guiado pelo Espírito",
+          "conteudo": "O Espírito Santo não é passado — é presente. Viva sendo constantemente guiado e cheio do Espírito Santo.",
+          "acao": "Entregue cada decisão ao Espírito Santo."
+        },
+        "melhor-idade": {
+          "titulo": "Fruto do Espírito Santo",
+          "conteudo": "O Espírito Santo produz fruto em nós: amor, alegria, paz. Veja esse fruto em sua vida depois de tantos anos.",
+          "acao": "Celebre a ação do Espírito Santo em você."
+        }
+      },
+      "versiculo_alm1911": "Mas recebereis a virtude do Espírito Santo, que ha de vir sobre vós; e ser-me-heis testemunhas, tanto em Jerusalem como em toda a Judea e Samaria, e até aos confins da terra."
+    }
+  ],
+  "feriados_familiares": [
+    {
+      "id": "dia_mae",
+      "nome": "Dia da Mãe",
+      "data": "segundo-domingo-maio",
+      "tema": "Amor Materno",
+      "versiculo_referencia": "Provérbios 31:28",
+      "versiculo_modernizado": "Levantam-se seus filhos, e a chamam bem-aventurada; e seu marido também a louva.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Mamãe, Deus te Ama",
+          "conteudo": "Hoje é dia de sua mãe! A mãe é um presente de Deus. Diga a ela que você a ama e que ela é especial.",
+          "acao": "Abrace sua mãe e diga quanto a ama."
+        },
+        "adolescente": {
+          "titulo": "O Coração de uma Mãe",
+          "conteudo": "Sua mãe te ama incondicionalmente. Assim como Deus nos ama. Agradeça a sua mãe por tudo que ela faz.",
+          "acao": "Escreva uma carta para sua mãe."
+        },
+        "jovem": {
+          "titulo": "Honra sua Mãe",
+          "conteudo": "Um dos mandamentos é honrar pai e mãe. Sua mãe merece honra, respeito, gratidão. Viva isso hoje e sempre.",
+          "acao": "Faça algo especial para sua mãe."
+        },
+        "adulto": {
+          "titulo": "Maternidade: Dom de Deus",
+          "conteudo": "Se você é mãe, você reflete o amor de Deus. Se tem mãe, honre-a todos os dias. A maternidade é sagrada.",
+          "acao": "Homenageie as mães em sua vida."
+        },
+        "melhor-idade": {
+          "titulo": "Avó: Bênção que Atravessa Gerações",
+          "conteudo": "Você foi mãe. Talvez seja avó. Sua sabedoria materna é herança. Continue abençoando gerações.",
+          "acao": "Abençoe as filhas e netas."
+        }
+      },
+      "versiculo_alm1911": "Levantam-se seus filhos, prezam-n'a por bemaventurada; como tambem seu marido, que a louva, dizendo:"
+    },
+    {
+      "id": "dia_crianca",
+      "nome": "Dia da Criança",
+      "data": "12-10",
+      "tema": "Inocência e Proteção",
+      "versiculo_referencia": "Mateus 19:14",
+      "versiculo_modernizado": "Jesus, porém, disse: Deixai as crianças e não as impeçais de vir a mim, porque delas é o reino dos céus.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Você é Especial para Deus",
+          "conteudo": "Hoje é seu dia! Jesus ama as crianças. Você é especial, importante, amado. Celebre sua infância com alegria.",
+          "acao": "Brinque, ria, celebre ser criança."
+        },
+        "adolescente": {
+          "titulo": "Proteção de Deus",
+          "conteudo": "Quando você era criança, Deus cuidava de você. Agora que está crescendo, Ele continua cuidando. Confie nEle.",
+          "acao": "Lembre-se de um momento em que Deus te protegeu."
+        },
+        "jovem": {
+          "titulo": "Como uma Criança",
+          "conteudo": "Jesus disse: 'sede como crianças'. Inocência, confiança, alegria. Esses valores nunca envelhecem.",
+          "acao": "Recupere um pouco da alegria de criança hoje."
+        },
+        "adulto": {
+          "titulo": "Proteja as Crianças",
+          "conteudo": "Se você é pai ou mãe, proteja as crianças. Elas são herança de Deus. Seu dever é criá-las no caminho do Senhor.",
+          "acao": "Dedique um tempo de qualidade com as crianças da sua vida."
+        },
+        "melhor-idade": {
+          "titulo": "Herança: Seus Netos",
+          "conteudo": "As crianças são a esperança do futuro. Seus filhos e netos são sua herança. Invista tempo com eles.",
+          "acao": "Conte uma história de fé para os netos."
+        }
+      },
+      "versiculo_alm1911": "Jesus, porém, disse: Deixae os meninos, e não os estorveis de vir a mim; porque de taes é o reino dos céus."
+    },
+    {
+      "id": "dia_pai",
+      "nome": "Dia do Pai",
+      "data": "segundo-domingo-agosto",
+      "tema": "Paternidade",
+      "versiculo_referencia": "Efésios 6:4",
+      "versiculo_modernizado": "E vós, pais, não provoqueis à ira vossos filhos, mas criai-os na disciplina e admoestação do Senhor.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Papai é Especial",
+          "conteudo": "Seu pai te ama. Assim como Deus Pai nos ama. Diga ao seu pai o quanto você o ama.",
+          "acao": "Passe um tempo especial com seu pai."
+        },
+        "adolescente": {
+          "titulo": "Respeito ao Pai",
+          "conteudo": "Seu pai é protetor e guia. Honre-o com palavras e atitudes. Deus abençoa quem honra os pais.",
+          "acao": "Converse com seu pai sobre fé."
+        },
+        "jovem": {
+          "titulo": "Legado Paterno",
+          "conteudo": "Seu pai deixou um legado — valores, fé, caráter. Continuar esse legado é honra a ele e a Deus.",
+          "acao": "Reconheça o legado de seu pai."
+        },
+        "adulto": {
+          "titulo": "Ser Pai como Deus Pai",
+          "conteudo": "Se você é pai, você reflete a paternidade de Deus. Crie seus filhos em fé, amor, disciplina e Jesus.",
+          "acao": "Seja o pai que seus filhos precisam."
+        },
+        "melhor-idade": {
+          "titulo": "Avô: Sabedoria Transmitida",
+          "conteudo": "Você foi pai. Talvez seja avô. Sua sabedoria é um tesouro. Transmita fé e valores.",
+          "acao": "Deixe um legado espiritual aos netos."
+        }
+      },
+      "versiculo_alm1911": "E vós, paes, não provoqueis a ira a vossos filhos, mas creae-os na doutrina e admoestação do Senhor."
+    },
+    {
+      "id": "dia_avos",
+      "nome": "Dia dos Avós",
+      "data": "26-07",
+      "tema": "Sabedoria e Gerações",
+      "versiculo_referencia": "Provérbios 17:6",
+      "versiculo_modernizado": "A coroa dos velhos são os filhos dos filhos, e a glória dos filhos são seus pais.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Avós com Amor",
+          "conteudo": "Seus avós te amam muito. Eles têm histórias e sabedoria. Ouça-os, aprenda com eles, abrace-os.",
+          "acao": "Ligue ou visite seus avós."
+        },
+        "adolescente": {
+          "titulo": "Aprender com os Avós",
+          "conteudo": "Seus avós viveram muito. Enfrentaram desafios. Sua fé foi provada. Aprenda com a sabedoria deles.",
+          "acao": "Peça um conselho aos seus avós."
+        },
+        "jovem": {
+          "titulo": "Honra aos Mais Velhos",
+          "conteudo": "Deus honra quem honra os pais e avós. Sua geração é ponte entre passado e futuro.",
+          "acao": "Respeite a sabedoria dos mais velhos."
+        },
+        "adulto": {
+          "titulo": "Transmissor de Gerações",
+          "conteudo": "Você é elo. Recebeu de seus pais, passa aos filhos. Sua vida é continuação de fé em Jesus.",
+          "acao": "Invista na fé da próxima geração."
+        },
+        "melhor-idade": {
+          "titulo": "Sua Coroa: Netos e Bisnetos",
+          "conteudo": "Sua coroa são seus filhos e netos. Você é sábio, experiente. O mundo precisa da sua fé e sabedoria.",
+          "acao": "Seja exemplo vivo de fé."
+        }
+      },
+      "versiculo_alm1911": "Corôa dos velhos são os filhos dos filhos; e a glória dos filhos são seus paes."
+    },
+    {
+      "id": "dia_familia",
+      "nome": "Dia da Família",
+      "data": "15-05",
+      "tema": "Unidade Familiar",
+      "versiculo_referencia": "Josué 24:15",
+      "versiculo_modernizado": "Eu e a minha casa serviremos ao Senhor.",
+      "mensagens_automaticas": {
+        "crianca": {
+          "titulo": "Sua Família é um Presente",
+          "conteudo": "Sua família é um presente de Deus. Cada pessoa nela é especial. Ame sua família.",
+          "acao": "Abrace cada pessoa da sua família hoje."
+        },
+        "adolescente": {
+          "titulo": "Família: Primeiro Círculo",
+          "conteudo": "Sua família é onde você aprende sobre Deus, amor e valores. Ouça, aprenda, ame-os.",
+          "acao": "Passe um tempo de qualidade em família hoje."
+        },
+        "jovem": {
+          "titulo": "Construir Relacionamentos",
+          "conteudo": "A família que você tem e a que pode construir — ambas devem refletir o amor de Cristo.",
+          "acao": "Invista em relacionamentos familiares."
+        },
+        "adulto": {
+          "titulo": "Coesão Familiar",
+          "conteudo": "Sua família é sua missão primária. Proteja-a, cultive-a, edifique-a em Jesus.",
+          "acao": "Faça planos em família diante de Deus."
+        },
+        "melhor-idade": {
+          "titulo": "Legado Familiar em Deus",
+          "conteudo": "Seu maior legado é uma família que serve a Deus. Continue construindo isso até o fim.",
+          "acao": "Reúna a família em oração."
+        }
+      },
+      "versiculo_alm1911": "Porém, se vos parece mal aos vossos olhos servir ao Senhor, escolhei-vos hoje a quem sirvaes: se os deuses a quem serviram vossos paes, que estavam d'além do rio, ou os deuses dos amorreos, em cuja terra habitaes: porém eu e a minha casa serviremos ao Senhor."
+    }
+  ]
+}

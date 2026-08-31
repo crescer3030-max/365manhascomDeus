@@ -4,6 +4,14 @@ Todas as atualizações relevantes feitas na branch `claude/365-manhas-deus-card
 
 ## [Não lançado] — Gerador de Cards 4K, correções críticas e novas funcionalidades
 
+### 🎉 Devocional do Dia (feriados + sorteio sem repetição)
+
+- Novo card "Devocional do Dia" na tela inicial, separado do plano sequencial de leitura bíblica (que continua em ordem, Gênesis → Apocalipse).
+- **Feriados**: detecta automaticamente 3 datas cristãs (Natal, Páscoa, Pentecostes — móveis calculadas via `easterDate()`, já existente no app) e 5 datas familiares (Dia da Mãe, Dia do Pai — 2º domingo do mês —, Dia da Criança, Dia dos Avós, Dia da Família). Nesses dias, mostra uma mensagem especial adaptada às 5 personas, com versículo (texto real do ALM1911 + uma versão modernizada), em `feriados.json`.
+- **Sorteio sem repetição**: em dias comuns, sorteia (sem repetir) um dos 365 slots do plano de leitura pra gerar um devocional curto sobre o texto daquele dia. O sorteio é determinístico por data (reabrir o app no mesmo dia mostra sempre o mesmo devocional; muda só no dia seguinte) — corrige um problema do motor original, que usava `Math.random()` puro e sortearia algo diferente a cada vez que o app fosse reaberto no mesmo dia. Ao esgotar os 365 slots, reinicia o ciclo automaticamente.
+- Botões "Marcar como lido" (avança o histórico do sorteio) e "Ver cartão" (abre a tela Cartões 4K já preenchida com o devocional do dia).
+- Baseado nos arquivos que você enviou (`RANDOM-DEVOCIONAL-ENGINE.js`, `FERIADOS-CRISTAOS-E-FAMILIARES.json`), mas **não migra o banco de 365 devocionais curados** — isso depende do schema/exemplares/engines de validação que não foram enviados. Por enquanto, o conteúdo é gerado pelo `gerarDevocionalLocal()` (já existente) em cima do texto bíblico real de cada slot; troque por um banco curado assim que os arquivos que faltam chegarem.
+
 ### 🔴 Correção crítica
 
 - **`index.html` estava quebrado.** O arquivo era uma landing page pessoal não relacionada ("Marcelo Cabral — Hub de Produtos"), sem nenhuma referência a `app.js`, `manifest.json` ou ao service worker. Isso significava que **o app publicado não funcionava** — a URL abria uma página completamente diferente.

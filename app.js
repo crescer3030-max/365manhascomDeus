@@ -31,7 +31,11 @@ const DEFAULT_STATE = {
   onboardingDone: false,
   termsAccepted: false,
   gamesSeen: {},
-  license: { plan: null, code: null, activatedAt: null, expiresAt: null }
+  license: { plan: null, code: null, activatedAt: null, expiresAt: null },
+  // "Devocional do Dia": sorteio sem repetição entre os 365 slots (independente
+  // do plano sequencial de leitura bíblica), com prioridade para feriados.
+  devocionalHistoricoLidos: [],
+  devocionalHoje: null
 };
 
 let STATE = structuredClone(DEFAULT_STATE);
@@ -157,7 +161,9 @@ const I18N = {
     streak_current:'dias seguidos', streak_best:'recorde',
     conclusao_titulo:'Você completou os 365 dias!',
     conclusao_texto:'Parabéns por caminhar com Deus todos os dias deste ano. Guarde essa conquista.',
-    conclusao_baixar:'Baixar cartão de conclusão', conclusao_fechar:'Fechar', conclusao_tema:'Jornada Completa'
+    conclusao_baixar:'Baixar cartão de conclusão', conclusao_fechar:'Fechar', conclusao_tema:'Jornada Completa',
+    devocional_do_dia:'Devocional do Dia', devocional_feriado:'Dia Especial', devocional_lido:'Lido',
+    devocional_marcar_lido:'Marcar como lido', devocional_ver_cartao:'Ver cartão'
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
@@ -188,7 +194,9 @@ const I18N = {
     streak_current:'day streak', streak_best:'best streak',
     conclusao_titulo:'You completed all 365 days!',
     conclusao_texto:'Congratulations on walking with God every day this year. Keep this milestone.',
-    conclusao_baixar:'Download completion card', conclusao_fechar:'Close', conclusao_tema:'Journey Complete'
+    conclusao_baixar:'Download completion card', conclusao_fechar:'Close', conclusao_tema:'Journey Complete',
+    devocional_do_dia:'Devotional of the Day', devocional_feriado:'Special Day', devocional_lido:'Read',
+    devocional_marcar_lido:'Mark as read', devocional_ver_cartao:'View card'
   }
 };
 function t(key){ return (I18N[STATE.lang] && I18N[STATE.lang][key]) || I18N.pt[key] || key; }
@@ -205,6 +213,14 @@ let BIBLE = null;
 let OT_LIST = [];
 let NT_LIST = [];
 let DAY_PLAN = [];
+let FERIADOS = null;
+
+async function loadFeriados(){
+  try{
+    const res = await fetch('feriados.json');
+    FERIADOS = await res.json();
+  }catch(e){ FERIADOS = null; } // Devocional do Dia cai no sorteio normal se isso falhar.
+}
 
 async function loadBible(){
   const res = await fetch('bible-alm1911.json');
@@ -418,6 +434,8 @@ function renderHome(){
       <div class="text-[10px] opacity-60 uppercase tracking-wide mt-1">${t('streak_best')}</div>
     </div>
   </div>` : ''}
+
+  ${renderDevocionalDoDiaCard()}
 
   <p class="text-xs opacity-70 mb-4">${t('plan_desc')}</p>
 
@@ -2049,6 +2067,161 @@ function checkHolidayToday(){
   return map[`${today.getMonth()+1}-${today.getDate()}`] || null;
 }
 
+/* ---------------- Devocional do Dia: feriados + sorteio sem repetição ----------------
+   Camada separada do plano sequencial de leitura bíblica (que precisa
+   continuar em ordem, Gênesis → Apocalipse). Isso aqui é um "cartão do dia"
+   independente: em dias comuns, sorteia (sem repetir) um dos 365 slots do
+   plano pra gerar um devocional curto em cima do texto daquele dia; em datas
+   especiais, mostra a mensagem de feriado (cristã ou familiar) adaptada à
+   persona do usuário. Nunca mexe em STATE.readDays/currentDay. */
+function sameCalendarDate(a, b){
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+}
+function segundoDomingoDoMes(ano, mesIndex0){
+  const firstDow = new Date(ano, mesIndex0, 1).getDay(); // 0 = domingo
+  const firstSunday = firstDow === 0 ? 1 : (8 - firstDow);
+  return new Date(ano, mesIndex0, firstSunday + 7);
+}
+// Reaproveita easterDate()/addDays() já existentes (evita recalcular Páscoa
+// com uma segunda implementação do algoritmo de Computus).
+function verificarFeriadoEspecialHoje(data){
+  const ano = data.getFullYear();
+  const dd = String(data.getDate()).padStart(2, '0');
+  const mm = String(data.getMonth() + 1).padStart(2, '0');
+  const key = `${dd}-${mm}`;
+
+  const fixos = { '25-12': 'natal', '12-10': 'dia_crianca', '26-07': 'dia_avos', '15-05': 'dia_familia' };
+  if(fixos[key]) return fixos[key];
+
+  const pascoa = easterDate(ano);
+  if(sameCalendarDate(data, pascoa)) return 'semana_santa';
+  if(sameCalendarDate(data, addDays(pascoa, 49))) return 'pentecostes'; // domingo de Pentecostes = Páscoa + 49 dias
+
+  if(sameCalendarDate(data, segundoDomingoDoMes(ano, 4))) return 'dia_mae';   // maio
+  if(sameCalendarDate(data, segundoDomingoDoMes(ano, 7))) return 'dia_pai';   // agosto
+
+  return null;
+}
+function obterMensagemFeriadoEspecial(id, persona){
+  if(!FERIADOS) return null;
+  const todos = [...(FERIADOS.feriados_cristaos || []), ...(FERIADOS.feriados_familiares || [])];
+  const feriado = todos.find(f => f.id === id);
+  if(!feriado) return null;
+  const personasValidas = ['crianca', 'adolescente', 'jovem', 'adulto', 'melhor-idade'];
+  const p = personasValidas.includes(persona) ? persona : 'adulto';
+  const msg = (feriado.mensagens_automaticas || {})[p] || {};
+  return {
+    feriadoId: feriado.id,
+    feriadoNome: feriado.nome,
+    tema: feriado.tema,
+    referencia: feriado.versiculo_referencia,
+    versiculo: feriado.versiculo_modernizado || feriado.versiculo_alm1911,
+    titulo: msg.titulo || feriado.nome,
+    conteudo: msg.conteudo || '',
+    acao: msg.acao || '',
+  };
+}
+// Monta o conteúdo do devocional pra um slot (1-365), em cima do texto
+// bíblico já atribuído àquele dia no plano de leitura (bridge honesto
+// enquanto não existe um banco de 365 devocionais curados — ver cards4k.md).
+function gerarConteudoDevocionalDia(dia){
+  const plan = planForDay(dia);
+  const first = plan.ot[0] || plan.nt[0];
+  let tema = '', referencia = '', versiculo = '';
+  if(first && BIBLE){
+    const ch = getChapter(first.code, first.chapterNum);
+    tema = bookName(first.code);
+    referencia = `${bookName(first.code)} ${first.chapterNum}:${ch.v[0].n}`;
+    versiculo = ch.v[0].t;
+  }
+  const persona = ageTier(STATE.profile.birthday) || 'adulto';
+  const ideia = gerarDevocionalLocal({ persona, dia, tema, referencia, versiculo });
+  return { dia, tema, referencia, versiculo, persona, ...ideia };
+}
+// Sorteia um slot (1-365) ainda não visto, com seed pela data — assim reabrir
+// o app no mesmo dia sempre mostra o mesmo sorteio; só muda dia seguinte.
+// Ao esgotar os 365, reinicia o ciclo (mesmo comportamento do RandomDevocionalEngine).
+function sortearDevocionalDoDia(dateKey){
+  const historico = STATE.devocionalHistoricoLidos || [];
+  let disponiveis = [];
+  for(let d = 1; d <= TOTAL_DAYS; d++) if(!historico.includes(d)) disponiveis.push(d);
+  if(!disponiveis.length) disponiveis = Array.from({ length: TOTAL_DAYS }, (_, i) => i + 1);
+  const seed = _hashSeed(dateKey);
+  return disponiveis[seed % disponiveis.length];
+}
+function obterDevocionalHoje(){
+  const agora = new Date();
+  const dateKey = localDateKey(agora);
+  if(STATE.devocionalHoje && STATE.devocionalHoje.dateKey === dateKey) return STATE.devocionalHoje;
+
+  const persona = ageTier(STATE.profile.birthday) || 'adulto';
+  const feriadoId = verificarFeriadoEspecialHoje(agora);
+  let resultado;
+  if(feriadoId){
+    const msg = obterMensagemFeriadoEspecial(feriadoId, persona);
+    resultado = msg ? { dateKey, tipo: 'feriado', ...msg } : { dateKey, tipo: 'devocional', dia: sortearDevocionalDoDia(dateKey) };
+  } else {
+    resultado = { dateKey, tipo: 'devocional', dia: sortearDevocionalDoDia(dateKey) };
+  }
+  STATE.devocionalHoje = resultado;
+  saveState();
+  return resultado;
+}
+function marcarDevocionalHojeLido(){
+  const hoje = obterDevocionalHoje();
+  if(hoje.tipo === 'devocional'){
+    STATE.devocionalHistoricoLidos = STATE.devocionalHistoricoLidos || [];
+    if(!STATE.devocionalHistoricoLidos.includes(hoje.dia)) STATE.devocionalHistoricoLidos.push(hoje.dia);
+    saveState();
+  }
+  render();
+}
+function abrirCartaoDevocionalHoje(){
+  const hoje = obterDevocionalHoje();
+  const persona = ageTier(STATE.profile.birthday) || 'adulto';
+  if(hoje.tipo === 'feriado'){
+    CARTOES_STATE = { persona, dia: STATE.currentDay, tema: hoje.tema || hoje.feriadoNome, referencia: hoje.referencia, versiculo: hoje.versiculo, reflexao: hoje.conteudo };
+  } else {
+    const c = gerarConteudoDevocionalDia(hoje.dia);
+    CARTOES_STATE = { persona: c.persona, dia: c.dia, tema: c.tema, referencia: c.referencia, versiculo: c.versiculo, reflexao: c.reflexao };
+  }
+  showScreen('cartoes');
+}
+function renderDevocionalDoDiaCard(){
+  if(!BIBLE) return '';
+  const hoje = obterDevocionalHoje();
+
+  if(hoje.tipo === 'feriado'){
+    return `
+    <div class="card p-4 mb-4 border-2" style="border-color:var(--accent)">
+      <div class="text-xs font-bold uppercase tracking-wide text-accent mb-1">🎉 ${t('devocional_feriado')}</div>
+      <div class="font-display text-lg font-bold mb-1">${escapeHtml(hoje.titulo)}</div>
+      <p class="text-sm leading-relaxed mb-2">${escapeHtml(hoje.conteudo)}</p>
+      <p class="text-xs italic opacity-80 mb-1">“${escapeHtml(hoje.versiculo)}”</p>
+      <p class="text-xs font-semibold text-accent mb-3">— ${escapeHtml(hoje.referencia || '')}</p>
+      ${hoje.acao ? `<p class="text-xs mb-3"><b>${t('card_action')}:</b> ${escapeHtml(hoje.acao)}</p>` : ''}
+      <button onclick="abrirCartaoDevocionalHoje()" class="w-full bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">🎨 ${t('devocional_ver_cartao')}</button>
+    </div>`;
+  }
+
+  const c = gerarConteudoDevocionalDia(hoje.dia);
+  const lido = (STATE.devocionalHistoricoLidos || []).includes(hoje.dia);
+  return `
+  <div class="card p-4 mb-4 border" style="border-color:var(--btn-soft)">
+    <div class="flex items-center justify-between mb-1">
+      <div class="text-xs font-bold uppercase tracking-wide text-accent">✨ ${t('devocional_do_dia')}</div>
+      ${lido ? `<span class="text-xs opacity-60">${t('devocional_lido')} ✓</span>` : ''}
+    </div>
+    <div class="font-display text-lg font-bold mb-1">${escapeHtml(c.palavra)}</div>
+    <p class="text-sm leading-relaxed mb-2 opacity-90">${escapeHtml(c.reflexao)}</p>
+    <p class="text-xs font-semibold text-accent mb-3">— ${escapeHtml(c.referencia)}</p>
+    <div class="grid grid-cols-2 gap-2">
+      <button onclick="marcarDevocionalHojeLido()" ${lido ? 'disabled' : ''} class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm ${lido ? 'opacity-50' : ''}">✔️ ${t('devocional_marcar_lido')}</button>
+      <button onclick="abrirCartaoDevocionalHoje()" class="bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">🎨 ${t('devocional_ver_cartao')}</button>
+    </div>
+  </div>`;
+}
+
 /* ---------------- Cartão visual para compartilhar ----------------
    O gerador de cards (5 estilos por persona, badge, QR real, rodapé)
    vive em cards4k.js (classe CardGenerator4K) — ver também a tela
@@ -2140,7 +2313,7 @@ async function init(){
   const main = document.querySelector('main');
   main.innerHTML = `<div class="flex flex-col items-center justify-center py-24 opacity-60 text-sm">${STATE.lang==='pt'?'Carregando Bíblia...':'Loading Bible...'}</div>`;
 
-  await loadBible();
+  await Promise.all([loadBible(), loadFeriados()]);
   refreshVoices();
 
   // Link do QR Code dos cartões: ?dia=NN abre direto naquele dia da leitura.
