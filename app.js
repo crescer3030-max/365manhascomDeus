@@ -163,7 +163,8 @@ const I18N = {
     conclusao_texto:'Parabéns por caminhar com Deus todos os dias deste ano. Guarde essa conquista.',
     conclusao_baixar:'Baixar cartão de conclusão', conclusao_fechar:'Fechar', conclusao_tema:'Jornada Completa',
     devocional_do_dia:'Devocional do Dia', devocional_feriado:'Dia Especial', devocional_lido:'Lido',
-    devocional_marcar_lido:'Marcar como lido', devocional_ver_cartao:'Ver cartão'
+    devocional_marcar_lido:'Marcar como lido', devocional_ver_cartao:'Ver cartão',
+    devocional_ler_completo:'Ler devocional completo', devocional_mostrar_menos:'Mostrar menos'
   },
   en: {
     home:'Daily Reading', temas:'Topics', pedido:'Prayer Request', config:'Settings', conta:'My Account',
@@ -196,7 +197,8 @@ const I18N = {
     conclusao_texto:'Congratulations on walking with God every day this year. Keep this milestone.',
     conclusao_baixar:'Download completion card', conclusao_fechar:'Close', conclusao_tema:'Journey Complete',
     devocional_do_dia:'Devotional of the Day', devocional_feriado:'Special Day', devocional_lido:'Read',
-    devocional_marcar_lido:'Mark as read', devocional_ver_cartao:'View card'
+    devocional_marcar_lido:'Mark as read', devocional_ver_cartao:'View card',
+    devocional_ler_completo:'Read full devotional', devocional_mostrar_menos:'Show less'
   }
 };
 function t(key){ return (I18N[STATE.lang] && I18N[STATE.lang][key]) || I18N.pt[key] || key; }
@@ -214,12 +216,20 @@ let OT_LIST = [];
 let NT_LIST = [];
 let DAY_PLAN = [];
 let FERIADOS = null;
+let DEVOCIONAIS_365 = null; // banco curado (ver AUDITORIA-365.json); null = usa o gerador local como bridge
 
 async function loadFeriados(){
   try{
     const res = await fetch('feriados.json');
     FERIADOS = await res.json();
   }catch(e){ FERIADOS = null; } // Devocional do Dia cai no sorteio normal se isso falhar.
+}
+async function loadDevocionais365(){
+  try{
+    const res = await fetch('devocionais-365.json');
+    const data = await res.json();
+    DEVOCIONAIS_365 = data.devocionais;
+  }catch(e){ DEVOCIONAIS_365 = null; } // cai no gerador local (gerarDevocionalLocal) se isso falhar.
 }
 
 async function loadBible(){
@@ -284,6 +294,7 @@ function firstLockedDay(){
 
 /* ---------------- Navigation ---------------- */
 let CURRENT_SCREEN = 'home';
+let DEVOCIONAL_EXPANDIDO = false; // estado transitório do card "Devocional do Dia" (não precisa persistir)
 let SCREEN_STACK = [];
 const TOP_LEVEL_SCREENS = ['home','temas','pedido','jogos','mais'];
 const GATE_SCREENS = ['cadastro','entrada'];
@@ -2121,10 +2132,22 @@ function obterMensagemFeriadoEspecial(id, persona){
     acao: msg.acao || '',
   };
 }
-// Monta o conteúdo do devocional pra um slot (1-365), em cima do texto
-// bíblico já atribuído àquele dia no plano de leitura (bridge honesto
-// enquanto não existe um banco de 365 devocionais curados — ver cards4k.md).
+// Monta o conteúdo do devocional pra um slot (1-365). Usa o banco curado
+// (devocionais-365.json, ver AUDITORIA-365.json pra saber como foi feito e o
+// que foi de fato verificado) quando disponível; se ele não carregar por
+// qualquer motivo, cai no gerador local em cima do texto bíblico do dia
+// (bridge antigo, ver cards4k.md) — assim o recurso nunca quebra offline.
 function gerarConteudoDevocionalDia(dia){
+  const persona = ageTier(STATE.profile.birthday) || 'adulto';
+  const curado = DEVOCIONAIS_365 && DEVOCIONAIS_365[dia - 1];
+  if(curado){
+    return {
+      dia, tema: curado.tema, referencia: curado.referencia, versiculo: curado.versiculo, persona,
+      area: curado.area, areaLabel: curado.areaLabel, titulo: curado.titulo, resumo: curado.resumo,
+      palavra: curado.palavra, reflexao: curado.reflexao, pergunta: curado.pergunta,
+      acao: curado.acao, oracao: curado.oracao, paraLevar: curado.paraLevar,
+    };
+  }
   const plan = planForDay(dia);
   const first = plan.ot[0] || plan.nt[0];
   let tema = '', referencia = '', versiculo = '';
@@ -2134,9 +2157,8 @@ function gerarConteudoDevocionalDia(dia){
     referencia = `${bookName(first.code)} ${first.chapterNum}:${ch.v[0].n}`;
     versiculo = ch.v[0].t;
   }
-  const persona = ageTier(STATE.profile.birthday) || 'adulto';
   const ideia = gerarDevocionalLocal({ persona, dia, tema, referencia, versiculo });
-  return { dia, tema, referencia, versiculo, persona, ...ideia };
+  return { dia, tema, referencia, versiculo, persona, titulo: tema, resumo: ideia.reflexao, ...ideia };
 }
 // Sorteia um slot (1-365) ainda não visto, com seed pela data — assim reabrir
 // o app no mesmo dia sempre mostra o mesmo sorteio; só muda dia seguinte.
@@ -2206,21 +2228,35 @@ function renderDevocionalDoDiaCard(){
 
   const c = gerarConteudoDevocionalDia(hoje.dia);
   const lido = (STATE.devocionalHistoricoLidos || []).includes(hoje.dia);
+  const expandido = DEVOCIONAL_EXPANDIDO;
   return `
   <div class="card p-4 mb-4 border" style="border-color:var(--btn-soft)">
     <div class="flex items-center justify-between mb-1">
       <div class="text-xs font-bold uppercase tracking-wide text-accent">✨ ${t('devocional_do_dia')}</div>
       ${lido ? `<span class="text-xs opacity-60">${t('devocional_lido')} ✓</span>` : ''}
     </div>
-    <div class="font-display text-lg font-bold mb-1">${escapeHtml(c.palavra)}</div>
-    <p class="text-sm leading-relaxed mb-2 opacity-90">${escapeHtml(c.reflexao)}</p>
+    <div class="font-display text-lg font-bold mb-1">${escapeHtml(c.titulo || c.tema)}</div>
+    ${expandido ? `
+    <div class="text-sm leading-relaxed mb-2 opacity-90 space-y-2">
+      <p>${escapeHtml(c.palavra)}</p>
+      <p>${escapeHtml(c.reflexao)}</p>
+      <p><b>${t('card_question')}:</b> ${escapeHtml(c.pergunta)}</p>
+      <p><b>${t('card_action')}:</b> ${escapeHtml(c.acao)}</p>
+      <p><b>${t('card_prayer')}:</b> ${escapeHtml(c.oracao)}</p>
+      <p><b>${t('card_para_levar')}:</b> “${escapeHtml(c.paraLevar)}”</p>
+    </div>` : `
+    <p class="text-sm leading-relaxed mb-2 opacity-90">${escapeHtml(c.resumo)}</p>
+    `}
+    <p class="text-xs italic opacity-80 mb-1">“${escapeHtml(c.versiculo)}”</p>
     <p class="text-xs font-semibold text-accent mb-3">— ${escapeHtml(c.referencia)}</p>
+    <button onclick="toggleDevocionalCompleto()" class="w-full bg-btn-soft rounded-xl py-2 font-semibold text-xs mb-2">${expandido ? t('devocional_mostrar_menos') : `📖 ${t('devocional_ler_completo')}`}</button>
     <div class="grid grid-cols-2 gap-2">
       <button onclick="marcarDevocionalHojeLido()" ${lido ? 'disabled' : ''} class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm ${lido ? 'opacity-50' : ''}">✔️ ${t('devocional_marcar_lido')}</button>
       <button onclick="abrirCartaoDevocionalHoje()" class="bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">🎨 ${t('devocional_ver_cartao')}</button>
     </div>
   </div>`;
 }
+function toggleDevocionalCompleto(){ DEVOCIONAL_EXPANDIDO = !DEVOCIONAL_EXPANDIDO; render(); }
 
 /* ---------------- Cartão visual para compartilhar ----------------
    O gerador de cards (5 estilos por persona, badge, QR real, rodapé)
@@ -2313,7 +2349,7 @@ async function init(){
   const main = document.querySelector('main');
   main.innerHTML = `<div class="flex flex-col items-center justify-center py-24 opacity-60 text-sm">${STATE.lang==='pt'?'Carregando Bíblia...':'Loading Bible...'}</div>`;
 
-  await Promise.all([loadBible(), loadFeriados()]);
+  await Promise.all([loadBible(), loadFeriados(), loadDevocionais365()]);
   refreshVoices();
 
   // Link do QR Code dos cartões: ?dia=NN abre direto naquele dia da leitura.

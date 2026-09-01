@@ -4,13 +4,23 @@ Todas as atualizações relevantes feitas na branch `claude/365-manhas-deus-card
 
 ## [Não lançado] — Gerador de Cards 4K, correções críticas e novas funcionalidades
 
+### 📖 Banco de 365 devocionais curados (`devocionais-365.json`)
+
+- Substitui o "bridge" que gerava o Devocional do Dia em cima de templates genéricos: agora existe um devocional dedicado para cada um dos 365 dias do plano de leitura, com texto próprio (não é o texto bíblico reaproveitado).
+- **Como foi feito, com honestidade**: o pedido original citava 5 arquivos "disponíveis" (schema, 20 exemplares curados, e os engines `BibleEngine`/`OrthographyEngine`/`ContentValidator`/`AreasMapper`) — na prática, só 2 arquivos foram de fato enviados (`RANDOM-DEVOCIONAL-ENGINE.js` e `FERIADOS-CRISTAOS-E-FAMILIARES.json`, já usados no recurso de feriados). Os 365 devocionais **não são uma expansão de exemplares reais** — foram escritos por mim (Claude), organizados em 8 áreas temáticas que também defini agora (a lista não veio em nenhum arquivo recebido): Fé e Confiança, Paz e Descanso, Cura e Consolo, Família e Relacionamentos, Perdão e Graça, Esperança e Eternidade, Propósito e Serviço, Gratidão e Louvor.
+- Cada entrada cita o **versículo real do dia**, já atribuído pelo plano de leitura sequencial do app (mesma lógica de `buildDayPlan()`), comparado byte a byte com `bible-alm1911.json` — não foi digitado/parafraseado à mão.
+- Scripts incluídos no repositório para reprodutibilidade: `scripts-gerar-devocionais-365.js` (gera `devocionais-365.json`) e `scripts-auditar-devocionais-365.js` (gera `AUDITORIA-365.json`).
+- **`AUDITORIA-365.json` é um relatório real, não um "100% verde" fabricado**: mede só o que dá pra medir automaticamente — cobertura dos 365 dias, contagem de palavras por campo, se a referência/texto bíblico bate com `bible-alm1911.json`, capitalização de DEUS/JESUS/SENHOR/ESPÍRITO SANTO no texto próprio, distribuição pelas 8 áreas e duplicatas literais entre dias. Ele também diz explicitamente **o que não avalia** (originalidade contra terceiros, aprovação de engines externas que nunca foram recebidas, revisão teológica humana) — não finge medir o que não é possível medir sem essas ferramentas.
+- `app.js` carrega o banco em paralelo com a Bíblia e os feriados (`loadDevocionais365()`); se o arquivo não carregar por qualquer motivo, o app cai de volta no gerador de templates antigo — o recurso nunca quebra offline.
+- Card "Devocional do Dia" reformulado: título curto + resumo (1ª frase da reflexão) por padrão, com botão "Ler devocional completo" que expande a Palavra, Reflexão, Pergunta de aplicação, Ação prática, Oração e frase "Para levar no coração" completas.
+
 ### 🎉 Devocional do Dia (feriados + sorteio sem repetição)
 
 - Novo card "Devocional do Dia" na tela inicial, separado do plano sequencial de leitura bíblica (que continua em ordem, Gênesis → Apocalipse).
 - **Feriados**: detecta automaticamente 3 datas cristãs (Natal, Páscoa, Pentecostes — móveis calculadas via `easterDate()`, já existente no app) e 5 datas familiares (Dia da Mãe, Dia do Pai — 2º domingo do mês —, Dia da Criança, Dia dos Avós, Dia da Família). Nesses dias, mostra uma mensagem especial adaptada às 5 personas, com versículo (texto real do ALM1911 + uma versão modernizada), em `feriados.json`.
 - **Sorteio sem repetição**: em dias comuns, sorteia (sem repetir) um dos 365 slots do plano de leitura pra gerar um devocional curto sobre o texto daquele dia. O sorteio é determinístico por data (reabrir o app no mesmo dia mostra sempre o mesmo devocional; muda só no dia seguinte) — corrige um problema do motor original, que usava `Math.random()` puro e sortearia algo diferente a cada vez que o app fosse reaberto no mesmo dia. Ao esgotar os 365 slots, reinicia o ciclo automaticamente.
 - Botões "Marcar como lido" (avança o histórico do sorteio) e "Ver cartão" (abre a tela Cartões 4K já preenchida com o devocional do dia).
-- Baseado nos arquivos que você enviou (`RANDOM-DEVOCIONAL-ENGINE.js`, `FERIADOS-CRISTAOS-E-FAMILIARES.json`), mas **não migra o banco de 365 devocionais curados** — isso depende do schema/exemplares/engines de validação que não foram enviados. Por enquanto, o conteúdo é gerado pelo `gerarDevocionalLocal()` (já existente) em cima do texto bíblico real de cada slot; troque por um banco curado assim que os arquivos que faltam chegarem.
+- Baseado nos arquivos que você enviou (`RANDOM-DEVOCIONAL-ENGINE.js`, `FERIADOS-CRISTAOS-E-FAMILIARES.json`). O conteúdo de cada slot agora vem do banco curado `devocionais-365.json` (ver seção "📖 Banco de 365 devocionais curados" acima); `gerarDevocionalLocal()` continua existindo só como fallback caso o banco não carregue.
 
 ### 🔴 Correção crítica
 
