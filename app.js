@@ -218,23 +218,25 @@ let DAY_PLAN = [];
 let FERIADOS = null;
 let DEVOCIONAIS_365 = null; // banco curado (ver AUDITORIA-365.json); null = usa o gerador local como bridge
 
+// Cada loadX() usa dados já embutidos no HTML (window.__X_INLINE__) quando existem
+// — é o caso do pacote single-file 365-manhas-com-deus-FINAL.html, que roda direto
+// do disco (file://) sem servidor, onde fetch() de arquivo local é bloqueado pelo
+// navegador. Na versão modular normal (index.html + app.js servidos por http),
+// essas variáveis não existem e o comportamento continua sendo o fetch() de sempre.
 async function loadFeriados(){
   try{
-    const res = await fetch('feriados.json');
-    FERIADOS = await res.json();
+    FERIADOS = window.__FERIADOS_INLINE__ || await (await fetch('feriados.json')).json();
   }catch(e){ FERIADOS = null; } // Devocional do Dia cai no sorteio normal se isso falhar.
 }
 async function loadDevocionais365(){
   try{
-    const res = await fetch('devocionais-365.json');
-    const data = await res.json();
+    const data = window.__DEVOCIONAIS365_INLINE__ || await (await fetch('devocionais-365.json')).json();
     DEVOCIONAIS_365 = data.devocionais;
   }catch(e){ DEVOCIONAIS_365 = null; } // cai no gerador local (gerarDevocionalLocal) se isso falhar.
 }
 
 async function loadBible(){
-  const res = await fetch('bible-alm1911.json');
-  BIBLE = await res.json();
+  BIBLE = window.__BIBLE_INLINE__ || await (await fetch('bible-alm1911.json')).json();
   const buildList = (codes) => {
     const list = [];
     codes.forEach(code => {
