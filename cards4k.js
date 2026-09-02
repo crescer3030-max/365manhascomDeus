@@ -28,9 +28,11 @@ const WALLPAPER_H = 2340;
 /* ---------------- Personas ---------------- */
 const CARD_PERSONAS = {
   crianca: {
+    // Único estilo "Cartoon Network": traços grossos, cores vibrantes chapadas
+    // (ver drawCenaCrianca) — os demais mantêm o tom mais contemplativo.
     label: 'Criança',
-    bgFrom: '#FFF9E6', bgTo: '#FFE6CC',
-    text: '#2C2C2C', accent: '#FFD700', badgeText: '#3D2314',
+    bgFrom: '#FFE29A', bgTo: '#FFB347',
+    text: '#2C2C2C', accent: '#FF6F91', badgeText: '#3D2314',
     quoteMark: '#E8A33D',
     font: 'Georgia, "Times New Roman", serif',
     illustration: drawCenaCrianca,
@@ -169,20 +171,102 @@ function drawPersonBlock(ctx, x, y, scale, skin, top, bottom, opts) {
 const ART_ZONE = 0.58;
 function Z(H, frac) { return H * ART_ZONE * frac; }
 
+// Estilo "Cartoon Network" (Tela 9 do briefing): traços grossos e definidos,
+// cores vibrantes e chapadas, formas arredondadas e exageradas, crianças
+// brincando em campo aberto sob luz de amanhecer — mirando só na LINGUAGEM
+// VISUAL (contorno grosso + flat colors + proporções bem infantis), nunca
+// reproduzindo personagens/marcas de terceiros. Zero figura do Sagrado.
+const TRACO_GROSSO = '#2B2118';
+function _outline(ctx, w){ ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.strokeStyle = TRACO_GROSSO; ctx.lineWidth = w || 7; }
+function drawSunCartoon(ctx, cx, cy, r){
+  ctx.save();
+  ctx.fillStyle = '#FFD23F'; _outline(ctx, 8);
+  for(let i = 0; i < 10; i++){
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate((i * Math.PI * 2) / 10);
+    _rr(ctx, -r*0.12, -r*1.7, r*0.24, r*0.55, r*0.12); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fillStyle = '#FFC93C'; ctx.fill(); ctx.stroke();
+  ctx.fillStyle = TRACO_GROSSO;
+  ctx.beginPath(); ctx.arc(cx - r*0.32, cy - r*0.05, r*0.09, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(cx + r*0.32, cy - r*0.05, r*0.09, 0, Math.PI*2); ctx.fill();
+  ctx.lineWidth = r*0.1; ctx.beginPath(); ctx.arc(cx, cy + r*0.02, r*0.34, 0.12*Math.PI, 0.88*Math.PI); ctx.stroke();
+  ctx.restore();
+}
+function drawCloudCartoon(ctx, x, y, scale){
+  ctx.save(); ctx.translate(x, y); ctx.scale(scale, scale);
+  ctx.fillStyle = '#FFFFFF'; _outline(ctx, 6);
+  ctx.beginPath();
+  [[0,0,32],[-28,9,24],[28,9,24],[-48,15,16],[48,15,16]].forEach(([dx,dy,r]) => { ctx.moveTo(dx+r,dy); ctx.arc(dx,dy,r,0,Math.PI*2); });
+  ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+function drawCriancaCartoon(ctx, x, y, scale, skin, roupa, roupa2, cabelo, pulando){
+  ctx.save(); ctx.translate(x, y); ctx.scale(scale, scale);
+  _outline(ctx, 6);
+  const braco = pulando ? -0.9 : -0.55;
+  // pernas
+  ctx.fillStyle = roupa2;
+  ctx.beginPath(); _rr(ctx, -24, 36, 18, 46, 9); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); _rr(ctx, 6, 36, 18, 46, 9); ctx.fill(); ctx.stroke();
+  // braços erguidos (alegria)
+  ctx.strokeStyle = TRACO_GROSSO;
+  ctx.fillStyle = skin;
+  [-1, 1].forEach(side => {
+    ctx.save(); ctx.translate(side * 30, -6); ctx.rotate(side * braco);
+    ctx.beginPath(); _rr(ctx, -9, 0, 18, 46, 9); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  });
+  // corpo (formato arredondado exagerado)
+  ctx.fillStyle = roupa;
+  ctx.beginPath(); _rr(ctx, -34, -28, 68, 70, 26); ctx.fill(); ctx.stroke();
+  // cabeça grande (proporção infantil exagerada)
+  ctx.fillStyle = skin;
+  ctx.beginPath(); ctx.arc(0, -66, 38, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  // cabelo
+  ctx.fillStyle = cabelo;
+  ctx.beginPath(); ctx.arc(0, -80, 39, Math.PI, Math.PI*2); ctx.fill(); ctx.stroke();
+  // rosto alegre
+  ctx.fillStyle = TRACO_GROSSO;
+  ctx.beginPath(); ctx.arc(-13, -66, 4.5, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(13, -66, 4.5, 0, Math.PI*2); ctx.fill();
+  ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(0, -58, 14, 0.1*Math.PI, 0.9*Math.PI); ctx.stroke();
+  const bochecha = pulando ? '#FF9E80' : '#FFB199';
+  ctx.fillStyle = bochecha; ctx.globalAlpha = .6;
+  ctx.beginPath(); ctx.arc(-24, -58, 7, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(24, -58, 7, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
 function drawCenaCrianca(ctx, W, H) {
-  drawCloud(ctx, W * 0.18, Z(H, 0.24), 1.0, '#FFFFFF');
-  drawCloud(ctx, W * 0.82, Z(H, 0.38), 0.75, '#FFFFFF');
-  drawSunFace(ctx, W * 0.78, Z(H, 0.34), 82, '#FFA83D', '#FFC947', '#FF9F1C', true);
-  drawGroundWave(ctx, W, Z(H, 1) + 60, Z(H, 0.86), '#B7E39A');
-  drawGroundWave(ctx, W, Z(H, 1) + 60, Z(H, 0.92), '#9FD67F');
-  const petals = ['#FF9FB0', '#FFD166', '#8ED1FC', '#C8A2F5'];
-  [[110, Z(H, 0.98), 22], [220, Z(H, 1.04), 16], [W - 130, Z(H, 1.0), 20], [W - 240, Z(H, 1.06), 15]]
-    .forEach(([x, y, s], i) => drawFlower(ctx, x, y, s, petals[i % petals.length], '#FFF3B0'));
-  drawButterfly(ctx, W * 0.24, Z(H, 0.62), 1.2, '#FF7EB6');
-  drawButterfly(ctx, W * 0.7, Z(H, 0.68), 1.0, '#5CC8FF');
-  drawPersonBlock(ctx, W * 0.5, Z(H, 0.82), 1.25, '#F4C29B', '#FFD54F', '#5C8BE0', { hair: '#5A3A22' });
-  ctx.save(); ctx.strokeStyle = 'rgba(139,69,19,.55)'; ctx.lineWidth = 5; ctx.lineCap = 'round';
-  _rr(ctx, W * 0.5 - 28, Z(H, 0.82) + 24, 56, 38, 5); ctx.stroke(); ctx.restore();
+  // Céu chapado de amanhecer (gradiente vivo, sem meio-tom realista)
+  const sky = ctx.createLinearGradient(0, 0, 0, Z(H, 1));
+  sky.addColorStop(0, '#FFB347'); sky.addColorStop(1, '#FFE29A');
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, Z(H, 1) + 40);
+
+  drawCloudCartoon(ctx, W * 0.16, Z(H, 0.2), 1.1);
+  drawCloudCartoon(ctx, W * 0.86, Z(H, 0.16), 0.8);
+  drawSunCartoon(ctx, W * 0.78, Z(H, 0.32), 78);
+
+  // campo aberto — colinas chapadas, verde vibrante, contorno grosso
+  _outline(ctx, 7);
+  ctx.fillStyle = '#8BD46E';
+  ctx.beginPath(); ctx.moveTo(0, Z(H,1)+60); ctx.lineTo(0, Z(H,0.82));
+  ctx.bezierCurveTo(W*0.3, Z(H,0.72), W*0.7, Z(H,0.9), W, Z(H,0.78));
+  ctx.lineTo(W, Z(H,1)+60); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#6FC750';
+  ctx.beginPath(); ctx.moveTo(0, Z(H,1)+60); ctx.lineTo(0, Z(H,0.92));
+  ctx.bezierCurveTo(W*0.35, Z(H,0.86), W*0.65, Z(H,1.0), W, Z(H,0.9));
+  ctx.lineTo(W, Z(H,1)+60); ctx.closePath(); ctx.fill(); ctx.stroke();
+
+  const petalas = ['#FF6F91', '#FFD166', '#5CC8FF'];
+  [[100, Z(H,0.98), 20], [W-260, Z(H,1.02), 17], [W-110, Z(H,0.97), 20]]
+    .forEach(([x,y,s], i) => { _outline(ctx, 3); drawFlower(ctx, x, y, s, petalas[i % petalas.length], '#FFF3B0'); });
+
+  // duas crianças brincando, de braços erguidos, felizes — cenas cotidianas,
+  // sem qualquer figura do Sagrado.
+  drawCriancaCartoon(ctx, W*0.38, Z(H, 0.84), 1.15, '#F4C29B', '#FF6F91', '#4C8BF5', '#5A3A22', true);
+  drawCriancaCartoon(ctx, W*0.64, Z(H, 0.88), 1.0, '#C88A5A', '#5CC8FF', '#FFD166', '#241A14', false);
 }
 function drawCenaAdolescente(ctx, W, H) {
   const zoneH = Z(H, 1);
@@ -491,10 +575,13 @@ class CardGenerator4K {
    * @param {string} [o.referencia]   ex.: "Salmos 27:14"
    * @param {string} [o.reflexao]     texto curto opcional
    * @param {string} [o.url]          URL do QR Code (padrão: link do app para o dia)
+   * @param {'vertical'|'quadrado'|'story'} [o.formato] proporção do cartão (Tela 3) — largura fica sempre 1080, só a altura muda, então nada mais no pipeline de desenho precisa saber sobre formato.
    */
   constructor(o) {
     this.persona = CARD_PERSONAS[o.persona] ? o.persona : 'adulto';
     this.dia = o.dia || 1;
+    this.W = CARD_W;
+    this.H = o.formato === 'quadrado' ? 1080 : o.formato === 'story' ? 1920 : CARD_H;
     this.tema = o.tema || '';
     this.referencia = o.referencia || '';
     // A reflexão fica disponível no objeto (útil pra quem quiser reaproveitar o
@@ -511,30 +598,31 @@ class CardGenerator4K {
   render(scale) {
     scale = scale || 1;
     const cfg = CARD_PERSONAS[this.persona];
+    const W = this.W, H = this.H;
     const canvas = document.createElement('canvas');
-    canvas.width = CARD_W * scale;
-    canvas.height = CARD_H * scale;
+    canvas.width = W * scale;
+    canvas.height = H * scale;
     const ctx = canvas.getContext('2d');
     ctx.scale(scale, scale);
 
-    const bg = ctx.createLinearGradient(0, 0, 0, CARD_H);
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
     bg.addColorStop(0, cfg.bgFrom); bg.addColorStop(1, cfg.bgTo);
-    ctx.fillStyle = bg; ctx.fillRect(0, 0, CARD_W, CARD_H);
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
 
     ctx.save();
-    ctx.beginPath(); ctx.rect(0, 0, CARD_W, Z_H(CARD_H));
+    ctx.beginPath(); ctx.rect(0, 0, W, Z_H(H));
     ctx.clip();
-    cfg.illustration(ctx, CARD_W, CARD_H);
+    cfg.illustration(ctx, W, H);
     ctx.restore();
 
-    const bandY = drawCaptionBand(ctx, CARD_W, CARD_H, cfg);
-    drawTextBlock(ctx, CARD_W, CARD_H, cfg, {
+    const bandY = drawCaptionBand(ctx, W, H, cfg);
+    drawTextBlock(ctx, W, H, cfg, {
       tema: this.tema, versiculo: this.versiculo, referencia: this.referencia,
     }, bandY);
     drawBadge365(ctx, cfg);
-    drawFooter(ctx, CARD_W, CARD_H, this.dia, cfg);
-    drawQRCode(ctx, CARD_W, CARD_H, this.url, cfg);
-    drawOrnateFrame(ctx, CARD_W, CARD_H, cfg.accent);
+    drawFooter(ctx, W, H, this.dia, cfg);
+    drawQRCode(ctx, W, H, this.url, cfg);
+    drawOrnateFrame(ctx, W, H, cfg.accent);
 
     this.canvas = canvas;
     return canvas;

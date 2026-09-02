@@ -10,8 +10,13 @@ const TOTAL_DAYS = 365;
 
 const DEFAULT_STATE = {
   lang: 'pt',
-  theme: 'light',
-  palette: 'terracota',
+  theme: 'dark',
+  palette: 'navy',
+  // Abertura cinematográfica: por padrão só aparece na 1ª vez que o app abre
+  // neste dispositivo (aberturaVista vira true depois de exibida). O usuário
+  // pode ativar "mostrar sempre" em Configurações.
+  aberturaVista: false,
+  aberturaSempre: false,
   fontSize: 17,
   audioSpeed: 1.0,
   audioVolume: 1.0,
@@ -99,8 +104,17 @@ function saveState(){
   }).catch(()=>{});
 }
 
-/* ---------------- Paletas de cores (8) + tema claro/escuro ---------------- */
+/* ---------------- Paletas de cores (9) + tema claro/escuro ---------------- */
 const PALETTES = {
+  // Identidade visual "premium 4K" do produto (Etapa 3) — navy + dourado,
+  // exceção de paleta aprovada por Marcelo (diferente do marrom/dourado padrão
+  // usado nos outros produtos). É a paleta padrão pra usuários novos; quem já
+  // tinha o app instalado mantém a paleta que já tinha escolhido.
+  navy:{ name:'Navy Dourado',
+    light:{ bg:'#F7F2E4', text:'#1B2A3D', accent:'#B8860B', btn:'#D4A62A', soft:'#E9D9AE', card:'#FFFFFF',
+      bg2:'#EFE6CC', bg3:'#E3D4A8', gold2:'#8A6A17', textSoft:'#5B4E33', warm:'#C1631E' },
+    dark:{ bg:'#0D1B2A', text:'#F5F1E8', accent:'#E8B54C', btn:'#D4AF37', soft:'#22364D', card:'#1B2A3D',
+      bg2:'#1B2A3D', bg3:'#22364D', gold2:'#F4D99F', textSoft:'#B8A98A', warm:'#FF8C42' } },
   terracota:{ name:'Terracota', light:{bg:'#FDFBF7',text:'#3E2723',accent:'#8D4E2A',btn:'#A67C52',soft:'#D9B99B',card:'#FFFFFF'}, dark:{bg:'#1A1A1A',text:'#F0F0F0',accent:'#6F4227',btn:'#6F4227',soft:'#3A2C22',card:'#242119'} },
   azul:{ name:'Azul Celeste', light:{bg:'#F5FAFF',text:'#122B3D',accent:'#2B6CB0',btn:'#4A90C2',soft:'#BFE0F5',card:'#FFFFFF'}, dark:{bg:'#0F1B24',text:'#E8F2FA',accent:'#4A90C2',btn:'#2B6CB0',soft:'#1C3140',card:'#16232D'} },
   oliva:{ name:'Verde Oliva', light:{bg:'#F8FAF3',text:'#2B3320',accent:'#5B7A3A',btn:'#7C9A56',soft:'#D6E3BF',card:'#FFFFFF'}, dark:{bg:'#161A12',text:'#EAF0DE',accent:'#8AAE5E',btn:'#5B7A3A',soft:'#25301B',card:'#1E2417'} },
@@ -120,6 +134,13 @@ function applyPalette(){
   root.setProperty('--btn', mode.btn);
   root.setProperty('--btn-soft', mode.soft);
   root.setProperty('--card', mode.card);
+  // Tokens estendidos (Etapa 3, paleta navy): fallback sensato pras paletas
+  // antigas que não os definem, pra nenhuma tela nova quebrar visualmente.
+  root.setProperty('--bg-2', mode.bg2 || mode.card);
+  root.setProperty('--bg-3', mode.bg3 || mode.soft);
+  root.setProperty('--gold-2', mode.gold2 || mode.accent);
+  root.setProperty('--text-soft', mode.textSoft || mode.text);
+  root.setProperty('--warm', mode.warm || mode.accent);
   document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.setAttribute('content', mode.accent));
 }
 function applyTheme(){
@@ -359,11 +380,18 @@ function render(){
     case 'historico': titleEl.textContent = t('account_history'); html = renderHistorico(); break;
     case 'senha': titleEl.textContent = t('account_password'); html = renderSenha(); break;
     case 'ajuda': titleEl.textContent = t('account_help'); html = renderAjuda(); break;
+    case 'cartaoTelaCheia': titleEl.textContent = ''; html = renderCartaoTelaCheia(); break;
+    case 'player': titleEl.textContent = ''; html = renderPlayer(); break;
+    case 'premium': titleEl.textContent = STATE.lang==='pt'?'Premium':'Premium'; html = renderPremium(); break;
+    case 'precisoDePalavra': titleEl.textContent = STATE.lang==='pt'?'Preciso de uma Palavra':'I Need a Word'; html = renderPrecisoDePalavra(); break;
     default: html = renderHome();
   }
   main.innerHTML = `<div class="fade-in">${html}</div>`;
   applyFontSize();
-  if(CURRENT_SCREEN === 'cartoes') atualizarCartaoPreview();
+  if(CURRENT_SCREEN === 'cartoes'){ atualizarCartaoPreview(); desenharGaleriaEstilos(); }
+  if(CURRENT_SCREEN === 'home') desenharHeroHome();
+  if(CURRENT_SCREEN === 'player') desenharPlayerFundo();
+  if(CURRENT_SCREEN === 'cartaoTelaCheia') desenharCartaoTelaCheia();
 }
 
 /* ---------------- HOME / Leitura Diária ---------------- */
@@ -421,34 +449,61 @@ function renderHome(){
   const streak = computeStreak();
 
   return `
-  <div class="card p-5 mb-4 border" style="border-color:var(--btn-soft)">
-    <div class="flex items-start justify-between mb-1">
-      <div class="text-xs uppercase tracking-wide opacity-60">${t('day')} ${day} ${t('of')} ${TOTAL_DAYS}</div>
-      <div class="shrink-0 -mt-2 -mr-1">${sunMascot(48)}</div>
+  <div class="hero-sunrise mb-4" style="height:180px;">
+    <canvas id="heroCanvas"></canvas>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(13,27,42,.92), rgba(13,27,42,.15) 60%);"></div>
+    <div style="position:absolute;left:16px;right:16px;bottom:14px;">
+      <div class="label-gold" style="letter-spacing:.18em;">${t('day')} ${String(day).padStart(3,'0')} · ${TOTAL_DAYS}</div>
+      <div class="font-display text-lg font-bold" style="color:var(--gold-2)">365 Manhãs com Deus</div>
     </div>
-    <div class="font-display text-xl font-bold mb-1">365 Manhãs com Deus</div>
+  </div>
+
+  <div class="card p-5 mb-4 border" style="border-color:var(--btn-soft)">
     <div class="text-sm opacity-80 mb-3">${summary}</div>
     <div class="w-full h-2 rounded-full bg-btn-soft overflow-hidden mb-3">
       <div class="h-full bg-accent" style="width:${pct}%"></div>
     </div>
-    <button onclick="showScreen('reading')" class="w-full bg-accent text-white font-semibold rounded-xl py-3 active:opacity-80">${t('start_reading')}</button>
+    <button onclick="showScreen('reading')" class="w-full gold-cta py-3 active:opacity-90">${t('start_reading')}</button>
   </div>
 
-  ${streak.current > 0 || streak.best > 0 ? `
-  <div class="flex items-center gap-3 mb-4">
-    <div class="card border flex-1 p-3 text-center" style="border-color:var(--btn-soft)">
-      <div class="text-2xl leading-none mb-1">🔥</div>
-      <div class="text-lg font-bold leading-none">${streak.current}</div>
-      <div class="text-[10px] opacity-60 uppercase tracking-wide mt-1">${t('streak_current')}</div>
+  <div class="mb-4">
+    <div class="flex items-center gap-3">
+      <div class="progress-ring shrink-0">
+        <svg width="72" height="72" viewBox="0 0 72 72">
+          <circle cx="36" cy="36" r="30" fill="none" stroke="var(--btn-soft)" stroke-width="7"/>
+          <circle cx="36" cy="36" r="30" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round"
+            stroke-dasharray="${2*Math.PI*30}" stroke-dashoffset="${2*Math.PI*30*(1-pct/100)}" transform="rotate(-90 36 36)"/>
+        </svg>
+        <div style="position:relative;top:-46px;text-align:center;font-size:13px;font-weight:800;color:var(--accent)">${pct}%</div>
+      </div>
+      <div class="flex-1 grid grid-cols-2 gap-2">
+        <div class="card border p-2.5 text-center" style="border-color:var(--btn-soft)">
+          <div class="text-xl leading-none mb-1">🔥</div>
+          <div class="text-base font-bold leading-none">${streak.current}</div>
+          <div class="text-[9px] opacity-60 uppercase tracking-wide mt-1">${t('streak_current')}</div>
+        </div>
+        <div class="card border p-2.5 text-center" style="border-color:var(--btn-soft)">
+          <div class="text-xl leading-none mb-1">🏆</div>
+          <div class="text-base font-bold leading-none">${streak.best}</div>
+          <div class="text-[9px] opacity-60 uppercase tracking-wide mt-1">${t('streak_best')}</div>
+        </div>
+      </div>
     </div>
-    <div class="card border flex-1 p-3 text-center" style="border-color:var(--btn-soft)">
-      <div class="text-2xl leading-none mb-1">🏆</div>
-      <div class="text-lg font-bold leading-none">${streak.best}</div>
-      <div class="text-[10px] opacity-60 uppercase tracking-wide mt-1">${t('streak_best')}</div>
-    </div>
-  </div>` : ''}
+  </div>
 
   ${renderDevocionalDoDiaCard()}
+
+  <div class="card p-4 mb-4 border" style="border-color:var(--btn-soft)">
+    <div class="label-gold mb-2">${STATE.lang==='pt' ? 'Explorar por palavra' : 'Explore by word'}</div>
+    <input id="buscaPalavraInput" oninput="buscarPorPalavraHome(this.value)" placeholder="${STATE.lang==='pt'?'ex: perdão, oração, esperança...':'e.g. forgiveness, prayer, hope...'}"
+      class="w-full rounded-xl px-3 py-2.5 border bg-transparent mb-2" style="border-color:var(--btn-soft)">
+    <div id="buscaPalavraResultados" class="space-y-1.5"></div>
+  </div>
+
+  <button onclick="showScreen('precisoDePalavra')" class="w-full card border p-4 flex items-center justify-between mb-3" style="border-color:var(--btn-soft)">
+    <span class="font-semibold">🕊️ ${STATE.lang==='pt' ? 'Preciso de uma Palavra' : 'I Need a Word'}</span>
+    <span class="opacity-50">›</span>
+  </button>
 
   <p class="text-xs opacity-70 mb-4">${t('plan_desc')}</p>
 
@@ -461,7 +516,54 @@ function renderHome(){
     <span class="font-semibold">🎨 ${t('cartoes')}</span>
     <span class="opacity-50">›</span>
   </button>
+
+  <button onclick="showScreen('favoritos')" class="w-full card border p-4 flex items-center justify-between mb-3" style="border-color:var(--btn-soft)">
+    <span class="font-semibold">❤️ ${t('account_favorites')}</span>
+    <span class="opacity-50">›</span>
+  </button>
+
+  <button onclick="showScreen('premium')" class="w-full mb-3" style="border-radius:1.1rem;overflow:hidden;">
+    <div class="p-4" style="background:linear-gradient(135deg, var(--bg-3), var(--bg-2)); border:1px solid var(--accent);">
+      <div class="label-gold mb-1">${STATE.lang==='pt' ? 'Experiência Premium 4K' : 'Premium 4K Experience'}</div>
+      <div class="text-sm font-semibold" style="color:var(--text)">${STATE.lang==='pt' ? 'Conheça os recursos completos do app' : 'See the full app features'} →</div>
+    </div>
+  </button>
   `;
+}
+// Busca livre pelos 365 dias reais do banco (não uma lista fixa de 19
+// grupos) — bate a palavra digitada contra área/título/tema/referência/
+// versículo de cada dia já existente, nunca gera conteúdo novo.
+function buscarPorPalavraHome(query){
+  const el = document.getElementById('buscaPalavraResultados');
+  if(!el) return;
+  const q = (query || '').trim().toLowerCase();
+  if(q.length < 2 || !DEVOCIONAIS_365){ el.innerHTML = ''; return; }
+  const achados = DEVOCIONAIS_365.filter(d =>
+    (d.areaLabel||'').toLowerCase().includes(q) || (d.titulo||'').toLowerCase().includes(q) ||
+    (d.tema||'').toLowerCase().includes(q) || (d.referencia||'').toLowerCase().includes(q) ||
+    (d.versiculo||'').toLowerCase().includes(q)
+  ).slice(0, 8);
+  if(!achados.length){ el.innerHTML = `<p class="text-xs opacity-60">${STATE.lang==='pt'?'Nenhum dia encontrado.':'No day found.'}</p>`; return; }
+  el.innerHTML = achados.map(d => `
+    <button onclick="abrirDevocionalDia(${d.dia})" class="w-full text-left rounded-xl px-3 py-2 bg-btn-soft flex items-center justify-between">
+      <span class="text-xs"><b>${STATE.lang==='pt'?'Dia':'Day'} ${String(d.dia).padStart(3,'0')}</b> · ${escapeHtml(d.areaLabel||d.tema)} — ${escapeHtml(d.referencia)}</span>
+      <span class="opacity-50">›</span>
+    </button>`).join('');
+}
+// Desenha a mesma ilustração navy/dourado (amanhecer + montanhas + cruz
+// estilizada, sem figuras humanas) usada nos Cartões 4K — reaproveitada aqui
+// como "foto" hero da Home, em vez de duplicar a arte.
+function desenharHeroHome(){
+  const canvas = document.getElementById('heroCanvas');
+  if(!canvas || typeof drawCenaAdulto !== 'function') return;
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W = rect.width, Hc = rect.height;
+  if(!W || !Hc) return;
+  canvas.width = W * dpr; canvas.height = Hc * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  drawCenaAdulto(ctx, W, Hc / ART_ZONE);
 }
 
 /* ---------------- Reading screen ---------------- */
@@ -695,7 +797,7 @@ let CARTAO_ATUAL = null;
 function initCartoesState(){
   const persona = ageTier(STATE.profile.birthday) || 'adulto';
   const dia = STATE.currentDay;
-  CARTOES_STATE = { persona, dia, tema:'', referencia:'', versiculo:'', reflexao:'' };
+  CARTOES_STATE = { persona, dia, formato: 'vertical', tema:'', referencia:'', versiculo:'', reflexao:'' };
   preencherCartaoComDia(dia);
 }
 function preencherCartaoComDia(dia){
@@ -713,12 +815,20 @@ function renderCartoes(){
   const cs = CARTOES_STATE;
   const personaBtns = CARD_PERSONA_ORDER.map(id => {
     const active = cs.persona === id;
-    return `<button onclick="setCartaoPersona('${id}')" class="rounded-xl py-2 px-1 text-[11px] font-semibold border ${active?'bg-accent text-white':'bg-btn-soft'}" style="border-color:var(--btn-soft)">${CARD_PERSONAS[id].label}</button>`;
+    return `<button onclick="setCartaoPersona('${id}')" class="rounded-xl py-2 px-1 text-[11px] font-semibold border ${active?'gold-cta':'bg-btn-soft'}" style="border-color:var(--btn-soft)">${CARD_PERSONAS[id].label}</button>`;
+  }).join('');
+  const formatos = [['vertical','Vertical'],['quadrado','Quadrado'],['story','Story']];
+  const formatoBtns = formatos.map(([id,label]) => {
+    const active = (cs.formato||'vertical') === id;
+    return `<button onclick="setCartaoFormato('${id}')" class="flex-1 rounded-xl py-2 text-xs font-semibold border ${active?'gold-cta':'bg-btn-soft'}" style="border-color:var(--btn-soft)">${label}</button>`;
   }).join('');
 
   return `
-  <label class="text-sm font-semibold block mb-1.5">${t('card_persona')}</label>
+  <label class="label-gold block mb-1.5">${STATE.lang==='pt'?'Escolha o estilo':t('card_persona')}</label>
   <div class="grid grid-cols-5 gap-1.5 mb-4">${personaBtns}</div>
+
+  <label class="label-gold block mb-1.5">${STATE.lang==='pt'?'Formato':'Format'}</label>
+  <div class="flex gap-1.5 mb-4">${formatoBtns}</div>
 
   <label class="text-sm font-semibold block mb-1.5">${t('card_day')}</label>
   <input id="cartaoDia" type="number" min="1" max="${TOTAL_DAYS}" value="${cs.dia}" onchange="setCartaoDia(this.value)"
@@ -744,18 +854,44 @@ function renderCartoes(){
   <div id="cartaoIdeiaExtra" class="mb-4"></div>
 
   <div class="flex justify-center mb-4">
-    <canvas id="cartaoPreview" width="1080" height="1350" style="width:100%;max-width:320px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.15)"></canvas>
+    <canvas id="cartaoPreview" onclick="showScreen('cartaoTelaCheia')" width="1080" height="1350" style="width:100%;max-width:320px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);cursor:pointer"></canvas>
   </div>
 
-  <button onclick="atualizarCartaoPreview()" class="w-full bg-accent text-white rounded-xl py-3 font-semibold mb-3">🖼️ ${t('card_generate')}</button>
+  <button onclick="gerarCartaoTelaCheia()" class="w-full gold-cta py-3 mb-3">🖼️ ${t('card_generate')}</button>
   <div class="grid grid-cols-2 gap-2 mb-2">
     <button onclick="baixarCartao(false)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ PNG</button>
     <button onclick="baixarCartao(true)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ JPG</button>
   </div>
   <button onclick="baixarCartaoHQ()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-2">✨ ${t('card_export_hq')}</button>
   <button onclick="baixarPapelDeParede()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-2">📱 ${t('card_wallpaper')}</button>
-  <button onclick="compartilharCartao()" class="w-full bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">📤 ${t('card_share')}</button>
+  <button onclick="compartilharCartao()" class="w-full gold-cta py-2.5 text-sm mb-5">📤 ${t('card_share')}</button>
+
+  <div class="label-gold mb-2">${STATE.lang==='pt'?'Galeria de Estilos':'Style Gallery'}</div>
+  <div class="grid grid-cols-5 gap-1.5 mb-4">
+    ${CARD_PERSONA_ORDER.map(id => `
+      <button onclick="setCartaoPersona('${id}')" class="rounded-lg overflow-hidden border" style="border-color:var(--btn-soft);aspect-ratio:4/5;">
+        <canvas class="galeria-thumb" data-persona="${id}" width="120" height="150" style="width:100%;height:100%;display:block;"></canvas>
+      </button>`).join('')}
+  </div>
   `;
+}
+function desenharGaleriaEstilos(){
+  document.querySelectorAll('.galeria-thumb').forEach(canvas => {
+    const persona = canvas.dataset.persona;
+    const cfg = CARD_PERSONAS[persona];
+    if(!cfg) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0,0,W,H);
+    const bg = ctx.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0, cfg.bgFrom); bg.addColorStop(1, cfg.bgTo);
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+    try{
+      ctx.save(); ctx.beginPath(); ctx.rect(0,0,W,Z_H(H)); ctx.clip();
+      cfg.illustration(ctx, W, H);
+      ctx.restore();
+    }catch(e){ /* thumbnail é só decorativo — ignora falha de desenho em miniatura */ }
+  });
 }
 function setCartaoPersona(id){ CARTOES_STATE.persona = id; render(); }
 function setCartaoDia(v){
@@ -783,9 +919,10 @@ function _cartaoGerador(){
   const cs = CARTOES_STATE;
   return new CardGenerator4K({
     persona: cs.persona, dia: cs.dia, tema: cs.tema, referencia: cs.referencia,
-    versiculo: cs.versiculo, reflexao: cs.reflexao,
+    versiculo: cs.versiculo, reflexao: cs.reflexao, formato: cs.formato,
   });
 }
+function setCartaoFormato(formato){ CARTOES_STATE.formato = formato; render(); }
 function atualizarCartaoPreview(){
   if(!CARTOES_STATE) return;
   const preview = document.getElementById('cartaoPreview');
@@ -793,9 +930,48 @@ function atualizarCartaoPreview(){
   const gen = _cartaoGerador();
   const canvas = gen.render(1);
   CARTAO_ATUAL = gen;
+  // O <canvas> de preview precisa do mesmo tamanho intrínseco do cartão
+  // gerado (varia com o FORMATO — vertical/quadrado/story); o CSS
+  // (max-width:320px; width:100%) cuida da escala visual proporcional.
+  preview.width = canvas.width; preview.height = canvas.height;
   const pctx = preview.getContext('2d');
   pctx.clearRect(0, 0, preview.width, preview.height);
   pctx.drawImage(canvas, 0, 0);
+}
+function gerarCartaoTelaCheia(){
+  atualizarCartaoPreview();
+  showScreen('cartaoTelaCheia');
+}
+function renderCartaoTelaCheia(){
+  return `
+  <div style="position:fixed;inset:0;background:#0D1B2A;z-index:60;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
+      <button onclick="showScreen('cartoes')" class="text-2xl" style="color:var(--gold-2)">←</button>
+      <span class="label-gold">${STATE.lang==='pt'?'Cartão Gerado':'Generated Card'}</span>
+      <span style="width:24px"></span>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px;overflow:auto;">
+      <canvas id="cartaoTelaCheiaCanvas" style="max-width:100%;max-height:70vh;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.5)"></canvas>
+    </div>
+    <div style="padding:16px 20px 28px;">
+      <div class="grid grid-cols-2 gap-2 mb-2">
+        <button onclick="baixarCartao(false)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ PNG</button>
+        <button onclick="baixarCartao(true)" class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">⬇️ JPG</button>
+      </div>
+      <button onclick="baixarCartaoHQ()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm mb-2">✨ ${t('card_export_hq')}</button>
+      <button onclick="compartilharCartao()" class="w-full gold-cta py-2.5 text-sm">📤 ${t('card_share')}</button>
+    </div>
+  </div>`;
+}
+function desenharCartaoTelaCheia(){
+  const canvas = document.getElementById('cartaoTelaCheiaCanvas');
+  if(!canvas) return;
+  if(!CARTAO_ATUAL && CARTOES_STATE) CARTAO_ATUAL = _cartaoGerador();
+  if(!CARTAO_ATUAL) return;
+  const src = CARTAO_ATUAL.render(1);
+  canvas.width = src.width; canvas.height = src.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(src, 0, 0);
 }
 async function baixarCartao(jpg){
   if(!CARTAO_ATUAL) atualizarCartaoPreview();
@@ -931,6 +1107,16 @@ function renderConfig(){
     <p class="text-xs opacity-60 mt-2">${STATE.lang==='pt' ? 'Como o app funciona offline, o lembrete aparece apenas enquanto o app estiver aberto no navegador/dispositivo.' : 'Since the app works offline, the reminder only appears while the app is open on your device.'}</p>
   </div>
 
+  <div class="card p-4 border mt-3" style="border-color:var(--btn-soft)">
+    <div class="flex items-center justify-between">
+      <div class="text-sm font-semibold">${STATE.lang==='pt' ? 'Mostrar abertura sempre' : 'Always show opening'}</div>
+      <button onclick="toggleAberturaSempre()" class="w-11 h-6 rounded-full relative ${STATE.aberturaSempre?'bg-accent':'bg-btn-soft'}" aria-label="${STATE.lang==='pt' ? 'Mostrar abertura sempre' : 'Always show opening'}">
+        <span class="absolute top-0.5 ${STATE.aberturaSempre?'right-0.5':'left-0.5'} w-5 h-5 rounded-full bg-white block"></span>
+      </button>
+    </div>
+    <p class="text-xs opacity-60 mt-2">${STATE.lang==='pt' ? 'Por padrão, a animação de abertura só aparece na primeira vez que você abre o app neste dispositivo.' : 'By default, the opening animation only shows the first time you open the app on this device.'}</p>
+  </div>
+
   <button onclick="showScreen('documentos')" class="w-full card border p-3.5 flex items-center gap-3 mt-3" style="border-color:var(--btn-soft)">
     <span class="text-lg">📄</span><span class="font-semibold text-sm flex-1 text-left">${STATE.lang==='pt' ? 'Termos e Políticas' : 'Terms & Policies'}</span><span class="opacity-40">›</span>
   </button>
@@ -1028,20 +1214,54 @@ function toggleFavoriteVerse(ref, text){
   saveState();
 }
 
-function renderFavoritos(){
-  if(!STATE.favorites.length) return `<div class="card p-4 text-center opacity-70">${t('no_favorites')}</div>`;
-  return STATE.favorites.map(f=>{
-    const text = f.verseText || (f.code ? getChapter(f.code,f.chNum).v.map(v=>v.t).join(' ') : '');
-    return `<div class="card p-3.5 border mb-2" style="border-color:var(--btn-soft)">
-      <div class="text-xs font-bold text-accent mb-1">${f.ref}</div>
-      <p class="text-sm leading-relaxed line-clamp-3 mb-2">${escapeHtml(text.slice(0,220))}${text.length>220?'…':''}</p>
-      <div class="flex gap-4 text-sm">
-        <button onclick='playText(${JSON.stringify(text)}, ${JSON.stringify(f.ref)})'>▶️</button>
-        <button onclick='shareContent(${JSON.stringify(f.ref)}, ${JSON.stringify(text)})'>📤</button>
-      </div>
-    </div>`;
-  }).join('');
+// Tela 6 — Favoritos, com abas Todos/Versículos/Orações/Reflexões. Um
+// favorito de devocional (coração no card "Devocional do Dia") contribui uma
+// entrada em cada aba (o versículo dele aparece em Versículos, a oração em
+// Orações etc.); um favorito de versículo bíblico avulso (já existente antes
+// desta etapa) só aparece em Versículos.
+let FAVORITOS_TAB = 'todos';
+function setFavoritosTab(tab){ FAVORITOS_TAB = tab; render(); }
+function _entradasFavoritos(){
+  const out = [];
+  STATE.favorites.forEach((f, idx) => {
+    if(f.tipoDevocional === 'devocional'){
+      out.push({ idx, tipo:'versiculo', dia:f.dia, ref:f.ref, label:f.areaLabel, texto:f.versiculo, titulo:f.titulo });
+      if(f.oracao) out.push({ idx, tipo:'oracao', dia:f.dia, ref:f.ref, label:f.areaLabel, texto:f.oracao, titulo:f.titulo });
+      if(f.reflexao) out.push({ idx, tipo:'reflexao', dia:f.dia, ref:f.ref, label:f.areaLabel, texto:f.reflexao, titulo:f.titulo });
+    } else {
+      const text = f.verseText || (f.code ? getChapter(f.code,f.chNum).v.map(v=>v.t).join(' ') : '');
+      out.push({ idx, tipo:'versiculo', dia:null, ref:f.ref, label:null, texto:text, titulo:f.ref });
+    }
+  });
+  return out;
 }
+function renderFavoritos(){
+  const tabs = [['todos', STATE.lang==='pt'?'Todos':'All'], ['versiculo', STATE.lang==='pt'?'Versículos':'Verses'], ['oracao', STATE.lang==='pt'?'Orações':'Prayers'], ['reflexao', STATE.lang==='pt'?'Reflexões':'Reflections']];
+  const tabsHtml = `<div class="flex gap-1.5 mb-3 overflow-x-auto">${tabs.map(([id,label]) =>
+    `<button onclick="setFavoritosTab('${id}')" class="rounded-full px-3 py-1.5 text-xs font-semibold whitespace-nowrap ${FAVORITOS_TAB===id?'gold-cta':'bg-btn-soft'}">${label}</button>`
+  ).join('')}</div>`;
+
+  const entradas = _entradasFavoritos().filter(e => FAVORITOS_TAB === 'todos' || e.tipo === FAVORITOS_TAB);
+  if(!entradas.length) return `${tabsHtml}<div class="card p-4 text-center opacity-70">${t('no_favorites')}</div>`;
+
+  const iconePorTipo = { versiculo:'📖', oracao:'🙏', reflexao:'💭' };
+  const list = entradas.map(e => `
+    <div class="card p-3.5 border mb-2" style="border-color:var(--btn-soft)">
+      <div class="flex items-center justify-between mb-1">
+        <div class="text-xs font-bold text-accent">${iconePorTipo[e.tipo]} ${escapeHtml(e.ref||'')}</div>
+        <button onclick="removerFavorito(${e.idx})" aria-label="${STATE.lang==='pt'?'Remover dos favoritos':'Remove from favorites'}">❤️</button>
+      </div>
+      ${e.dia ? `<div class="text-[10px] uppercase tracking-wide opacity-60 mb-1">${STATE.lang==='pt'?'Dia':'Day'} ${String(e.dia).padStart(3,'0')}${e.label ? ' · '+escapeHtml(e.label) : ''}</div>` : ''}
+      <p class="text-sm leading-relaxed line-clamp-3 mb-2">${escapeHtml((e.texto||'').slice(0,220))}${(e.texto||'').length>220?'…':''}</p>
+      <div class="flex gap-4 text-sm">
+        <button onclick='playText(${JSON.stringify(e.texto)}, ${JSON.stringify(e.ref)})'>▶️</button>
+        <button onclick='shareContent(${JSON.stringify(e.ref)}, ${JSON.stringify(e.texto)})'>📤</button>
+        ${e.dia ? `<button onclick="abrirDevocionalDia(${e.dia})">🎨</button>` : ''}
+      </div>
+    </div>`).join('');
+  return tabsHtml + list;
+}
+function removerFavorito(idx){ STATE.favorites.splice(idx, 1); saveState(); render(); }
 
 function renderAnotacoes(){
   const keys = Object.keys(STATE.notes);
@@ -1978,8 +2198,11 @@ function estimateDuration(text, rate){
   return Math.max(1.5, (text.length / 14) / rate);
 }
 
-function playText(text, label){
+let PLAYER_FULL_TEXT = ''; // texto completo original, pra permitir "voltar/avançar 15s" (aproximado — a Web Speech API não tem seek real)
+let PLAYER_ELAPSED_BASE = 0; // segundos já "consumidos" antes do trecho atual, quando tocando um pedaço do meio após um skip
+function playText(text, label, _isSkip){
   window.speechSynthesis.cancel();
+  if(!_isSkip){ PLAYER_FULL_TEXT = text; PLAYER_ELAPSED_BASE = 0; }
   CURRENT_TEXT = text; CURRENT_LABEL = label;
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = STATE.lang === 'pt' ? 'pt-BR' : 'en-US';
@@ -2022,21 +2245,155 @@ function cycleSpeed(){
   setSpeed(speeds[idx]);
   if(window.speechSynthesis.speaking && CURRENT_TEXT){ playText(CURRENT_TEXT, CURRENT_LABEL); }
 }
+/* ---------------- Tela 7 — Player de Áudio em tela cheia ---------------- */
+function renderPlayer(){
+  const tocando = window.speechSynthesis && window.speechSynthesis.speaking && !window.speechSynthesis.paused;
+  const label = CURRENT_LABEL || (STATE.lang==='pt' ? 'Nada em reprodução' : 'Nothing playing');
+  const trecho = (PLAYER_FULL_TEXT || CURRENT_TEXT || '').slice(0, 240);
+  return `
+  <div style="position:relative;margin:-16px -16px 0;height:calc(100vh - 200px);min-height:520px;overflow:hidden;">
+    <canvas id="playerCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(13,27,42,.55), rgba(13,27,42,.25) 40%, rgba(13,27,42,.92));"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
+      <p class="font-display text-lg leading-snug mb-2" style="color:#F5F1E8;">"${escapeHtml(trecho)}${trecho.length>=240?'…':''}"</p>
+      <div class="label-gold mb-4">${escapeHtml(label)}</div>
+
+      <div id="playerProgressTrack" class="h-1.5 rounded-full overflow-hidden mb-1.5" style="background:rgba(245,241,232,.2)">
+        <div id="playerProgress" class="h-full bg-accent" style="width:0%"></div>
+      </div>
+      <div class="flex justify-between text-[10px] mb-4" style="color:var(--text-soft)">
+        <span id="playerTempoAtual">0:00</span><span id="playerTempoTotal">0:00</span>
+      </div>
+
+      <div class="flex items-center justify-center gap-8 mb-4">
+        <button onclick="skipSegundos(-15)" aria-label="Voltar 15 segundos" class="text-2xl" style="color:#F5F1E8;">⏪</button>
+        <button onclick="${tocando ? 'audioPause()' : 'audioPlay()'}" aria-label="Tocar/Pausar" class="w-16 h-16 rounded-full gold-cta flex items-center justify-center text-2xl">${tocando ? '⏸️' : '▶️'}</button>
+        <button onclick="skipSegundos(15)" aria-label="Avançar 15 segundos" class="text-2xl" style="color:#F5F1E8;">⏩</button>
+      </div>
+      <div class="flex items-center justify-between text-xs" style="color:var(--text-soft)">
+        <button onclick="cycleSpeed()" id="playerSpeed" class="bg-btn-soft rounded-full px-3 py-1.5 font-bold">${STATE.audioSpeed.toFixed(1)}x</button>
+        <button onclick="showScreen('config')" class="bg-btn-soft rounded-full px-3 py-1.5">⏱️ ${t('settings_sleep')}</button>
+        <button onclick="audioStop()" class="bg-btn-soft rounded-full px-3 py-1.5">⏹️</button>
+      </div>
+    </div>
+  </div>`;
+}
+function desenharPlayerFundo(){
+  const canvas = document.getElementById('playerCanvas');
+  if(!canvas || typeof drawCenaAdulto !== 'function') return;
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W = rect.width, Hc = rect.height;
+  if(!W || !Hc) return;
+  canvas.width = W * dpr; canvas.height = Hc * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  drawCenaAdulto(ctx, W, Hc / ART_ZONE);
+}
+
+/* ---------------- Tela 8 — Banner Premium ---------------- */
+function renderPremium(){
+  const beneficios = [
+    ['📖', STATE.lang==='pt'?'Leitura Offline':'Offline Reading'],
+    ['🎧', STATE.lang==='pt'?'Áudio Premium':'Premium Audio'],
+    ['🎨', STATE.lang==='pt'?'Cards Ilimitados':'Unlimited Cards'],
+    ['📈', STATE.lang==='pt'?'Progresso Diário':'Daily Progress'],
+    ['🔒', STATE.lang==='pt'?'100% Seguro e Privado':'100% Safe & Private'],
+  ];
+  return `
+  <div class="text-center py-6 mb-4">
+    <div class="label-gold mb-2">${STATE.lang==='pt'?'Experiência Premium 4K':'Premium 4K Experience'}</div>
+    <div class="font-display text-xl font-bold" style="color:var(--gold-2)">${STATE.lang==='pt'?'Feito para sua melhor manhã':'Made for your best morning'}</div>
+  </div>
+  <div class="grid grid-cols-2 gap-3 mb-6">
+    ${beneficios.map(([icone,label]) => `
+      <div class="card border p-4 text-center" style="border-color:var(--btn-soft)">
+        <div class="text-2xl mb-2">${icone}</div>
+        <div class="text-xs font-semibold">${label}</div>
+      </div>`).join('')}
+  </div>
+  <p class="text-xs opacity-70 text-center mb-4">${STATE.lang==='pt' ? 'Todos os recursos deste app já estão incluídos — 100% offline, sem assinatura, sem anúncios.' : 'Every feature in this app is already included — 100% offline, no subscription, no ads.'}</p>
+  <button onclick="goBack()" class="w-full gold-cta py-3">${STATE.lang==='pt'?'Continuar':'Continue'}</button>
+  `;
+}
+
+/* ---------------- Tela "Preciso de uma Palavra" ----------------
+   Mapeia estados/necessidades a um conceito real do banco de 365 dias e abre
+   o dia mais próximo já existente — nunca gera devocional novo na hora. */
+const ESTADOS_PARA_CONCEITO = [
+  { label_pt:'Estou com medo', label_en:'I am afraid', icone:'😟', conceitos:['pecado_transgressao','morte_esperanca','guerra_conflito'] },
+  { label_pt:'Preciso de direção', label_en:'I need direction', icone:'🧭', conceitos:['sabedoria_entendimento','jornada_partida','lei_obediencia'] },
+  { label_pt:'Estou sofrendo', label_en:'I am suffering', icone:'💔', conceitos:['morte_esperanca','misericordia_compaixao'] },
+  { label_pt:'Quero agradecer', label_en:'I want to give thanks', icone:'🙌', conceitos:['louvor_gratidao','bencao'] },
+  { label_pt:'Preciso perdoar', label_en:'I need to forgive', icone:'🤝', conceitos:['misericordia_compaixao','pecado_transgressao'] },
+  { label_pt:'Enfrentando dificuldade', label_en:'Facing a hard time', icone:'⛰️', conceitos:['guerra_conflito','jornada_partida','sabedoria_entendimento'] },
+  { label_pt:'Fortalecer família', label_en:'Strengthen my family', icone:'👪', conceitos:['geracao_filhos','vida_comunidade_igreja'] },
+  { label_pt:'Preciso de esperança', label_en:'I need hope', icone:'✨', conceitos:['eternidade_volta_cristo','morte_esperanca'] },
+  { label_pt:'Aproximar de DEUS', label_en:'Draw near to GOD', icone:'🙏', conceitos:['adoracao_sacrificio','louvor_gratidao'] },
+  { label_pt:'Conhecer JESUS', label_en:'Get to know JESUS', icone:'✝️', conceitos:['ensino_jesus','salvacao_libertacao'] },
+  { label_pt:'Aprender sobre salvação', label_en:'Learn about salvation', icone:'🕊️', conceitos:['salvacao_libertacao','ensino_jesus'] },
+];
+function renderPrecisoDePalavra(){
+  const items = ESTADOS_PARA_CONCEITO.map((e, i) => `
+    <button onclick="abrirPorEstado(${i})" class="w-full card border p-4 flex items-center gap-3 mb-2 text-left" style="border-color:var(--btn-soft)">
+      <span class="text-xl">${e.icone}</span>
+      <span class="font-semibold text-sm flex-1">${STATE.lang==='pt' ? e.label_pt : e.label_en}</span>
+      <span class="opacity-50">›</span>
+    </button>`).join('');
+  return `<p class="text-xs opacity-70 mb-4">${STATE.lang==='pt' ? 'Cada opção abre um dos 365 dias já escritos — nada é gerado na hora.' : 'Each option opens one of the 365 already-written days — nothing is generated on the spot.'}</p>${items}`;
+}
+function abrirPorEstado(i){
+  const estado = ESTADOS_PARA_CONCEITO[i];
+  if(!estado || !DEVOCIONAIS_365 || !DEVOCIONAIS_365.length) return;
+  let candidatos = [];
+  for(const conceito of estado.conceitos){
+    candidatos = DEVOCIONAIS_365.filter(d => d.area === conceito);
+    if(candidatos.length) break;
+  }
+  if(!candidatos.length) candidatos = DEVOCIONAIS_365;
+  const seed = _hashSeed(localDateKey(new Date()) + estado.label_pt);
+  const escolhido = candidatos[seed % candidatos.length];
+  abrirDevocionalDia(escolhido.dia);
+}
+
 function showAudioBar(label){
   document.getElementById('audioBar').classList.remove('hidden');
   document.getElementById('audioLabel').textContent = label;
   document.getElementById('audioSpeed').textContent = STATE.audioSpeed.toFixed(1)+'x';
 }
+function formatTempo(s){ s = Math.max(0, Math.round(s)); return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; }
 function startProgressTimer(){
   stopProgressTimer();
   PROGRESS_TIMER = setInterval(()=>{
-    const elapsed = (Date.now() - SPEECH_START_TS)/1000;
-    const pct = Math.min(100, (elapsed/SPEECH_EST_DURATION)*100);
+    const elapsedTrecho = (Date.now() - SPEECH_START_TS)/1000;
+    const totalDur = estimateDuration(PLAYER_FULL_TEXT || CURRENT_TEXT, STATE.audioSpeed);
+    const elapsedTotal = PLAYER_ELAPSED_BASE + elapsedTrecho;
+    const pct = Math.min(100, (elapsedTotal/totalDur)*100);
     const bar = document.getElementById('audioProgress');
     if(bar) bar.style.width = pct+'%';
+    const pbar = document.getElementById('playerProgress');
+    if(pbar) pbar.style.width = pct+'%';
+    const tAtual = document.getElementById('playerTempoAtual');
+    if(tAtual) tAtual.textContent = formatTempo(elapsedTotal);
+    const tTotal = document.getElementById('playerTempoTotal');
+    if(tTotal) tTotal.textContent = formatTempo(totalDur);
   }, 200);
 }
 function stopProgressTimer(){ if(PROGRESS_TIMER){ clearInterval(PROGRESS_TIMER); PROGRESS_TIMER=null; } }
+// Voltar/avançar 15s (aproximado): a Web Speech API não permite seek real
+// dentro de uma fala em andamento — a melhor aproximação honesta é reiniciar
+// a narração a partir de um trecho de texto recalculado pelo tempo estimado.
+function skipSegundos(delta){
+  if(!PLAYER_FULL_TEXT) return;
+  const elapsedTrecho = (Date.now() - SPEECH_START_TS)/1000;
+  const elapsedTotal = Math.max(0, PLAYER_ELAPSED_BASE + elapsedTrecho + delta);
+  const charsPorSegundo = 14 * STATE.audioSpeed;
+  const offset = Math.min(PLAYER_FULL_TEXT.length, Math.round(elapsedTotal * charsPorSegundo));
+  const resto = PLAYER_FULL_TEXT.slice(offset);
+  if(!resto){ audioStop(); return; }
+  PLAYER_ELAPSED_BASE = elapsedTotal;
+  playText(resto, CURRENT_LABEL, true);
+}
 function armSleepTimer(){
   clearSleepTimer();
   if(STATE.sleepMode){
@@ -2200,6 +2557,14 @@ function marcarDevocionalHojeLido(){
   }
   render();
 }
+// Abre o cartão de um dia específico do banco (navegação manual — busca livre
+// na Home ou "Preciso de uma Palavra" — nunca gera conteúdo novo na hora).
+function abrirDevocionalDia(dia){
+  const persona = ageTier(STATE.profile.birthday) || 'adulto';
+  const c = gerarConteudoDevocionalDia(dia);
+  CARTOES_STATE = { persona, dia: c.dia, tema: c.tema, referencia: c.referencia, versiculo: c.versiculo, reflexao: c.reflexao, formato: 'vertical' };
+  showScreen('cartoes');
+}
 function abrirCartaoDevocionalHoje(){
   const hoje = obterDevocionalHoje();
   const persona = ageTier(STATE.profile.birthday) || 'adulto';
@@ -2231,32 +2596,68 @@ function renderDevocionalDoDiaCard(){
   const c = gerarConteudoDevocionalDia(hoje.dia);
   const lido = (STATE.devocionalHistoricoLidos || []).includes(hoje.dia);
   const expandido = DEVOCIONAL_EXPANDIDO;
+  const favorito = isFavoritoDevocional(c.dia);
+  const secao = (icone, label, texto) => `
+    <div class="mb-3">
+      <div class="flex items-center gap-1.5 mb-1"><span class="section-icon">${icone}</span><span class="label-gold">${label}</span></div>
+      <p class="text-sm leading-relaxed opacity-90">${escapeHtml(texto)}</p>
+    </div>`;
   return `
   <div class="card p-4 mb-4 border" style="border-color:var(--btn-soft)">
-    <div class="flex items-center justify-between mb-1">
-      <div class="text-xs font-bold uppercase tracking-wide text-accent">✨ ${t('devocional_do_dia')}</div>
-      ${lido ? `<span class="text-xs opacity-60">${t('devocional_lido')} ✓</span>` : ''}
+    <div class="flex items-center justify-between mb-2">
+      ${c.areaLabel ? `<span class="badge-conceito">${escapeHtml(c.areaLabel)}</span>` : `<div class="text-xs font-bold uppercase tracking-wide text-accent">✨ ${t('devocional_do_dia')}</div>`}
+      <div class="flex items-center gap-2">
+        ${lido ? `<span class="text-xs opacity-60">${t('devocional_lido')} ✓</span>` : ''}
+        <button onclick="toggleFavoritoDevocional(${c.dia}, ${JSON.stringify(c.referencia)}, ${JSON.stringify(c.areaLabel||'')})" aria-label="${STATE.lang==='pt'?'Favoritar':'Favorite'}" class="text-lg leading-none">${favorito ? '❤️' : '🤍'}</button>
+      </div>
     </div>
-    <div class="font-display text-lg font-bold mb-1">${escapeHtml(c.titulo || c.tema)}</div>
+    <div class="font-display text-lg font-bold mb-2">${escapeHtml(c.titulo || c.tema)}</div>
     ${expandido ? `
-    <div class="text-sm leading-relaxed mb-2 opacity-90 space-y-2">
-      <p>${escapeHtml(c.palavra)}</p>
-      <p>${escapeHtml(c.reflexao)}</p>
-      <p><b>${t('card_question')}:</b> ${escapeHtml(c.pergunta)}</p>
-      <p><b>${t('card_action')}:</b> ${escapeHtml(c.acao)}</p>
-      <p><b>${t('card_prayer')}:</b> ${escapeHtml(c.oracao)}</p>
-      <p><b>${t('card_para_levar')}:</b> “${escapeHtml(c.paraLevar)}”</p>
-    </div>` : `
+    <div class="text-sm leading-relaxed mb-1 opacity-90">
+      ${secao('📖', STATE.lang==='pt'?'Palavra':'Word', c.palavra)}
+      ${secao('💭', STATE.lang==='pt'?'Reflexão':'Reflection', c.reflexao)}
+      ${secao('❓', t('card_question'), c.pergunta)}
+      ${secao('🕊️', t('card_action'), c.acao)}
+      ${secao('🙏', t('card_prayer'), c.oracao)}
+    </div>
+    <p class="text-sm italic mb-3" style="color:var(--gold-2)">“${escapeHtml(c.paraLevar)}”</p>` : `
     <p class="text-sm leading-relaxed mb-2 opacity-90">${escapeHtml(c.resumo)}</p>
     `}
-    <p class="text-xs italic opacity-80 mb-1">“${escapeHtml(c.versiculo)}”</p>
+    <p class="text-xs italic opacity-80 mb-1 bible-text">“${escapeHtml(c.versiculo)}”</p>
     <p class="text-xs font-semibold text-accent mb-3">— ${escapeHtml(c.referencia)}</p>
     <button onclick="toggleDevocionalCompleto()" class="w-full bg-btn-soft rounded-xl py-2 font-semibold text-xs mb-2">${expandido ? t('devocional_mostrar_menos') : `📖 ${t('devocional_ler_completo')}`}</button>
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-2 gap-2 mb-2">
       <button onclick="marcarDevocionalHojeLido()" ${lido ? 'disabled' : ''} class="bg-btn-soft rounded-xl py-2.5 font-semibold text-sm ${lido ? 'opacity-50' : ''}">✔️ ${t('devocional_marcar_lido')}</button>
-      <button onclick="abrirCartaoDevocionalHoje()" class="bg-accent text-white rounded-xl py-2.5 font-semibold text-sm">🎨 ${t('devocional_ver_cartao')}</button>
+      <button onclick="abrirCartaoDevocionalHoje()" class="gold-cta py-2.5 text-sm">🎨 ${t('devocional_ver_cartao')}</button>
     </div>
+    <button onclick="ouvirDevocionalHoje()" class="w-full bg-btn-soft rounded-xl py-2.5 font-semibold text-sm">▶️ ${STATE.lang==='pt'?'Ouvir':'Listen'}</button>
   </div>`;
+}
+function ouvirDevocionalHoje(){
+  const hoje = obterDevocionalHoje();
+  if(hoje.tipo === 'feriado'){ playText(`${hoje.titulo}. ${hoje.conteudo}. ${hoje.versiculo}`, hoje.titulo); return; }
+  const c = gerarConteudoDevocionalDia(hoje.dia);
+  playText(`${c.palavra} ${c.reflexao} ${c.pergunta} ${c.acao} ${c.oracao}`, c.titulo || c.tema);
+  showScreen('player');
+}
+// Favoritar itens do Devocional do Dia (distinto dos favoritos de versículo
+// bíblico avulso já existentes — reaproveita o mesmo STATE.favorites, com um
+// campo "tipoDevocional" pra diferenciar na tela de Favoritos).
+function isFavoritoDevocional(dia){
+  return STATE.favorites.some(f => f.tipoDevocional === 'devocional' && f.dia === dia);
+}
+function toggleFavoritoDevocional(dia, referencia, areaLabel){
+  const idx = STATE.favorites.findIndex(f => f.tipoDevocional === 'devocional' && f.dia === dia);
+  if(idx >= 0){ STATE.favorites.splice(idx, 1); }
+  else{
+    const c = gerarConteudoDevocionalDia(dia);
+    STATE.favorites.unshift({
+      tipoDevocional: 'devocional', dia, ref: referencia, areaLabel,
+      versiculo: c.versiculo, oracao: c.oracao, reflexao: c.reflexao, titulo: c.titulo,
+      addedAt: new Date().toISOString(),
+    });
+  }
+  saveState(); render();
 }
 function toggleDevocionalCompleto(){ DEVOCIONAL_EXPANDIDO = !DEVOCIONAL_EXPANDIDO; render(); }
 
@@ -2340,6 +2741,174 @@ function toast(msg){
   setTimeout(()=>el.remove(), 1800);
 }
 
+/* ---------------- Abertura cinematográfica (Etapa 3) ----------------
+   4 frames em Canvas 2D (~4.8s): escuridão→alvorecer, nascer do sol com
+   partículas, revelação do logo (texto em DOM/CSS, mais legível e leve que
+   desenhar tipografia em canvas), fade pra tela normal. Som ambiente via
+   Web Audio API (best-effort: navegadores bloqueiam áudio sem gesto do
+   usuário antes da 1ª interação — se o AudioContext não tocar, a abertura
+   continua 100% funcional só visualmente, como o requisito pede
+   "som respeita modo silencioso do sistema"). Zero figura do Sagrado: só
+   paisagem (montanhas em silhueta) e luz. */
+let ABERTURA_CANCELADA = false;
+function tocarSomAmbienteAbertura(){
+  try{
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return;
+    const ctx = new Ctx();
+    if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
+    const master = ctx.createGain();
+    master.gain.value = 0.18;
+    master.connect(ctx.destination);
+    const tom = (freq, start, dur, vol) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, ctx.currentTime + start);
+      gain.gain.linearRampToValueAtTime(vol, ctx.currentTime + start + 0.4);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + start + dur);
+      osc.connect(gain); gain.connect(master);
+      osc.start(ctx.currentTime + start);
+      osc.stop(ctx.currentTime + start + dur + 0.05);
+    };
+    tom(392, 1.2, 1.4, 0.5);   // Frame 2: crescendo suave
+    tom(523.25, 2.8, 0.9, 0.6); // Frame 3: nota final
+    tom(659.25, 3.05, 1.0, 0.45); // resolução harmônica (acorde)
+    setTimeout(() => { try{ ctx.close(); }catch(e){} }, 5500);
+  }catch(e){ /* autoplay bloqueado ou API indisponível — segue só visual */ }
+}
+function mostrarAberturaCinematografica(){
+  return new Promise((resolve) => {
+    const overlay = document.getElementById('abertura');
+    const canvas = document.getElementById('aberturaCanvas');
+    const logo = document.getElementById('aberturaLogo');
+    const sub = document.getElementById('aberturaSubtitulo');
+    const btnPular = document.getElementById('aberturaPular');
+    if(!overlay || !canvas){ resolve(); return; }
+
+    ABERTURA_CANCELADA = false;
+    overlay.style.display = 'block';
+    overlay.style.opacity = '1';
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const W = overlay.clientWidth, H = overlay.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Partículas de luz subindo (Frame 2) — poucas, leve, testado pra não
+    // pesar em device de entrada.
+    const particulas = Array.from({ length: 10 }, () => ({
+      x: Math.random() * W, y: H * 0.55 + Math.random() * H * 0.35,
+      r: 1 + Math.random() * 2, v: 12 + Math.random() * 18, fase: Math.random() * Math.PI * 2,
+    }));
+
+    function desenharMontanhas(alpha){
+      const horizonY = H * 0.6;
+      ctx.save(); ctx.globalAlpha = alpha;
+      ctx.fillStyle = '#1B2A3D';
+      ctx.beginPath(); ctx.moveTo(0, H);
+      ctx.lineTo(0, horizonY + 40); ctx.lineTo(W*0.22, horizonY - 10); ctx.lineTo(W*0.4, horizonY + 22);
+      ctx.lineTo(W*0.62, horizonY - 24); ctx.lineTo(W*0.8, horizonY + 14); ctx.lineTo(W, horizonY - 6);
+      ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = '#0D1B2A';
+      ctx.beginPath(); ctx.moveTo(0, H);
+      ctx.lineTo(0, horizonY + 60); ctx.lineTo(W*0.3, horizonY + 20); ctx.lineTo(W*0.55, horizonY + 46);
+      ctx.lineTo(W*0.78, horizonY + 12); ctx.lineTo(W, horizonY + 34); ctx.lineTo(W, H);
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
+
+    let inicio = null;
+    let pularAgora = false;
+    function frame(agora){
+      if(!inicio) inicio = agora;
+      const t = pularAgora ? 4.0 : (agora - inicio) / 1000;
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#0D1B2A';
+      ctx.fillRect(0, 0, W, H);
+      const horizonY = H * 0.6;
+
+      if(t < 1.2){
+        const p = Math.min(1, t / 1.2);
+        ctx.save(); ctx.globalAlpha = p;
+        const grad = ctx.createRadialGradient(W/2, horizonY, 0, W/2, horizonY, W * 0.55);
+        grad.addColorStop(0, 'rgba(244,217,159,0.9)');
+        grad.addColorStop(0.45, 'rgba(232,181,76,0.35)');
+        grad.addColorStop(1, 'rgba(13,27,42,0)');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+        ctx.restore();
+      } else if(t < 2.8){
+        const p = (t - 1.2) / 1.6;
+        const sky = ctx.createLinearGradient(0, 0, 0, H);
+        sky.addColorStop(0, '#0D1B2A');
+        sky.addColorStop(Math.max(0.05, 1 - p * 0.85), '#0D1B2A');
+        sky.addColorStop(1, `rgba(255,140,66,${0.15 + p * 0.55})`);
+        ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+
+        const sunY = horizonY + (1 - p) * 90;
+        const glow = ctx.createRadialGradient(W/2, sunY, 0, W/2, sunY, W * 0.4);
+        glow.addColorStop(0, 'rgba(244,217,159,0.95)');
+        glow.addColorStop(0.5, 'rgba(232,181,76,0.4)');
+        glow.addColorStop(1, 'rgba(232,181,76,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(W/2, sunY, W * 0.4, 0, Math.PI * 2); ctx.fill();
+
+        ctx.save();
+        particulas.forEach(pt => {
+          const y = pt.y - (p * pt.v * 6) % (H * 0.4);
+          const alpha = 0.5 * Math.max(0, 1 - p * 0.3) * (0.5 + 0.5 * Math.sin(pt.fase + p * 6));
+          ctx.globalAlpha = Math.max(0, alpha);
+          ctx.fillStyle = '#F4D99F';
+          ctx.beginPath(); ctx.arc(pt.x, y, pt.r, 0, Math.PI * 2); ctx.fill();
+        });
+        ctx.restore();
+        desenharMontanhas(0.3 + p * 0.7);
+      } else {
+        const sky = ctx.createLinearGradient(0, 0, 0, H);
+        sky.addColorStop(0, '#0D1B2A'); sky.addColorStop(1, 'rgba(255,140,66,0.7)');
+        ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+        const glow = ctx.createRadialGradient(W/2, horizonY, 0, W/2, horizonY, W * 0.4);
+        glow.addColorStop(0, 'rgba(244,217,159,0.95)');
+        glow.addColorStop(1, 'rgba(232,181,76,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(W/2, horizonY, W * 0.4, 0, Math.PI * 2); ctx.fill();
+        desenharMontanhas(1);
+
+        if(!logo.classList.contains('is-in')){ logo.classList.add('is-in'); logo.style.opacity = '1'; logo.style.transform = 'translateY(0)'; }
+        setTimeout(() => { if(!ABERTURA_CANCELADA){ sub.style.opacity = '1'; } }, 300);
+      }
+
+      if(t >= 1.5 && btnPular.style.pointerEvents !== 'auto'){
+        btnPular.style.opacity = '1'; btnPular.style.pointerEvents = 'auto';
+      }
+
+      if(t < 4.8 && !ABERTURA_CANCELADA){
+        requestAnimationFrame(frame);
+      } else {
+        overlay.style.transition = 'opacity .5s ease';
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          overlay.style.transition = '';
+          logo.style.opacity = '0'; logo.style.transform = 'translateY(20px)'; logo.classList.remove('is-in');
+          sub.style.opacity = '0';
+          btnPular.style.opacity = '0'; btnPular.style.pointerEvents = 'none';
+          resolve();
+        }, pularAgora ? 0 : 500);
+      }
+    }
+    window.__pularAberturaAtual = () => { pularAgora = true; };
+    tocarSomAmbienteAbertura();
+    requestAnimationFrame(frame);
+  });
+}
+function pularAbertura(){
+  if(window.__pularAberturaAtual) window.__pularAberturaAtual();
+}
+function toggleAberturaSempre(){ STATE.aberturaSempre = !STATE.aberturaSempre; saveState(); render(); }
+
 /* ---------------- Init ---------------- */
 async function init(){
   STATE = await loadStateFromDisk();
@@ -2357,7 +2926,19 @@ async function init(){
   // Link do QR Code dos cartões: ?dia=NN abre direto naquele dia da leitura.
   const params = new URLSearchParams(window.location.search);
   const diaParam = parseInt(params.get('dia'), 10);
-  if(diaParam && diaParam >= 1 && diaParam <= TOTAL_DAYS && isDayUnlocked(diaParam)){
+  const temLinkDeQR = diaParam && diaParam >= 1 && diaParam <= TOTAL_DAYS && isDayUnlocked(diaParam);
+
+  // Abertura cinematográfica: só na 1ª vez neste dispositivo, a menos que o
+  // usuário tenha ligado "mostrar sempre" em Configurações. Roda antes de
+  // decidir qual tela mostrar (cadastro/entrada/home) — nunca pula o portão
+  // de acesso, só antecede ele visualmente. Pula quando o app foi aberto por
+  // um link de QR Code de cartão, pra não atrasar quem só quer ler o dia.
+  if(!temLinkDeQR && (!STATE.aberturaVista || STATE.aberturaSempre)){
+    await mostrarAberturaCinematografica();
+    if(!STATE.aberturaVista){ STATE.aberturaVista = true; saveState(); }
+  }
+
+  if(temLinkDeQR){
     STATE.currentDay = diaParam;
     saveState();
     showScreen('reading');

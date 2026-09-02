@@ -5,20 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>365 Manhãs com Deus</title>
 <meta name="description" content="Devocional diário completo, com plano de leitura da Bíblia em 365 dias, jogos bíblicos e gerador de cartões — 100% offline.">
-<meta name="theme-color" content="#8D4E2A">
+<meta name="theme-color" content="#0D1B2A">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="Logo APP.png">
 <link rel="stylesheet" href="tailwind.css">
 <style>
 :root{
-  --bg:#FDFBF7; --text:#3E2723; --accent:#8D4E2A; --btn:#A67C52; --btn-soft:#D9B99B; --card:#FFFFFF;
+  /* Valores iniciais = paleta "Navy Dourado" escura (padrão do produto),
+     antes do JS aplicar a paleta/tema salvos do usuário (applyPalette()) —
+     evita um "flash" da paleta antiga no primeiro paint. */
+  --bg:#0D1B2A; --text:#F5F1E8; --accent:#E8B54C; --btn:#D4AF37; --btn-soft:#22364D; --card:#1B2A3D;
+  --bg-2:#1B2A3D; --bg-3:#22364D; --gold-2:#F4D99F; --text-soft:#B8A98A; --warm:#FF8C42;
 }
 *{ -webkit-tap-highlight-color: transparent; }
 html,body{ background:var(--bg); color:var(--text); min-height:100%; }
-body{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
-.font-display{ font-family: Georgia, "Times New Roman", serif; }
-.card{ background:var(--card); border-radius:1rem; }
+body{ font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+.font-display{ font-family: Georgia, "Playfair Display", "Times New Roman", serif; }
+.card{ background:var(--card); border-radius:1.1rem; }
 .bg-accent{ background-color:var(--accent) !important; }
 .text-accent{ color:var(--accent) !important; }
 .bg-btn{ background-color:var(--btn) !important; }
@@ -28,17 +32,47 @@ body{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 .fade-in{ animation: fadeIn .18s ease-out; }
 @keyframes fadeIn{ from{ opacity:0; transform: translateY(4px); } to{ opacity:1; transform:none; } }
 
-#appHeader{ position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--btn-soft); }
-#appNav{ position:sticky; bottom:0; z-index:20; background:var(--card); border-top:1px solid var(--btn-soft); }
+#appHeader{ position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--bg-3); }
+#appNav{ position:sticky; bottom:0; z-index:20; background:var(--card); border-top:1px solid var(--bg-3); }
 .navBtn{ display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 4px; font-size:11px; flex:1; }
-#audioBar{ position:sticky; bottom:64px; z-index:19; background:var(--card); border-top:1px solid var(--btn-soft); }
-#audioProgressTrack{ background:var(--btn-soft); }
+#audioBar{ position:sticky; bottom:64px; z-index:19; background:var(--card); border-top:1px solid var(--bg-3); }
+#audioProgressTrack{ background:var(--bg-3); }
 #audioProgress{ background:var(--accent); }
+
+/* ---------------- Etapa 3: identidade visual "premium 4K" ---------------- */
+.gold-cta{
+  background:linear-gradient(135deg, var(--gold-2), var(--btn));
+  color:#1B2A3D; font-weight:700; border-radius:999px;
+}
+.gold-cta:active{ transform:scale(.98); }
+.label-gold{
+  color:var(--accent); font-weight:600; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+.badge-conceito{
+  display:inline-block; background:var(--bg-3); color:var(--accent); border:1px solid var(--accent);
+  border-radius:999px; padding:3px 12px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+}
+.section-icon{
+  display:inline-flex; align-items:center; justify-content:center; width:1.5em; height:1.5em;
+  color:var(--accent); flex-shrink:0;
+}
+.hero-sunrise{ position:relative; border-radius:1.25rem; overflow:hidden; }
+.hero-sunrise canvas{ display:block; width:100%; height:100%; }
+.progress-ring circle{ transition: stroke-dashoffset .5s ease; }
 
 .dark body{ }
 </style>
 </head>
 <body class="min-h-screen">
+
+<div id="abertura" style="position:fixed;inset:0;z-index:100;background:#0D1B2A;display:none;">
+  <canvas id="aberturaCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;">
+    <div id="aberturaLogo" class="font-display" style="opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;color:#F4D99F;font-weight:800;font-size:2.6rem;line-height:1.1;letter-spacing:.02em;text-shadow:0 2px 24px rgba(232,181,76,.35);">365<br>MANHÃS<br>COM DEUS</div>
+    <div id="aberturaSubtitulo" style="opacity:0;transition:opacity .6s ease;color:#B8A98A;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;margin-top:14px;font-weight:600;">Comece hoje sua melhor manhã</div>
+  </div>
+  <button id="aberturaPular" onclick="pularAbertura()" aria-label="Pular abertura" style="position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;opacity:0;transition:opacity .3s ease;pointer-events:none;background:rgba(245,241,232,.12);color:#F5F1E8;border:1px solid rgba(245,241,232,.3);border-radius:999px;padding:6px 16px;font-size:12px;font-weight:600;">Pular ›</button>
+</div>
 
 <header id="appHeader" class="safe-bottom">
   <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-2">
