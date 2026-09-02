@@ -1,4 +1,4 @@
-const CACHE_NAME = '365-manhas-com-deus-v9';
+const CACHE_NAME = '365-manhas-com-deus-v10';
 // Arquivos pequenos que mudam com frequência: sempre busca a versão mais nova primeiro.
 const CORE_ASSETS = [
   './', './index.html', './app.js', './manifest.json', './icon.svg',

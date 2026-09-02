@@ -50,15 +50,26 @@ for(const d of devs){
 
 // 3) Capitalização dos nomes divinos no texto escrito (não no versículo bíblico, que
 //    é citação literal do Almeida 1911 e mantém a ortografia original da época).
+// Padrões SEM a flag /g: com /g, .test() é stateful (avança lastIndex a cada
+// chamada) — reusar o mesmo objeto regex em 365 chamadas de .test() causava
+// falsos positivos/negativos dependendo da ordem dos dias (bug real,
+// encontrado ao investigar 2 dias sinalizados sem motivo aparente).
 const nomesDivinos = [
-  { errado: /\bdeus\b/g, certo: 'DEUS' },
-  { errado: /\bjesus\b/g, certo: 'JESUS' },
-  { errado: /\bsenhor\b/g, certo: 'SENHOR' },
-  { errado: /\bespírito santo\b/gi, certo: 'ESPÍRITO SANTO' },
+  { errado: /\bdeus\b/, certo: 'DEUS' },
+  { errado: /\bjesus\b/, certo: 'JESUS' },
+  { errado: /\bsenhor\b/, certo: 'SENHOR' },
+  { errado: /\bespírito santo\b/i, certo: 'ESPÍRITO SANTO' },
 ];
 let capitalizacaoOk = 0;
 for(const d of devs){
-  const textoProprio = [d.palavra, d.reflexao, d.pergunta, d.acao, d.oracao, d.paraLevar].join(' ');
+  // Remove a citação literal do versículo (ALM1911, ortografia arcaica original)
+  // de dentro de "palavra" antes de checar — a partir da v2.1 do banco, o campo
+  // "palavra" cita o versículo do dia entre aspas por design (ver
+  // reescrever-365-v2.js), e o ALM1911 legitimamente usa palavras como "senhor"
+  // em minúscula com sentido comum (ex.: "senhor de tudo" = dono, não título
+  // divino) — checar isso como erro de capitalização do MEU texto seria falso.
+  const palavraSemCitacao = d.versiculo ? d.palavra.split(d.versiculo).join('') : d.palavra;
+  const textoProprio = [palavraSemCitacao, d.reflexao, d.pergunta, d.acao, d.oracao, d.paraLevar].join(' ');
   let falhou = false;
   for(const { errado } of nomesDivinos){
     if(errado.test(textoProprio)) { falhou = true; }

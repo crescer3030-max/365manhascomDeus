@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-09-01T20:27:17.594Z",
+  "gerado_em": "2026-09-02T09:27:03.334Z",
   "metodo": "Devocionais escritos por mim (Claude), organizados em 8 áreas temáticas definidas por mim (lista não fornecida nos arquivos recebidos), combinando blocos de texto próprios com o versículo real do dia já atribuído pelo plano de leitura sequencial do app (bible-alm1911.json). NÃO é uma expansão de exemplares curados enviados pelo usuário — os arquivos de schema, os 20 exemplares e os engines de validação (BibleEngine, OrthographyEngine, ContentValidator, AreasMapper) citados no pedido nunca foram efetivamente enviados (verificado via listagem do diretório de uploads).",
   "total_devocionais": 365,
   "cobertura_365_dias": {
@@ -15,11 +15,11 @@
       "acao": 25
     },
     "media_palavras": {
-      "palavra": 102.6,
-      "reflexao": 102.7,
-      "pergunta": 100.9,
-      "oracao": 61.7,
-      "acao": 44.9
+      "palavra": 104.8,
+      "reflexao": 109.8,
+      "pergunta": 97.3,
+      "oracao": 68.5,
+      "acao": 42.8
     }
   },
   "referencias_biblicas_reais": {
@@ -34,14 +34,23 @@
     "observacao": "Verifica apenas o texto escrito por mim (palavra/reflexão/pergunta/ação/oração/paraLevar). O texto do versículo em si é citação literal do Almeida 1911 e preserva a ortografia/grafia arcaica original (ex.: \"Christo\"), o que é esperado e correto."
   },
   "distribuicao_por_area": {
-    "fe_confianca": 46,
-    "paz_descanso": 46,
-    "cura_consolo": 46,
-    "familia_relacionamentos": 46,
-    "perdao_graca": 46,
-    "esperanca_eternidade": 45,
-    "proposito_servico": 45,
-    "gratidao_louvor": 45
+    "geracao_filhos": 40,
+    "ensino_jesus": 74,
+    "lei_obediencia": 14,
+    "jornada_partida": 10,
+    "adoracao_sacrificio": 9,
+    "vida_comunidade_igreja": 104,
+    "morte_esperanca": 4,
+    "historia_real_de_fe": 35,
+    "pecado_transgressao": 5,
+    "guerra_conflito": 3,
+    "salvacao_libertacao": 3,
+    "sabedoria_entendimento": 5,
+    "misericordia_compaixao": 5,
+    "louvor_gratidao": 10,
+    "bencao": 2,
+    "profecia_juizo": 22,
+    "eternidade_volta_cristo": 20
   },
   "duplicatas_exatas": {
     "campo_palavra": 0,
