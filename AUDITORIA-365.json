@@ -1,0 +1,67 @@
+{
+  "gerado_em": "2026-09-02T09:27:03.334Z",
+  "metodo": "Devocionais escritos por mim (Claude), organizados em 8 áreas temáticas definidas por mim (lista não fornecida nos arquivos recebidos), combinando blocos de texto próprios com o versículo real do dia já atribuído pelo plano de leitura sequencial do app (bible-alm1911.json). NÃO é uma expansão de exemplares curados enviados pelo usuário — os arquivos de schema, os 20 exemplares e os engines de validação (BibleEngine, OrthographyEngine, ContentValidator, AreasMapper) citados no pedido nunca foram efetivamente enviados (verificado via listagem do diretório de uploads).",
+  "total_devocionais": 365,
+  "cobertura_365_dias": {
+    "completa": true,
+    "dias_faltando": []
+  },
+  "campos_obrigatorios_e_minimos": {
+    "minimos_palavras": {
+      "palavra": 80,
+      "reflexao": 80,
+      "pergunta": 80,
+      "oracao": 50,
+      "acao": 25
+    },
+    "media_palavras": {
+      "palavra": 104.8,
+      "reflexao": 109.8,
+      "pergunta": 97.3,
+      "oracao": 68.5,
+      "acao": 42.8
+    }
+  },
+  "referencias_biblicas_reais": {
+    "total": 365,
+    "validadas_contra_bible_alm1911_json": 365,
+    "percentual": 100,
+    "observacao": "Cada referência e o texto do versículo foram comparados byte a byte com bible-alm1911.json (o mesmo arquivo que o app usa no plano de leitura). Não foram digitados/parafraseados à mão."
+  },
+  "capitalizacao_nomes_divinos": {
+    "dias_ok": 365,
+    "percentual": 100,
+    "observacao": "Verifica apenas o texto escrito por mim (palavra/reflexão/pergunta/ação/oração/paraLevar). O texto do versículo em si é citação literal do Almeida 1911 e preserva a ortografia/grafia arcaica original (ex.: \"Christo\"), o que é esperado e correto."
+  },
+  "distribuicao_por_area": {
+    "geracao_filhos": 40,
+    "ensino_jesus": 74,
+    "lei_obediencia": 14,
+    "jornada_partida": 10,
+    "adoracao_sacrificio": 9,
+    "vida_comunidade_igreja": 104,
+    "morte_esperanca": 4,
+    "historia_real_de_fe": 35,
+    "pecado_transgressao": 5,
+    "guerra_conflito": 3,
+    "salvacao_libertacao": 3,
+    "sabedoria_entendimento": 5,
+    "misericordia_compaixao": 5,
+    "louvor_gratidao": 10,
+    "bencao": 2,
+    "profecia_juizo": 22,
+    "eternidade_volta_cristo": 20
+  },
+  "duplicatas_exatas": {
+    "campo_palavra": 0,
+    "campo_reflexao": 0,
+    "observacao": "Conta apenas repetição LITERAL do texto entre dois dias diferentes. Blocos de frase são reaproveitados dentro de cada área (isso é esperado em qualquer devocional temático), mas a combinação final de cada dia inclui o livro/capítulo/versículo real daquele dia do plano de leitura, o que differencia o resultado."
+  },
+  "problemas_encontrados": [],
+  "total_problemas": 0,
+  "o_que_esta_auditoria_NAO_faz": [
+    "Não calcula \"score de originalidade\" — essa métrica dependeria de um sistema de comparação (ex.: contra bancos de devocionais de terceiros) que não existe neste projeto.",
+    "Não simula aprovação de \"BibleEngine\", \"OrthographyEngine\", \"ContentValidator\" ou \"AreasMapper\" — esses sistemas foram citados no pedido, mas os arquivos correspondentes nunca foram enviados; fabricar um resultado \"100% verde\" para eles seria uma informação falsa.",
+    "Não avalia qualidade teológica ou literária por revisão humana especializada — isso exigiria revisão por um teólogo/editor, fora do escopo do que uma auditoria automática pode medir."
+  ]
+}

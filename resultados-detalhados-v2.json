@@ -1,0 +1,5477 @@
+[
+  {
+    "dia": 1,
+    "conceito": "geracao_filhos",
+    "referencia": "Mateus 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 2,
+    "conceito": "geracao_filhos",
+    "referencia": "Gênesis 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 3,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 4,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 5,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 6,
+    "conceito": "lei_obediencia",
+    "referencia": "Gênesis 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 7,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 8,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 9,
+    "conceito": "lei_obediencia",
+    "referencia": "Gênesis 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 10,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 11,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 12,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 13,
+    "conceito": "lei_obediencia",
+    "referencia": "Gênesis 32:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 14,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 15,
+    "conceito": "jornada_partida",
+    "referencia": "Mateus 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 16,
+    "conceito": "lei_obediencia",
+    "referencia": "Gênesis 39:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 17,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 18,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 19,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 20,
+    "conceito": "geracao_filhos",
+    "referencia": "Gênesis 49:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 21,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 22,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 23,
+    "conceito": "lei_obediencia",
+    "referencia": "Êxodo 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 24,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 25,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 18:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 26,
+    "conceito": "jornada_partida",
+    "referencia": "Mateus 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 27,
+    "conceito": "geracao_filhos",
+    "referencia": "Êxodo 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 28,
+    "conceito": "jornada_partida",
+    "referencia": "Mateus 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 29,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 30,
+    "conceito": "lei_obediencia",
+    "referencia": "Êxodo 25:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 31,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 22:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 32,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 23:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 33,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 24:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 34,
+    "conceito": "geracao_filhos",
+    "referencia": "Êxodo 35:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 35,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 25:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 36,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 26:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 37,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Levítico 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 38,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 27:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 39,
+    "conceito": "ensino_jesus",
+    "referencia": "Mateus 28:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 40,
+    "conceito": "geracao_filhos",
+    "referencia": "Levítico 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 41,
+    "conceito": "geracao_filhos",
+    "referencia": "Marcos 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 42,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 43,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 44,
+    "conceito": "lei_obediencia",
+    "referencia": "Levítico 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 45,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 46,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 47,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Números 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 48,
+    "conceito": "jornada_partida",
+    "referencia": "Marcos 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 49,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 50,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 51,
+    "conceito": "lei_obediencia",
+    "referencia": "Números 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 52,
+    "conceito": "morte_esperanca",
+    "referencia": "Marcos 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 53,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 54,
+    "conceito": "lei_obediencia",
+    "referencia": "Números 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 55,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 56,
+    "conceito": "jornada_partida",
+    "referencia": "Marcos 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 57,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 58,
+    "conceito": "lei_obediencia",
+    "referencia": "Números 29:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 59,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 60,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 61,
+    "conceito": "lei_obediencia",
+    "referencia": "Deuteronômio 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 62,
+    "conceito": "ensino_jesus",
+    "referencia": "Marcos 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 63,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 64,
+    "conceito": "jornada_partida",
+    "referencia": "Lucas 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 65,
+    "conceito": "lei_obediencia",
+    "referencia": "Deuteronômio 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 66,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 67,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 68,
+    "conceito": "lei_obediencia",
+    "referencia": "Deuteronômio 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 69,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 70,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 71,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 72,
+    "conceito": "geracao_filhos",
+    "referencia": "Deuteronômio 29:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 73,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 74,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 75,
+    "conceito": "geracao_filhos",
+    "referencia": "Josué 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 76,
+    "conceito": "lei_obediencia",
+    "referencia": "Lucas 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 77,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 78,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 79,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Josué 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 80,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Lucas 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 81,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 82,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Josué 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 83,
+    "conceito": "pecado_transgressao",
+    "referencia": "Lucas 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 84,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 85,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 86,
+    "conceito": "geracao_filhos",
+    "referencia": "Juízes 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 87,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 18:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 88,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 89,
+    "conceito": "geracao_filhos",
+    "referencia": "Juízes 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 90,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 91,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Lucas 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 92,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 22:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 93,
+    "conceito": "geracao_filhos",
+    "referencia": "Rute 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 94,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 23:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 95,
+    "conceito": "ensino_jesus",
+    "referencia": "Lucas 24:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 96,
+    "conceito": "geracao_filhos",
+    "referencia": "1 Samuel 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 97,
+    "conceito": "ensino_jesus",
+    "referencia": "João 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 98,
+    "conceito": "ensino_jesus",
+    "referencia": "João 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 99,
+    "conceito": "ensino_jesus",
+    "referencia": "João 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 100,
+    "conceito": "guerra_conflito",
+    "referencia": "1 Samuel 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 101,
+    "conceito": "ensino_jesus",
+    "referencia": "João 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 102,
+    "conceito": "ensino_jesus",
+    "referencia": "João 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 103,
+    "conceito": "historia_real_de_fe",
+    "referencia": "1 Samuel 25:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 104,
+    "conceito": "jornada_partida",
+    "referencia": "João 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 105,
+    "conceito": "ensino_jesus",
+    "referencia": "João 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 106,
+    "conceito": "ensino_jesus",
+    "referencia": "João 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 107,
+    "conceito": "geracao_filhos",
+    "referencia": "2 Samuel 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 108,
+    "conceito": "ensino_jesus",
+    "referencia": "João 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 109,
+    "conceito": "ensino_jesus",
+    "referencia": "João 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 110,
+    "conceito": "geracao_filhos",
+    "referencia": "2 Samuel 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 111,
+    "conceito": "ensino_jesus",
+    "referencia": "João 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 112,
+    "conceito": "ensino_jesus",
+    "referencia": "João 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 113,
+    "conceito": "historia_real_de_fe",
+    "referencia": "2 Samuel 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 114,
+    "conceito": "ensino_jesus",
+    "referencia": "João 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 115,
+    "conceito": "ensino_jesus",
+    "referencia": "João 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 116,
+    "conceito": "ensino_jesus",
+    "referencia": "João 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 117,
+    "conceito": "historia_real_de_fe",
+    "referencia": "1 Reis 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 118,
+    "conceito": "ensino_jesus",
+    "referencia": "João 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 119,
+    "conceito": "geracao_filhos",
+    "referencia": "João 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 120,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "1 Reis 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 121,
+    "conceito": "jornada_partida",
+    "referencia": "João 18:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 122,
+    "conceito": "ensino_jesus",
+    "referencia": "João 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 123,
+    "conceito": "ensino_jesus",
+    "referencia": "João 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 124,
+    "conceito": "morte_esperanca",
+    "referencia": "2 Reis 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 125,
+    "conceito": "ensino_jesus",
+    "referencia": "João 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 126,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 127,
+    "conceito": "geracao_filhos",
+    "referencia": "2 Reis 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 128,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 129,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 130,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 131,
+    "conceito": "historia_real_de_fe",
+    "referencia": "2 Reis 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 132,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 133,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 134,
+    "conceito": "geracao_filhos",
+    "referencia": "1 Crônicas 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 135,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 136,
+    "conceito": "morte_esperanca",
+    "referencia": "Atos 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 137,
+    "conceito": "morte_esperanca",
+    "referencia": "Atos 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 138,
+    "conceito": "geracao_filhos",
+    "referencia": "1 Crônicas 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 139,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 140,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Atos 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 141,
+    "conceito": "geracao_filhos",
+    "referencia": "1 Crônicas 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 142,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 143,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 144,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 145,
+    "conceito": "geracao_filhos",
+    "referencia": "2 Crônicas 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 146,
+    "conceito": "ensino_jesus",
+    "referencia": "Atos 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 147,
+    "conceito": "geracao_filhos",
+    "referencia": "Atos 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 148,
+    "conceito": "historia_real_de_fe",
+    "referencia": "2 Crônicas 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 149,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 150,
+    "conceito": "jornada_partida",
+    "referencia": "Atos 18:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 151,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 152,
+    "conceito": "historia_real_de_fe",
+    "referencia": "2 Crônicas 18:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 153,
+    "conceito": "jornada_partida",
+    "referencia": "Atos 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 154,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 155,
+    "conceito": "historia_real_de_fe",
+    "referencia": "2 Crônicas 26:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 156,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Atos 22:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 157,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Atos 23:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 158,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 24:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 159,
+    "conceito": "geracao_filhos",
+    "referencia": "2 Crônicas 36:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 160,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 25:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 161,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 26:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 162,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Esdras 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 163,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 27:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 164,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Atos 28:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 165,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 166,
+    "conceito": "geracao_filhos",
+    "referencia": "Neemias 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 167,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 168,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 169,
+    "conceito": "geracao_filhos",
+    "referencia": "Ester 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 170,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 171,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 172,
+    "conceito": "pecado_transgressao",
+    "referencia": "Romanos 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 173,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Jó 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 174,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 175,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 176,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Jó 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 177,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 178,
+    "conceito": "salvacao_libertacao",
+    "referencia": "Romanos 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 179,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 180,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Jó 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 181,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Romanos 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 182,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 183,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Jó 28:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 184,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 185,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 186,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Jó 36:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 187,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Romanos 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 188,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 189,
+    "conceito": "sabedoria_entendimento",
+    "referencia": "1 Coríntios 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 190,
+    "conceito": "misericordia_compaixao",
+    "referencia": "Salmos 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 191,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 192,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 193,
+    "conceito": "geracao_filhos",
+    "referencia": "Salmos 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 194,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 195,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 196,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 197,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 22:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 198,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 199,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": true,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 200,
+    "conceito": "geracao_filhos",
+    "referencia": "Salmos 29:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 201,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 202,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 203,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 204,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 40:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 205,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 206,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 207,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 47:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 208,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 209,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Coríntios 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 210,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 211,
+    "conceito": "misericordia_compaixao",
+    "referencia": "Salmos 57:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 212,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 213,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 214,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 65:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 215,
+    "conceito": "misericordia_compaixao",
+    "referencia": "2 Coríntios 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 216,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 217,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 218,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 75:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 219,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 220,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 221,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 83:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 222,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 223,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 224,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 225,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 93:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 226,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 227,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Coríntios 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 228,
+    "conceito": "misericordia_compaixao",
+    "referencia": "Salmos 101:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 229,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Gálatas 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": true,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 230,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Gálatas 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 231,
+    "conceito": "sabedoria_entendimento",
+    "referencia": "Gálatas 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 232,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Salmos 111:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 233,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Gálatas 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 234,
+    "conceito": "salvacao_libertacao",
+    "referencia": "Gálatas 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 235,
+    "conceito": "bencao",
+    "referencia": "Salmos 119:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 236,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Gálatas 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 237,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Efésios 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 238,
+    "conceito": "pecado_transgressao",
+    "referencia": "Efésios 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 239,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 129:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 240,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Efésios 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 241,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Efésios 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 242,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 136:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 243,
+    "conceito": "geracao_filhos",
+    "referencia": "Efésios 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 244,
+    "conceito": "geracao_filhos",
+    "referencia": "Efésios 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 245,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Filipenses 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 246,
+    "conceito": "louvor_gratidao",
+    "referencia": "Salmos 147:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 247,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Filipenses 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 248,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Filipenses 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": true,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 249,
+    "conceito": "geracao_filhos",
+    "referencia": "Provérbios 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 250,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Filipenses 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 251,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Colossenses 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 252,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Colossenses 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 253,
+    "conceito": "sabedoria_entendimento",
+    "referencia": "Provérbios 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 254,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Colossenses 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 255,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Colossenses 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 256,
+    "conceito": "sabedoria_entendimento",
+    "referencia": "Provérbios 22:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 257,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Tessalonicenses 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 258,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Tessalonicenses 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 259,
+    "conceito": "geracao_filhos",
+    "referencia": "Provérbios 30:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 260,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Tessalonicenses 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 261,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Tessalonicenses 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 262,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Tessalonicenses 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 263,
+    "conceito": "sabedoria_entendimento",
+    "referencia": "Eclesiastes 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 264,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Tessalonicenses 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 265,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Tessalonicenses 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 266,
+    "conceito": "historia_real_de_fe",
+    "referencia": "Cânticos 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 267,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Tessalonicenses 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 268,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Timóteo 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 269,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Timóteo 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 270,
+    "conceito": "geracao_filhos",
+    "referencia": "Isaías 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 271,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Timóteo 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 272,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Timóteo 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 273,
+    "conceito": "profecia_juizo",
+    "referencia": "Isaías 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 274,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Timóteo 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 275,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Timóteo 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 276,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Timóteo 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 277,
+    "conceito": "profecia_juizo",
+    "referencia": "Isaías 24:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 278,
+    "conceito": "geracao_filhos",
+    "referencia": "2 Timóteo 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 279,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Timóteo 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 280,
+    "conceito": "profecia_juizo",
+    "referencia": "Isaías 32:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 281,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Timóteo 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 282,
+    "conceito": "misericordia_compaixao",
+    "referencia": "Tito 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 283,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Tito 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 284,
+    "conceito": "profecia_juizo",
+    "referencia": "Isaías 42:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 285,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Tito 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 286,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Filemom 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 287,
+    "conceito": "profecia_juizo",
+    "referencia": "Isaías 50:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 288,
+    "conceito": "geracao_filhos",
+    "referencia": "Hebreus 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 289,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 290,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 291,
+    "conceito": "profecia_juizo",
+    "referencia": "Isaías 60:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 292,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 293,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Hebreus 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 294,
+    "conceito": "profecia_juizo",
+    "referencia": "Jeremias 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 295,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 296,
+    "conceito": "bencao",
+    "referencia": "Hebreus 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 297,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 298,
+    "conceito": "profecia_juizo",
+    "referencia": "Jeremias 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 299,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 300,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Hebreus 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 301,
+    "conceito": "geracao_filhos",
+    "referencia": "Jeremias 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 302,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 303,
+    "conceito": "pecado_transgressao",
+    "referencia": "Hebreus 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 304,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Hebreus 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 305,
+    "conceito": "profecia_juizo",
+    "referencia": "Jeremias 30:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 306,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Tiago 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 307,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Tiago 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 308,
+    "conceito": "geracao_filhos",
+    "referencia": "Jeremias 37:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 309,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Tiago 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 310,
+    "conceito": "guerra_conflito",
+    "referencia": "Tiago 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 311,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Tiago 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 312,
+    "conceito": "profecia_juizo",
+    "referencia": "Jeremias 48:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 313,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Pedro 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 314,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Pedro 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 315,
+    "conceito": "profecia_juizo",
+    "referencia": "Lamentações de Jeremias 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 316,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Pedro 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 317,
+    "conceito": "pecado_transgressao",
+    "referencia": "1 Pedro 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 318,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 Pedro 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 319,
+    "conceito": "profecia_juizo",
+    "referencia": "Ezequiel 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 320,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Pedro 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 321,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Pedro 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 322,
+    "conceito": "profecia_juizo",
+    "referencia": "Ezequiel 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 323,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "2 Pedro 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 324,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 João 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 325,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 João 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 326,
+    "conceito": "profecia_juizo",
+    "referencia": "Ezequiel 26:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 327,
+    "conceito": "geracao_filhos",
+    "referencia": "1 João 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 328,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "1 João 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 329,
+    "conceito": "profecia_juizo",
+    "referencia": "Ezequiel 34:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 330,
+    "conceito": "geracao_filhos",
+    "referencia": "1 João 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 331,
+    "conceito": "geracao_filhos",
+    "referencia": "2 João 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 332,
+    "conceito": "profecia_juizo",
+    "referencia": "Ezequiel 41:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 333,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "3 João 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 334,
+    "conceito": "vida_comunidade_igreja",
+    "referencia": "Judas 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 335,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 336,
+    "conceito": "profecia_juizo",
+    "referencia": "Daniel 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 337,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 2:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 338,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 339,
+    "conceito": "profecia_juizo",
+    "referencia": "Daniel 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 340,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 341,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 5:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 342,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 6:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 343,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Oséias 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 344,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 7:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 345,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 8:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 346,
+    "conceito": "profecia_juizo",
+    "referencia": "Joel 3:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 347,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 9:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 348,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 10:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 349,
+    "conceito": "adoracao_sacrificio",
+    "referencia": "Apocalipse 11:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 350,
+    "conceito": "guerra_conflito",
+    "referencia": "Obadias 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": true,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 351,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 12:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 352,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 13:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 353,
+    "conceito": "profecia_juizo",
+    "referencia": "Miquéias 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 354,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 355,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 15:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 356,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 16:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 357,
+    "conceito": "geracao_filhos",
+    "referencia": "Sofonias 1:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 358,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 17:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": true,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 359,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 18:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 360,
+    "conceito": "profecia_juizo",
+    "referencia": "Zacarias 4:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 361,
+    "conceito": "salvacao_libertacao",
+    "referencia": "Apocalipse 19:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 362,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 20:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 363,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 21:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 364,
+    "conceito": "profecia_juizo",
+    "referencia": "Zacarias 14:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  },
+  {
+    "dia": 365,
+    "conceito": "eternidade_volta_cristo",
+    "referencia": "Apocalipse 22:1",
+    "referencia_validada": true,
+    "risco_autoajuda_generica": false,
+    "criterios": {
+      "c1_versiculo_removivel": false,
+      "c2_acao_independente": false,
+      "c3_oracao_sem_agente": false,
+      "c4_tema_generico": false,
+      "c5_sem_progressao": false
+    },
+    "travas_detectadas": []
+  }
+]

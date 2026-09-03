@@ -1,8 +1,11 @@
-const CACHE_NAME = '365-manhas-com-deus-v6';
+const CACHE_NAME = '365-manhas-com-deus-v10';
 // Arquivos pequenos que mudam com frequência: sempre busca a versão mais nova primeiro.
-const CORE_ASSETS = ['./', './index.html', './app.js', './manifest.json', './icon.svg'];
+const CORE_ASSETS = [
+  './', './index.html', './app.js', './manifest.json', './icon.svg',
+  './cards4k.js', './corretor.js', './devocional.js', './vendor/qrcode.js', './feriados.json',
+];
 // Arquivos grandes/estáticos que raramente mudam: prioriza o cache para ficar rápido offline.
-const STATIC_ASSETS = ['./tailwind.css', './bible-alm1911.json'];
+const STATIC_ASSETS = ['./tailwind.css', './bible-alm1911.json', './devocionais-365.json'];
 const ASSETS = [...CORE_ASSETS, ...STATIC_ASSETS];
 
 self.addEventListener('install', (event) => {

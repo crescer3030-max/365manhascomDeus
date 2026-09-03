@@ -1,0 +1,73 @@
+{
+  "arquivo": "AUDIT-365-TEOLOGICO-V2.json",
+  "metodo_e_limites_honestos": [
+    "Reescrita: cada dia foi reconstruído a partir de um dicionário de ~18 conceitos bíblicos concretos, escolhido por palavra-gatilho literalmente presente no versículo do dia (ou por gênero do livro, como fallback) — não é geração livre nem leitura teológica humana verso a verso.",
+    "BUG REAL encontrado e corrigido durante esta etapa: o gerador anterior sempre priorizava o primeiro capítulo do Antigo Testamento do dia como versículo-âncora (`ot[0] || nt[0]`); como todo dia tem pelo menos 1 capítulo do AT, isso significava que NENHUM dos 365 dias citava o Novo Testamento (0/365) — violação direta da trava \"JESUS CRISTO no centro\". Corrigido para priorizar o NT quando disponível (`nt[0] || ot[0]`): agora 260/365 dias citam o NT, cobrindo os 27 livros.",
+    "BUG REAL encontrado e corrigido: a checagem da trava \"prosperidade como riqueza garantida\" usava o padrão /vai (fic|enriquec)/i, que dava falso positivo em qualquer \"vai ficar claro/melhor\" sem relação nenhuma com dinheiro. Corrigido para exigir a palavra de riqueza de verdade.",
+    "Verificação manual (não só automática): li integralmente uma amostra de dias espalhados (incluindo Novo e Antigo Testamento, narrativa e ensino) e encontrei 2 problemas reais que a bateria automática não pegou: (1) a extração mecânica de \"palavra de destaque\" às vezes escolhia um verbo sem carga de sentido (ex.: \"sobrevieram\") — corrigido com uma lista de exclusão; (2) o conceito \"geração/filhos\" presumia aprovação moral de qualquer pessoa nomeada numa genealogia, o que soava estranho para reis biblicamente infiéis (ex.: Achaz, 2 Reis 16) — a redação foi suavizada para não presumir louvor, só presença de DEUS na história.",
+    "O Teste do Autoajuda (5 critérios) foi implementado como proxy mecânico sobre sobreposição de vocabulário entre o versículo e o texto, presença de marcadores teológicos, e frases de agente na oração — não é leitura humana linha a linha. Pode haver falsos negativos residuais (um texto que \"passa\" no teste mecânico mas ainda pareceria genérico a um leitor humano atento) e falsos positivos pontuais (um texto genuinamente bom que a heurística não creditou). Os 3 dias que ainda falham (ver dias_ainda_com_risco) foram deixados como estão, não forçados a passar."
+  ],
+  "gerado_em": "2026-09-02T09:25:56.444Z",
+  "comparacao_v1_vs_v2": {
+    "dias_risco_autoajuda_v1": 365,
+    "dias_risco_autoajuda_v2": 3,
+    "percentual_v1": 100,
+    "percentual_v2": 0.8,
+    "dias_ancorados_no_novo_testamento_v1": 0,
+    "dias_ancorados_no_novo_testamento_v2": 260
+  },
+  "status_geral": "APROVADO",
+  "dias_risco_autoajuda": 3,
+  "percentual_risco_autoajuda": 0.8,
+  "violacoes_travas_proibidas": 0,
+  "referencias_biblicas_invalidas": 0,
+  "duplicatas_palavra": 0,
+  "duplicatas_reflexao": 0,
+  "cobertura_novo_testamento": {
+    "dias": 260,
+    "percentual": 71.2
+  },
+  "distribuicao_por_conceito": {
+    "geracao_filhos": 40,
+    "ensino_jesus": 74,
+    "lei_obediencia": 14,
+    "jornada_partida": 10,
+    "adoracao_sacrificio": 9,
+    "vida_comunidade_igreja": 104,
+    "morte_esperanca": 4,
+    "historia_real_de_fe": 35,
+    "pecado_transgressao": 5,
+    "guerra_conflito": 3,
+    "salvacao_libertacao": 3,
+    "sabedoria_entendimento": 5,
+    "misericordia_compaixao": 5,
+    "louvor_gratidao": 10,
+    "bencao": 2,
+    "profecia_juizo": 22,
+    "eternidade_volta_cristo": 20
+  },
+  "dias_ainda_com_risco": [
+    {
+      "dia": 199,
+      "criterios_falhos": [
+        "c2_acao_independente",
+        "c4_tema_generico"
+      ]
+    },
+    {
+      "dia": 229,
+      "criterios_falhos": [
+        "c2_acao_independente",
+        "c4_tema_generico"
+      ]
+    },
+    {
+      "dia": 248,
+      "criterios_falhos": [
+        "c2_acao_independente",
+        "c4_tema_generico"
+      ]
+    }
+  ],
+  "recomendacao": "Todas as verificações automáticas passaram nos limites definidos pelo protocolo v2.1 (menos de 5% de risco de autoajuda genérica, zero travas violadas, todas as referências bíblicas válidas). Isso é o que dá para certificar automaticamente — segue recomendável uma leitura humana teológica de amostra antes da venda, especialmente da nova cobertura do Novo Testamento."
+}

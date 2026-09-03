@@ -2,421 +2,120 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcelo Cabral — Hub de Produtos</title>
-<meta name="description" content="Transformação digital, IA de modo ético e propósito. Produtos, e-books e guias práticos.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>365 Manhãs com Deus</title>
+<meta name="description" content="Devocional diário completo, com plano de leitura da Bíblia em 365 dias, jogos bíblicos e gerador de cartões — 100% offline.">
+<meta name="theme-color" content="#0D1B2A">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="Logo APP.png">
+<link rel="stylesheet" href="tailwind.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --grafite:#1B1F27; --grafite2:#2A2F3A; --dourado:#D4A657; --dourado-esc:#A67C2E;
-  --bg:#F7F5F1; --card:#fff; --txt:#1B1F27; --txt2:#6B6558; --borda:#E7E2D8;
-  --verde-wpp:#25D366; --sucesso:#1E9E52; --erro:#D64545;
+  /* Valores iniciais = paleta "Navy Dourado" escura (padrão do produto),
+     antes do JS aplicar a paleta/tema salvos do usuário (applyPalette()) —
+     evita um "flash" da paleta antiga no primeiro paint. */
+  --bg:#0D1B2A; --text:#F5F1E8; --accent:#E8B54C; --btn:#D4AF37; --btn-soft:#22364D; --card:#1B2A3D;
+  --bg-2:#1B2A3D; --bg-3:#22364D; --gold-2:#F4D99F; --text-soft:#B8A98A; --warm:#FF8C42;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none}
-img{max-width:100%;display:block}
-.container{max-width:640px;margin:0 auto;padding:0 18px}
+*{ -webkit-tap-highlight-color: transparent; }
+html,body{ background:var(--bg); color:var(--text); min-height:100%; }
+body{ font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+.font-display{ font-family: Georgia, "Playfair Display", "Times New Roman", serif; }
+.card{ background:var(--card); border-radius:1.1rem; }
+.bg-accent{ background-color:var(--accent) !important; }
+.text-accent{ color:var(--accent) !important; }
+.bg-btn{ background-color:var(--btn) !important; }
+.bg-btn-soft{ background-color:var(--btn-soft) !important; }
+.bible-text{ font-family: Georgia, "Times New Roman", serif; }
+.safe-bottom{ padding-bottom: env(safe-area-inset-bottom, 0); }
+.fade-in{ animation: fadeIn .18s ease-out; }
+@keyframes fadeIn{ from{ opacity:0; transform: translateY(4px); } to{ opacity:1; transform:none; } }
 
-header.topo{background:linear-gradient(135deg,var(--grafite),var(--grafite2));color:#fff;padding:28px 0 34px}
-.topo-in{display:flex;align-items:center;gap:14px}
-.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));
-  display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:#241a06;flex-shrink:0}
-.topo-nome{font-size:19px;font-weight:800}
-.topo-sub{font-size:12.5px;color:#D8D2C4;margin-top:2px}
-.selos{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.selo{background:rgba(212,166,87,.16);border:1px solid rgba(212,166,87,.4);color:var(--dourado);
-  font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:20px}
+#appHeader{ position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--bg-3); }
+#appNav{ position:sticky; bottom:0; z-index:20; background:var(--card); border-top:1px solid var(--bg-3); }
+.navBtn{ display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 4px; font-size:11px; flex:1; }
+#audioBar{ position:sticky; bottom:64px; z-index:19; background:var(--card); border-top:1px solid var(--bg-3); }
+#audioProgressTrack{ background:var(--bg-3); }
+#audioProgress{ background:var(--accent); }
 
-.hero{background:var(--card);margin:-18px 18px 22px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.12);
-  overflow:hidden;position:relative;z-index:2}
-.hero-faixa{background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));color:#241a06;
-  font-size:11px;font-weight:800;letter-spacing:1px;padding:7px 18px;text-align:center}
-.hero-corpo{padding:22px 20px 24px}
-.hero-corpo h1{font-size:21px;line-height:1.28;font-weight:800;color:var(--grafite);margin-bottom:10px}
-.hero-corpo .desc{font-size:14px;color:var(--txt2);margin-bottom:16px}
-.hero-beneficios{margin-bottom:18px}
-.hero-beneficios li{list-style:none;display:flex;gap:9px;align-items:flex-start;font-size:13.5px;margin-bottom:9px}
-.hero-beneficios li b{color:var(--sucesso);flex-shrink:0}
-.hero-preco{display:flex;align-items:baseline;gap:8px;margin-bottom:16px}
-.hero-preco .por{font-size:26px;font-weight:800;color:var(--grafite)}
-.btn-cta{display:block;width:100%;text-align:center;padding:15px;border-radius:11px;font-weight:800;font-size:15px;
-  background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));color:#241a06;
-  box-shadow:0 8px 20px rgba(212,166,87,.35)}
-.btn-cta:active{transform:scale(.98)}
-.aviso-legal-hero{font-size:10.5px;color:var(--txt2);text-align:center;margin-top:10px;line-height:1.6}
+/* ---------------- Etapa 3: identidade visual "premium 4K" ---------------- */
+.gold-cta{
+  background:linear-gradient(135deg, var(--gold-2), var(--btn));
+  color:#1B2A3D; font-weight:700; border-radius:999px;
+}
+.gold-cta:active{ transform:scale(.98); }
+.label-gold{
+  color:var(--accent); font-weight:600; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+.badge-conceito{
+  display:inline-block; background:var(--bg-3); color:var(--accent); border:1px solid var(--accent);
+  border-radius:999px; padding:3px 12px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+}
+.section-icon{
+  display:inline-flex; align-items:center; justify-content:center; width:1.5em; height:1.5em;
+  color:var(--accent); flex-shrink:0;
+}
+.hero-sunrise{ position:relative; border-radius:1.25rem; overflow:hidden; }
+.hero-sunrise canvas{ display:block; width:100%; height:100%; }
+.progress-ring circle{ transition: stroke-dashoffset .5s ease; }
 
-.secao{margin:26px 0 8px}
-.secao-tit{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:0 18px}
-.secao-tit h2{font-size:15px;font-weight:800;color:var(--grafite)}
-.secao-tit span{font-size:11px;color:var(--txt2);font-weight:700}
-.prateleira{display:flex;gap:12px;overflow-x:auto;padding:0 18px 6px;scroll-snap-type:x mandatory}
-.prateleira::-webkit-scrollbar{height:5px}
-.prateleira::-webkit-scrollbar-thumb{background:var(--borda);border-radius:10px}
-.pcard{flex:0 0 200px;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--borda);
-  scroll-snap-align:start;display:flex;flex-direction:column}
-.pcard-img{height:110px;background:linear-gradient(135deg,var(--grafite),var(--grafite2));
-  display:flex;align-items:center;justify-content:center;font-size:34px;position:relative}
-.pcard-tag{position:absolute;top:8px;left:8px;background:var(--dourado);color:#241a06;font-size:9px;
-  font-weight:800;padding:3px 8px;border-radius:12px}
-.pcard-corpo{padding:12px 13px 14px;flex:1;display:flex;flex-direction:column}
-.pcard-corpo h3{font-size:13px;font-weight:800;color:var(--grafite);margin-bottom:5px;line-height:1.25}
-.pcard-corpo p{font-size:11.5px;color:var(--txt2);margin-bottom:10px;flex:1}
-.pcard-preco{font-size:13px;font-weight:800;color:var(--grafite);margin-bottom:8px}
-.pcard-preco .gratis{color:var(--sucesso)}
-.pcard-btn{display:block;text-align:center;padding:9px;border-radius:8px;font-size:12px;font-weight:800;
-  background:var(--grafite);color:#fff}
-.pcard-btn.dourado{background:linear-gradient(135deg,var(--dourado),var(--dourado-esc));color:#241a06}
-
-.captura{background:var(--card);margin:28px 18px;border-radius:16px;padding:22px 20px;border:1px solid var(--borda)}
-.captura h2{font-size:16px;font-weight:800;color:var(--grafite);margin-bottom:6px}
-.captura .desc{font-size:13px;color:var(--txt2);margin-bottom:16px}
-.canal-opcoes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.canal-opt{padding:12px 8px;border:2px solid var(--borda);border-radius:10px;text-align:center;
-  font-size:12.5px;font-weight:700;color:var(--txt2);background:#fff}
-.canal-opt.sel{border-color:var(--dourado);background:rgba(212,166,87,.1);color:var(--dourado-esc)}
-.campo-form{margin-bottom:12px}
-.campo-form label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:var(--txt2)}
-.campo-form input{width:100%;padding:12px 13px;border:1.5px solid var(--borda);border-radius:9px;font-size:14px}
-.campo-form input:focus{outline:none;border-color:var(--dourado)}
-.lgpd-linha{display:flex;gap:9px;align-items:flex-start;margin:14px 0 16px;font-size:11.5px;color:var(--txt2);line-height:1.55}
-.lgpd-linha input{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--dourado-esc)}
-.msg-status{font-size:12px;padding:10px 12px;border-radius:8px;margin-bottom:12px;display:none}
-.msg-status.erro{display:block;background:#FDEEEE;color:var(--erro)}
-.msg-status.ok{display:block;background:#EAF7EE;color:var(--sucesso)}
-
-footer{padding:26px 18px 100px;text-align:center;font-size:11px;color:var(--txt2);line-height:1.8}
-footer a{color:var(--dourado-esc);font-weight:700}
-
-.wpp-flutuante{position:fixed;right:18px;bottom:18px;z-index:500;background:var(--verde-wpp);color:#fff;
-  width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:28px;box-shadow:0 8px 22px rgba(37,211,102,.45);animation:pulsa 2.2s infinite}
-@keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-
-.overlay-exit{display:none;position:fixed;inset:0;background:rgba(27,31,39,.72);z-index:900;
-  align-items:center;justify-content:center;padding:20px}
-.overlay-exit.on{display:flex}
-.modal-exit{background:var(--card);border-radius:18px;max-width:400px;width:100%;overflow:hidden;
-  box-shadow:0 30px 70px rgba(0,0,0,.4);position:relative}
-.modal-exit-topo{background:linear-gradient(135deg,var(--grafite),var(--grafite2));color:#fff;
-  padding:26px 22px;text-align:center}
-.modal-exit-topo .selo-exit{background:var(--dourado);color:#241a06;font-size:10px;font-weight:800;
-  padding:4px 10px;border-radius:12px;display:inline-block;margin-bottom:10px}
-.modal-exit-topo h3{font-size:18px;font-weight:800;line-height:1.3}
-.modal-exit-corpo{padding:20px 22px 24px}
-.fechar-exit{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);color:#fff;
-  width:30px;height:30px;border-radius:50%;font-size:16px;font-weight:700}
-
-@media(min-width:480px){ .container{padding:0 24px} }
+.dark body{ }
 </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-<header class="topo">
-  <div class="container">
-    <div class="topo-in">
-      <div class="avatar">MC</div>
-      <div>
-        <div class="topo-nome">Marcelo Cabral</div>
-        <div class="topo-sub">Transformação Digital · IA de Modo Ético · Propósito</div>
-      </div>
-    </div>
-    <div class="selos">
-      <span class="selo">🎓 MBA em Inteligência Artificial</span>
-      <span class="selo">🎓 Pós-graduação em Engenharia de Software</span>
-      <span class="selo">✅ Conteúdo com fonte verificada</span>
+<div id="abertura" style="position:fixed;inset:0;z-index:100;background:#0D1B2A;display:none;">
+  <canvas id="aberturaCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;">
+    <div id="aberturaLogo" class="font-display" style="opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;color:#F4D99F;font-weight:800;font-size:2.6rem;line-height:1.1;letter-spacing:.02em;text-shadow:0 2px 24px rgba(232,181,76,.35);">365<br>MANHÃS<br>COM DEUS</div>
+    <div id="aberturaSubtitulo" style="opacity:0;transition:opacity .6s ease;color:#B8A98A;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;margin-top:14px;font-weight:600;">Comece hoje sua melhor manhã</div>
+  </div>
+  <button id="aberturaPular" onclick="pularAbertura()" aria-label="Pular abertura" style="position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;opacity:0;transition:opacity .3s ease;pointer-events:none;background:rgba(245,241,232,.12);color:#F5F1E8;border:1px solid rgba(245,241,232,.3);border-radius:999px;padding:6px 16px;font-size:12px;font-weight:600;">Pular ›</button>
+</div>
+
+<header id="appHeader" class="safe-bottom">
+  <div class="max-w-md mx-auto px-4 py-3 flex items-center gap-2">
+    <button id="backBtn" onclick="goBack()" class="hidden text-lg px-1 active:opacity-60" aria-label="Voltar">←</button>
+    <h1 id="screenTitle" class="font-display font-bold text-lg flex-1 truncate">365 Manhãs com Deus</h1>
+    <div class="flex items-center gap-1 text-xs font-semibold">
+      <button id="langPt" onclick="setLang('pt')" class="px-2 py-1 rounded-full bg-btn-soft">PT</button>
+      <button id="langEn" onclick="setLang('en')" class="px-2 py-1 rounded-full opacity-60">EN</button>
     </div>
   </div>
 </header>
 
-<div class="hero">
-  <div class="hero-faixa">⭐ PRODUTO EM DESTAQUE</div>
-  <div class="hero-corpo">
-    <h1>Ganhando Dinheiro com Inteligência Artificial de Modo Ético</h1>
-    <div class="desc">Um guia direto sobre como usar IA de forma transparente e responsável — sem promessa de ganho fácil, com método real.</div>
-    <ul class="hero-beneficios">
-      <li><b>✓</b> Linguagem simples, sem jargão técnico</li>
-      <li><b>✓</b> Fontes verificadas e checklist anti-promessa</li>
-      <li><b>✓</b> Conteúdo pensado para quem está começando do zero</li>
-    </ul>
-    <div class="hero-preco"><span class="por">R$ 47</span></div>
-    <a class="btn-cta" href="#" id="linkCheckoutHero" data-produto="ebook-ia-etica">🔓 Quero acessar agora</a>
-    <div class="aviso-legal-hero">Pagamento processado pela plataforma de checkout (Hotmart/Kiwify). Sem garantia de resultado financeiro — conteúdo educacional.</div>
+<main class="max-w-md mx-auto px-4 pt-4 pb-8 w-full"></main>
+
+<div id="audioBar" class="hidden safe-bottom">
+  <div class="max-w-md mx-auto px-4 py-2 flex items-center gap-3">
+    <button onclick="audioPlay()" class="text-lg active:scale-90" aria-label="Tocar/Pausar">▶️</button>
+    <button onclick="audioPause()" class="text-lg active:scale-90" aria-label="Pausar">⏸️</button>
+    <button onclick="audioStop()" class="text-lg active:scale-90" aria-label="Parar">⏹️</button>
+    <div class="flex-1 min-w-0">
+      <div id="audioLabel" class="text-xs font-semibold truncate mb-1"></div>
+      <div id="audioProgressTrack" class="h-1.5 rounded-full overflow-hidden">
+        <div id="audioProgress" class="h-full" style="width:0%"></div>
+      </div>
+    </div>
+    <button onclick="cycleSpeed()" id="audioSpeed" class="text-xs font-bold bg-btn-soft rounded-full px-2 py-1">1.0x</button>
   </div>
 </div>
 
-<section class="secao">
-  <div class="secao-tit"><h2>🙏 Espiritualidade</h2><span>1 app</span></div>
-  <div class="prateleira">
-    <div class="pcard">
-      <div class="pcard-img">📖<span class="pcard-tag">APP GRÁTIS</span></div>
-      <div class="pcard-corpo">
-        <h3>365 Manhãs com Deus</h3>
-        <p>Devocional diário completo, com plano de leitura de 365 dias.</p>
-        <div class="pcard-preco"><span class="gratis">Grátis</span></div>
-        <a class="pcard-btn dourado" href="https://crescer3030-max.github.io/365manhascomDeus/index.html" target="_blank" rel="noopener">Abrir o app</a>
-      </div>
-    </div>
+<nav id="appNav" class="safe-bottom">
+  <div class="max-w-md mx-auto flex">
+    <button class="navBtn" data-nav="home" onclick="showScreen('home')"><span>🏠</span><span>Hoje</span></button>
+    <button class="navBtn" data-nav="temas" onclick="showScreen('temas')"><span>🔍</span><span>Temas</span></button>
+    <button class="navBtn" data-nav="pedido" onclick="showScreen('pedido')"><span>🙏</span><span>Orar</span></button>
+    <button class="navBtn" data-nav="jogos" onclick="showScreen('jogos')"><span>🎮</span><span>Jogos</span></button>
+    <button class="navBtn" data-nav="mais" onclick="showScreen('mais')"><span>☰</span><span>Mais</span></button>
   </div>
-</section>
+</nav>
 
-<section class="secao">
-  <div class="secao-tit"><h2>💰 Educação Financeira</h2><span>exemplo — edite</span></div>
-  <div class="prateleira">
-    <div class="pcard">
-      <div class="pcard-img">👩‍💼</div>
-      <div class="pcard-corpo">
-        <h3>Finanças para Mulheres</h3>
-        <p>Guia prático de organização financeira do zero.</p>
-        <div class="pcard-preco">R$ 27</div>
-        <a class="pcard-btn" href="#" data-produto="financas-mulheres">Ver mais</a>
-      </div>
-    </div>
-    <div class="pcard">
-      <div class="pcard-img">📈</div>
-      <div class="pcard-corpo">
-        <h3>Investimentos para Jovens</h3>
-        <p>Primeiros passos para quem nunca investiu.</p>
-        <div class="pcard-preco">R$ 27</div>
-        <a class="pcard-btn" href="#" data-produto="investimentos-jovens">Ver mais</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="secao">
-  <div class="secao-tit"><h2>🔧 Soluções Práticas</h2><span>exemplo — edite</span></div>
-  <div class="prateleira">
-    <div class="pcard">
-      <div class="pcard-img">🛠️</div>
-      <div class="pcard-corpo">
-        <h3>Pequenos Consertos Domésticos</h3>
-        <p>Guia rápido para resolver o básico em casa.</p>
-        <div class="pcard-preco">R$ 9,90</div>
-        <a class="pcard-btn" href="#" data-produto="consertos-domesticos">Ver mais</a>
-      </div>
-    </div>
-    <div class="pcard">
-      <div class="pcard-img">🪛</div>
-      <div class="pcard-corpo">
-        <h3>Faça-Você-Mesmo</h3>
-        <p>Projetos simples para o fim de semana.</p>
-        <div class="pcard-preco">R$ 9,90</div>
-        <a class="pcard-btn" href="#" data-produto="faca-voce-mesmo">Ver mais</a>
-      </div>
-    </div>
-    <div class="pcard">
-      <div class="pcard-img">🗂️</div>
-      <div class="pcard-corpo">
-        <h3>Organização</h3>
-        <p>Checklist de organização da casa em 7 dias.</p>
-        <div class="pcard-preco">R$ 9,90</div>
-        <a class="pcard-btn" href="#" data-produto="organizacao">Ver mais</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="captura" id="formCapturaPrincipal">
-  <h2>📥 Receba um material grátis</h2>
-  <div class="desc">Escolha como prefere receber — sem spam, você pode cancelar quando quiser.</div>
-
-  <div class="canal-opcoes">
-    <button type="button" class="canal-opt sel" data-canal="whatsapp">📱 Via WhatsApp</button>
-    <button type="button" class="canal-opt" data-canal="email">✉️ Via E-mail</button>
-  </div>
-
-  <form id="formLead" novalidate>
-    <div class="campo-form">
-      <label for="leadNome">Seu nome</label>
-      <input type="text" id="leadNome" placeholder="Como podemos te chamar" required>
-    </div>
-    <div class="campo-form" id="campoContato">
-      <label for="leadContato" id="labelContato">Seu WhatsApp (com DDD)</label>
-      <input type="text" id="leadContato" placeholder="(11) 91234-5678" required>
-    </div>
-    <div class="lgpd-linha">
-      <input type="checkbox" id="leadLGPD" required>
-      <label for="leadLGPD">Autorizo o contato para receber este material e futuras novidades gratuitas, conforme a Lei Geral de Proteção de Dados (LGPD). Posso cancelar quando quiser.</label>
-    </div>
-    <div class="msg-status" id="msgStatusForm"></div>
-    <button type="submit" class="btn-cta" id="btnEnviarLead">Quero receber grátis</button>
-  </form>
-</div>
-
-<footer>
-  <div>© 2026 Marcelo Cabral — Transformação Digital & IA de Modo Ético</div>
-  <div style="margin-top:6px">Conteúdo educacional. Sem garantia de resultado financeiro. Dados tratados conforme a LGPD (Lei 13.709/2018).</div>
-  <div style="margin-top:10px"><a href="#" id="linkPolitica">Política de Privacidade</a></div>
-</footer>
-
-<a class="wpp-flutuante" id="wppFlutuante" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬</a>
-
-<div class="overlay-exit" id="overlayExit">
-  <div class="modal-exit">
-    <button class="fechar-exit" id="fecharExit">×</button>
-    <div class="modal-exit-topo">
-      <div class="selo-exit">ESPERA!</div>
-      <h3>Antes de sair, leve um material grátis</h3>
-    </div>
-    <div class="modal-exit-corpo">
-      <p style="font-size:13px;color:var(--txt2);margin-bottom:16px">Um guia rápido e prático, sem custo. Deixe seu contato e enviamos agora.</p>
-      <button class="btn-cta" id="btnExitIr">Quero o material grátis</button>
-    </div>
-  </div>
-</div>
-
-<script>
-"use strict";
-
-var CONFIG = {
-  numeroWhatsApp: "5511999999999",
-  mensagemWhatsAppPadrao: "Olá! Vim pelo site e quero saber mais sobre os materiais gratuitos.",
-  linksCheckout: {
-    "ebook-ia-etica": "#SUBSTITUA_PELO_LINK_HOTMART_OU_KIWIFY",
-    "financas-mulheres": "#SUBSTITUA_PELO_LINK",
-    "investimentos-jovens": "#SUBSTITUA_PELO_LINK",
-    "consertos-domesticos": "#SUBSTITUA_PELO_LINK",
-    "faca-voce-mesmo": "#SUBSTITUA_PELO_LINK",
-    "organizacao": "#SUBSTITUA_PELO_LINK"
-  },
-  emailContato: "contato@seudominio.com.br"
-};
-
-function $(id){ return document.getElementById(id); }
-
-function montarLinkWhatsApp(msg){
-  return "https://wa.me/" + CONFIG.numeroWhatsApp + "?text=" + encodeURIComponent(msg || CONFIG.mensagemWhatsAppPadrao);
-}
-
-var canalEscolhido = "whatsapp";
-
-document.addEventListener("DOMContentLoaded", function(){
-  var wpp = $("wppFlutuante");
-  if(wpp) wpp.href = montarLinkWhatsApp();
-
-  var links = document.querySelectorAll("[data-produto]");
-  for(var i=0; i<links.length; i++){
-    var el = links[i];
-    var prod = el.getAttribute("data-produto");
-    var url = CONFIG.linksCheckout[prod];
-    if(url) el.setAttribute("href", url);
-    el.addEventListener("click", function(e){
-      if(this.getAttribute("href").indexOf("#SUBSTITUA") === 0){
-        e.preventDefault();
-        alert("Link de checkout ainda não configurado para este produto.\nEdite CONFIG.linksCheckout no código.");
-      }
-    });
-  }
-
-  var opts = document.querySelectorAll(".canal-opt");
-  for(var j=0; j<opts.length; j++){
-    opts[j].addEventListener("click", function(){
-      for(var k=0; k<opts.length; k++) opts[k].classList.remove("sel");
-      this.classList.add("sel");
-      canalEscolhido = this.getAttribute("data-canal");
-      var label = $("labelContato");
-      var input = $("leadContato");
-      if(canalEscolhido === "whatsapp"){
-        label.textContent = "Seu WhatsApp (com DDD)";
-        input.placeholder = "(11) 91234-5678";
-        input.type = "tel";
-      } else {
-        label.textContent = "Seu e-mail";
-        input.placeholder = "seuemail@exemplo.com";
-        input.type = "email";
-      }
-    });
-  }
-
-  var form = $("formLead");
-  if(form) form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var nome = $("leadNome").value.trim();
-    var contato = $("leadContato").value.trim();
-    var lgpd = $("leadLGPD").checked;
-    var status = $("msgStatusForm");
-    status.className = "msg-status";
-
-    if(!nome){
-      status.textContent = "Digite seu nome.";
-      status.className = "msg-status erro";
-      $("leadNome").focus();
-      return;
-    }
-    if(!contato){
-      status.textContent = "Preencha o campo de contato.";
-      status.className = "msg-status erro";
-      $("leadContato").focus();
-      return;
-    }
-    if(canalEscolhido === "email" && !validarEmail(contato)){
-      status.textContent = "Digite um e-mail válido.";
-      status.className = "msg-status erro";
-      $("leadContato").focus();
-      return;
-    }
-    if(canalEscolhido === "whatsapp" && !validarTelefone(contato)){
-      status.textContent = "Digite um número de WhatsApp válido, com DDD.";
-      status.className = "msg-status erro";
-      $("leadContato").focus();
-      return;
-    }
-    if(!lgpd){
-      status.textContent = "Marque a autorização de contato (LGPD) para continuar.";
-      status.className = "msg-status erro";
-      return;
-    }
-
-    status.textContent = "Tudo certo! Abrindo " + (canalEscolhido === "whatsapp" ? "o WhatsApp" : "seu e-mail") + "...";
-    status.className = "msg-status ok";
-    processarLead(nome, contato, canalEscolhido);
-  });
-
-  document.addEventListener("mouseleave", function(e){
-    if(e.clientY <= 0) mostrarExitIntent();
-  });
-
-  var bFechar = $("fecharExit");
-  if(bFechar) bFechar.addEventListener("click", fecharExitIntent);
-
-  var ov = $("overlayExit");
-  if(ov) ov.addEventListener("click", function(e){ if(e.target === ov) fecharExitIntent(); });
-
-  var btnIr = $("btnExitIr");
-  if(btnIr) btnIr.addEventListener("click", function(){
-    fecharExitIntent();
-    var alvo = $("formCapturaPrincipal");
-    if(alvo) alvo.scrollIntoView({behavior:"smooth", block:"start"});
-  });
-});
-
-function validarEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-function validarTelefone(v){ return v.replace(/\D/g,"").length >= 10; }
-
-function processarLead(nome, contato, canal){
-  var msg = "Olá! Meu nome é " + nome + ". Vim pelo site e quero receber o material gratuito.";
-  if(canal === "whatsapp"){
-    window.open(montarLinkWhatsApp(msg), "_blank", "noopener");
-  } else {
-    var assunto = encodeURIComponent("Quero o material gratuito");
-    var corpo = encodeURIComponent("Nome: " + nome + "\nE-mail: " + contato + "\n\n" + msg +
-      "\n\n(Nota: para captura automática de e-mail em produção, conecte um serviço gratuito como Brevo ou Mailchimp.)");
-    window.location.href = "mailto:" + CONFIG.emailContato + "?subject=" + assunto + "&body=" + corpo;
-  }
-}
-
-var exitJaMostrado = false;
-function mostrarExitIntent(){
-  if(exitJaMostrado) return;
-  exitJaMostrado = true;
-  var ov = $("overlayExit");
-  if(ov) ov.classList.add("on");
-}
-function fecharExitIntent(){
-  var ov = $("overlayExit");
-  if(ov) ov.classList.remove("on");
-}
-</script>
+<script src="vendor/qrcode.js"></script>
+<script src="corretor.js"></script>
+<script src="devocional.js"></script>
+<script src="cards4k.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
